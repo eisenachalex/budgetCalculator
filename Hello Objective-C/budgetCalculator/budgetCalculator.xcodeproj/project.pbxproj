@@ -1,0 +1,345 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF2485F71895899F00C215E2 /* AEExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2485F61895899F00C215E2 /* AEExpenseViewController.m */; };
+		EF24860F1895A1A700C215E2 /* AEAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */; };
+		EF2486101895A1A700C215E2 /* AEAddItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF24860E1895A1A700C215E2 /* AEAddItemViewController.xib */; };
+		EF50F3C318A0813400311F5F /* AEIncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF50F3C218A0813400311F5F /* AEIncomeViewController.m */; };
+		EF77029118691A1800B72C6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77029018691A1800B72C6B /* UIKit.framework */; };
+		EF77029318691A1800B72C6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77029218691A1800B72C6B /* Foundation.framework */; };
+		EF77029518691A1800B72C6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF77029418691A1800B72C6B /* CoreGraphics.framework */; };
+		EF77029B18691A1800B72C6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF77029918691A1800B72C6B /* InfoPlist.strings */; };
+		EF77029D18691A1800B72C6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF77029C18691A1800B72C6B /* main.m */; };
+		EF7702A118691A1800B72C6B /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF7702A018691A1800B72C6B /* AEAppDelegate.m */; };
+		EF7702A318691A1800B72C6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A218691A1800B72C6B /* Default.png */; };
+		EF7702A518691A1800B72C6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A418691A1800B72C6B /* Default@2x.png */; };
+		EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A618691A1800B72C6B /* Default-568h@2x.png */; };
+		EFD89CE318A74BD3009696FF /* AEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89CE118A74BD3009696FF /* AEHomeViewController.m */; };
+		EFD89CE418A74BD3009696FF /* AEHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */; };
+		EFD89CF918A824D7009696FF /* AEBudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89CF718A824D7009696FF /* AEBudgetViewController.m */; };
+		EFD89D0418AAF49E009696FF /* AEAdjustIncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */; };
+		EFD89D0518AAF49E009696FF /* AEAdjustIncomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EF2485F51895899F00C215E2 /* AEExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEExpenseViewController.h; path = budgetCalculator/AEExpenseViewController.h; sourceTree = "<group>"; };
+		EF2485F61895899F00C215E2 /* AEExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEExpenseViewController.m; path = budgetCalculator/AEExpenseViewController.m; sourceTree = "<group>"; };
+		EF2485FE18958A1300C215E2 /* AEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEHomeViewController.h; path = budgetCalculator/AEHomeViewController.h; sourceTree = "<group>"; };
+		EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAddItemViewController.m; sourceTree = "<group>"; };
+		EF24860E1895A1A700C215E2 /* AEAddItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAddItemViewController.xib; sourceTree = "<group>"; };
+		EF50F3C118A0813400311F5F /* AEIncomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEIncomeViewController.h; sourceTree = "<group>"; };
+		EF50F3C218A0813400311F5F /* AEIncomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEIncomeViewController.m; sourceTree = "<group>"; };
+		EF77028C18691A1800B72C6B /* budgetCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budgetCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF77029018691A1800B72C6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EF77029218691A1800B72C6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EF77029418691A1800B72C6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF77029818691A1800B72C6B /* budgetCalculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "budgetCalculator-Info.plist"; sourceTree = "<group>"; };
+		EF77029A18691A1800B72C6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF77029C18691A1800B72C6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF77029E18691A1800B72C6B /* budgetCalculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "budgetCalculator-Prefix.pch"; sourceTree = "<group>"; };
+		EF77029F18691A1800B72C6B /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEAppDelegate.h; sourceTree = "<group>"; };
+		EF7702A018691A1800B72C6B /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEAppDelegate.m; sourceTree = "<group>"; };
+		EF7702A218691A1800B72C6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EF7702A418691A1800B72C6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EF7702A618691A1800B72C6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EFD89CE018A74BD3009696FF /* AEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEHomeViewController.h; sourceTree = "<group>"; };
+		EFD89CE118A74BD3009696FF /* AEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEHomeViewController.m; sourceTree = "<group>"; };
+		EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEHomeViewController.xib; sourceTree = "<group>"; };
+		EFD89CE618A74CFF009696FF /* AEAddItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AEAddItemViewController.h; path = budgetCalculator/AEAddItemViewController.h; sourceTree = "<group>"; };
+		EFD89CF618A824D7009696FF /* AEBudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEBudgetViewController.h; path = budgetCalculator/AEBudgetViewController.h; sourceTree = "<group>"; };
+		EFD89CF718A824D7009696FF /* AEBudgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEBudgetViewController.m; path = budgetCalculator/AEBudgetViewController.m; sourceTree = "<group>"; };
+		EFD89D0118AAF49D009696FF /* AEAdjustIncomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAdjustIncomeViewController.h; sourceTree = "<group>"; };
+		EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAdjustIncomeViewController.m; sourceTree = "<group>"; };
+		EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAdjustIncomeViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF77028918691A1800B72C6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF77029118691A1800B72C6B /* UIKit.framework in Frameworks */,
+				EF77029318691A1800B72C6B /* Foundation.framework in Frameworks */,
+				EF77029518691A1800B72C6B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF77028118691A1800B72C6B = {
+			isa = PBXGroup;
+			children = (
+				EF2485FE18958A1300C215E2 /* AEHomeViewController.h */,
+				EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */,
+				EFD89CF618A824D7009696FF /* AEBudgetViewController.h */,
+				EFD89CF718A824D7009696FF /* AEBudgetViewController.m */,
+				EFD89D0118AAF49D009696FF /* AEAdjustIncomeViewController.h */,
+				EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */,
+				EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */,
+				EFD89CE618A74CFF009696FF /* AEAddItemViewController.h */,
+				EFD89CE018A74BD3009696FF /* AEHomeViewController.h */,
+				EFD89CE118A74BD3009696FF /* AEHomeViewController.m */,
+				EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */,
+				EF50F3C118A0813400311F5F /* AEIncomeViewController.h */,
+				EF50F3C218A0813400311F5F /* AEIncomeViewController.m */,
+				EF24860E1895A1A700C215E2 /* AEAddItemViewController.xib */,
+				EF2485F51895899F00C215E2 /* AEExpenseViewController.h */,
+				EF2485F61895899F00C215E2 /* AEExpenseViewController.m */,
+				EF77029618691A1800B72C6B /* budgetCalculator */,
+				EF77028F18691A1800B72C6B /* Frameworks */,
+				EF77028D18691A1800B72C6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF77028D18691A1800B72C6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF77028C18691A1800B72C6B /* budgetCalculator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF77028F18691A1800B72C6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF77029018691A1800B72C6B /* UIKit.framework */,
+				EF77029218691A1800B72C6B /* Foundation.framework */,
+				EF77029418691A1800B72C6B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF77029618691A1800B72C6B /* budgetCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				EF77029F18691A1800B72C6B /* AEAppDelegate.h */,
+				EF7702A018691A1800B72C6B /* AEAppDelegate.m */,
+				EF77029718691A1800B72C6B /* Supporting Files */,
+			);
+			path = budgetCalculator;
+			sourceTree = "<group>";
+		};
+		EF77029718691A1800B72C6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF77029818691A1800B72C6B /* budgetCalculator-Info.plist */,
+				EF77029918691A1800B72C6B /* InfoPlist.strings */,
+				EF77029C18691A1800B72C6B /* main.m */,
+				EF77029E18691A1800B72C6B /* budgetCalculator-Prefix.pch */,
+				EF7702A218691A1800B72C6B /* Default.png */,
+				EF7702A418691A1800B72C6B /* Default@2x.png */,
+				EF7702A618691A1800B72C6B /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF77028B18691A1800B72C6B /* budgetCalculator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF7702AA18691A1800B72C6B /* Build configuration list for PBXNativeTarget "budgetCalculator" */;
+			buildPhases = (
+				EF77028818691A1800B72C6B /* Sources */,
+				EF77028918691A1800B72C6B /* Frameworks */,
+				EF77028A18691A1800B72C6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = budgetCalculator;
+			productName = budgetCalculator;
+			productReference = EF77028C18691A1800B72C6B /* budgetCalculator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF77028318691A1800B72C6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AE;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Alex Eisenach";
+				TargetAttributes = {
+					EF77028B18691A1800B72C6B = {
+						DevelopmentTeam = 7G6GV9247B;
+					};
+				};
+			};
+			buildConfigurationList = EF77028618691A1800B72C6B /* Build configuration list for PBXProject "budgetCalculator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EF77028118691A1800B72C6B;
+			productRefGroup = EF77028D18691A1800B72C6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF77028B18691A1800B72C6B /* budgetCalculator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF77028A18691A1800B72C6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF77029B18691A1800B72C6B /* InfoPlist.strings in Resources */,
+				EF2486101895A1A700C215E2 /* AEAddItemViewController.xib in Resources */,
+				EF7702A318691A1800B72C6B /* Default.png in Resources */,
+				EF7702A518691A1800B72C6B /* Default@2x.png in Resources */,
+				EFD89D0518AAF49E009696FF /* AEAdjustIncomeViewController.xib in Resources */,
+				EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */,
+				EFD89CE418A74BD3009696FF /* AEHomeViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF77028818691A1800B72C6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF24860F1895A1A700C215E2 /* AEAddItemViewController.m in Sources */,
+				EF77029D18691A1800B72C6B /* main.m in Sources */,
+				EF2485F71895899F00C215E2 /* AEExpenseViewController.m in Sources */,
+				EF50F3C318A0813400311F5F /* AEIncomeViewController.m in Sources */,
+				EFD89D0418AAF49E009696FF /* AEAdjustIncomeViewController.m in Sources */,
+				EFD89CF918A824D7009696FF /* AEBudgetViewController.m in Sources */,
+				EF7702A118691A1800B72C6B /* AEAppDelegate.m in Sources */,
+				EFD89CE318A74BD3009696FF /* AEHomeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EF77029918691A1800B72C6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF77029A18691A1800B72C6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF7702A818691A1800B72C6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alex Eisenach (7G6GV9247B)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EF7702A918691A1800B72C6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alex Eisenach (7G6GV9247B)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF7702AB18691A1800B72C6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "budgetCalculator/budgetCalculator-Prefix.pch";
+				INFOPLIST_FILE = "budgetCalculator/budgetCalculator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EF7702AC18691A1800B72C6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "budgetCalculator/budgetCalculator-Prefix.pch";
+				INFOPLIST_FILE = "budgetCalculator/budgetCalculator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF77028618691A1800B72C6B /* Build configuration list for PBXProject "budgetCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7702A818691A1800B72C6B /* Debug */,
+				EF7702A918691A1800B72C6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF7702AA18691A1800B72C6B /* Build configuration list for PBXNativeTarget "budgetCalculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF7702AB18691A1800B72C6B /* Debug */,
+				EF7702AC18691A1800B72C6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF77028318691A1800B72C6B /* Project object */;
+}
