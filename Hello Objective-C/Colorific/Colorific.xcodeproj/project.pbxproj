@@ -1,0 +1,313 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF97421E1860F87F003B0925 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF97421D1860F87F003B0925 /* UIKit.framework */; };
+		EF9742201860F87F003B0925 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF97421F1860F87F003B0925 /* Foundation.framework */; };
+		EF9742221860F87F003B0925 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF9742211860F87F003B0925 /* CoreGraphics.framework */; };
+		EF9742281860F87F003B0925 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF9742261860F87F003B0925 /* InfoPlist.strings */; };
+		EF97422A1860F87F003B0925 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9742291860F87F003B0925 /* main.m */; };
+		EF97422E1860F87F003B0925 /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF97422D1860F87F003B0925 /* AEAppDelegate.m */; };
+		EF9742301860F87F003B0925 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF97422F1860F87F003B0925 /* Default.png */; };
+		EF9742321860F87F003B0925 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9742311860F87F003B0925 /* Default@2x.png */; };
+		EF9742341860F87F003B0925 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9742331860F87F003B0925 /* Default-568h@2x.png */; };
+		EF9742371860F87F003B0925 /* AEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF9742361860F87F003B0925 /* AEViewController.m */; };
+		EF97423A1860F87F003B0925 /* AEViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9742381860F87F003B0925 /* AEViewController_iPhone.xib */; };
+		EF97423D1860F87F003B0925 /* AEViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF97423B1860F87F003B0925 /* AEViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EF9742191860F87F003B0925 /* Colorific.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colorific.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF97421D1860F87F003B0925 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EF97421F1860F87F003B0925 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EF9742211860F87F003B0925 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF9742251860F87F003B0925 /* Colorific-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colorific-Info.plist"; sourceTree = "<group>"; };
+		EF9742271860F87F003B0925 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF9742291860F87F003B0925 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF97422B1860F87F003B0925 /* Colorific-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Colorific-Prefix.pch"; sourceTree = "<group>"; };
+		EF97422C1860F87F003B0925 /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEAppDelegate.h; sourceTree = "<group>"; };
+		EF97422D1860F87F003B0925 /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEAppDelegate.m; sourceTree = "<group>"; };
+		EF97422F1860F87F003B0925 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EF9742311860F87F003B0925 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		EF9742331860F87F003B0925 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EF9742351860F87F003B0925 /* AEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEViewController.h; sourceTree = "<group>"; };
+		EF9742361860F87F003B0925 /* AEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEViewController.m; sourceTree = "<group>"; };
+		EF9742391860F87F003B0925 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AEViewController_iPhone.xib; sourceTree = "<group>"; };
+		EF97423C1860F87F003B0925 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AEViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF9742161860F87F003B0925 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF97421E1860F87F003B0925 /* UIKit.framework in Frameworks */,
+				EF9742201860F87F003B0925 /* Foundation.framework in Frameworks */,
+				EF9742221860F87F003B0925 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF97420E1860F87F003B0925 = {
+			isa = PBXGroup;
+			children = (
+				EF9742231860F87F003B0925 /* Colorific */,
+				EF97421C1860F87F003B0925 /* Frameworks */,
+				EF97421A1860F87F003B0925 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF97421A1860F87F003B0925 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF9742191860F87F003B0925 /* Colorific.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF97421C1860F87F003B0925 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF97421D1860F87F003B0925 /* UIKit.framework */,
+				EF97421F1860F87F003B0925 /* Foundation.framework */,
+				EF9742211860F87F003B0925 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF9742231860F87F003B0925 /* Colorific */ = {
+			isa = PBXGroup;
+			children = (
+				EF97422C1860F87F003B0925 /* AEAppDelegate.h */,
+				EF97422D1860F87F003B0925 /* AEAppDelegate.m */,
+				EF9742351860F87F003B0925 /* AEViewController.h */,
+				EF9742361860F87F003B0925 /* AEViewController.m */,
+				EF9742381860F87F003B0925 /* AEViewController_iPhone.xib */,
+				EF97423B1860F87F003B0925 /* AEViewController_iPad.xib */,
+				EF9742241860F87F003B0925 /* Supporting Files */,
+			);
+			path = Colorific;
+			sourceTree = "<group>";
+		};
+		EF9742241860F87F003B0925 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF9742251860F87F003B0925 /* Colorific-Info.plist */,
+				EF9742261860F87F003B0925 /* InfoPlist.strings */,
+				EF9742291860F87F003B0925 /* main.m */,
+				EF97422B1860F87F003B0925 /* Colorific-Prefix.pch */,
+				EF97422F1860F87F003B0925 /* Default.png */,
+				EF9742311860F87F003B0925 /* Default@2x.png */,
+				EF9742331860F87F003B0925 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF9742181860F87F003B0925 /* Colorific */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF9742401860F87F003B0925 /* Build configuration list for PBXNativeTarget "Colorific" */;
+			buildPhases = (
+				EF9742151860F87F003B0925 /* Sources */,
+				EF9742161860F87F003B0925 /* Frameworks */,
+				EF9742171860F87F003B0925 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Colorific;
+			productName = Colorific;
+			productReference = EF9742191860F87F003B0925 /* Colorific.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF9742101860F87F003B0925 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AE;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Alex Eisenach";
+			};
+			buildConfigurationList = EF9742131860F87F003B0925 /* Build configuration list for PBXProject "Colorific" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EF97420E1860F87F003B0925;
+			productRefGroup = EF97421A1860F87F003B0925 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF9742181860F87F003B0925 /* Colorific */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF9742171860F87F003B0925 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF9742281860F87F003B0925 /* InfoPlist.strings in Resources */,
+				EF9742301860F87F003B0925 /* Default.png in Resources */,
+				EF9742321860F87F003B0925 /* Default@2x.png in Resources */,
+				EF9742341860F87F003B0925 /* Default-568h@2x.png in Resources */,
+				EF97423A1860F87F003B0925 /* AEViewController_iPhone.xib in Resources */,
+				EF97423D1860F87F003B0925 /* AEViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF9742151860F87F003B0925 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF97422A1860F87F003B0925 /* main.m in Sources */,
+				EF97422E1860F87F003B0925 /* AEAppDelegate.m in Sources */,
+				EF9742371860F87F003B0925 /* AEViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EF9742261860F87F003B0925 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF9742271860F87F003B0925 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EF9742381860F87F003B0925 /* AEViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF9742391860F87F003B0925 /* en */,
+			);
+			name = AEViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		EF97423B1860F87F003B0925 /* AEViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF97423C1860F87F003B0925 /* en */,
+			);
+			name = AEViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF97423E1860F87F003B0925 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF97423F1860F87F003B0925 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF9742411860F87F003B0925 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Colorific/Colorific-Prefix.pch";
+				INFOPLIST_FILE = "Colorific/Colorific-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EF9742421860F87F003B0925 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Colorific/Colorific-Prefix.pch";
+				INFOPLIST_FILE = "Colorific/Colorific-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF9742131860F87F003B0925 /* Build configuration list for PBXProject "Colorific" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF97423E1860F87F003B0925 /* Debug */,
+				EF97423F1860F87F003B0925 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF9742401860F87F003B0925 /* Build configuration list for PBXNativeTarget "Colorific" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF9742411860F87F003B0925 /* Debug */,
+				EF9742421860F87F003B0925 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF9742101860F87F003B0925 /* Project object */;
+}

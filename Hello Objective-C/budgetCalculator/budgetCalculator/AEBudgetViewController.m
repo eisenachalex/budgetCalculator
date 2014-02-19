@@ -26,6 +26,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     [self loadCurrentIncome];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     self.budgetIncome = [self.budgetIncomeArray objectAtIndex:0];
     self = [super initWithStyle:style];
     if (self) {
@@ -39,9 +41,10 @@
         [button addTarget:self action:@selector(monthlyIncomeChanged:) forControlEvents:UIControlEventTouchUpInside];
         button.center = CGPointMake(200.0, 40.0);
         int incomeAnswer = [self.budgetIncome intValue];
+        NSString *formattedString = [formatter stringFromNumber:[NSNumber numberWithInt:incomeAnswer]];
+
         label.text = [NSString stringWithFormat:@"Monthly Income \n $%d", incomeAnswer];
         label.numberOfLines = 0;
-    [label setBackgroundColor:[[UIColor alloc] initWithRed:204./255 green:213./255 blue:216./255 alpha:0.5]];
         [headerView addSubview:button];
         [headerView addSubview:label];
 
@@ -69,6 +72,7 @@
     [self.budgetIncomeArray replaceObjectAtIndex:0 withObject:self.budgetIncome];
     [self.budgetIncomeArray writeToFile:[self pathForIncome] atomically:YES];
     NSLog(@"damn");
+    [self viewWillAppear:YES];
     
 
 }
@@ -119,6 +123,17 @@
         
     } else {
         self.categories = [NSMutableArray array];
+    }
+    
+}
+
+- (void)loadExpenses {
+    NSString *filePath = [self pathForExpenses];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        self.expenses = [NSMutableArray arrayWithContentsOfFile:filePath];
+        
+    } else {
+        self.expenses = [NSMutableArray array];
     }
     
 }
@@ -193,10 +208,28 @@
     [self.tableView setTableHeaderView:headerView];
     [self loadItems];
     [self loadCurrentIncome];
+    [self.tableView reloadData];
 
 
 }
 
+-(float)categoryExpenses:(NSString *)category{
+    float answer = 0.0;
+    [self loadExpenses];
+    for (int i = 0; i < [self.expenses count]; i++){
+        NSDictionary *expense = [self.expenses objectAtIndex:i];
+        NSArray *arrayOfTypes = [expense valueForKey:@"type"];
+        NSString *typeValue = [arrayOfTypes objectAtIndex:0];
+        NSArray *arrayOfPrice = [expense valueForKey:@"price"];
+        NSNumber *priceValue = [arrayOfPrice objectAtIndex:0];
+        NSArray *arrayOfDescription = [expense valueForKey:@"description"];
+        NSString *descriptionValue = [arrayOfDescription objectAtIndex:0];
+        if(([typeValue isEqualToString:@"Expense"] == 1) && ([descriptionValue isEqualToString:category] == 1)){
+             answer += [priceValue intValue];
+        }
+    }
+    return answer;
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -222,25 +255,39 @@
     NSNumber *categoryAmount = [category objectAtIndex:1];
     [cell.textLabel setText:realCategory];
     CGRect frame = CGRectMake(10.0, 20.0, 200.0, 10.0);
-    CGRect percentageFrame = CGRectMake(220,0.0,100.0,20.0);
-    CGRect amountFrame = CGRectMake(220,30.0,100.0,20.0);
+    CGRect progressFrame = CGRectMake(10,50.0,100.0 ,20.0);
+    CGRect amountFrame = CGRectMake(220,0.0,100.0,20.0);
+    CGRect percentageFrame = CGRectMake(220,30.0,100.0,20.0);
+        CGRect statusLabelFrame = CGRectMake(10,50.0,100.0,20.0);
     UILabel *percentage = [[UILabel alloc] initWithFrame:percentageFrame];
-    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
+    UILabel *statusLabel = [[UILabel alloc] initWithFrame:statusLabelFrame];
+    statusLabel.text = [NSString stringWithFormat:@"This month: $%.0f",[self categoryExpenses:realCategory]];
+    [statusLabel setFont:[UIFont systemFontOfSize:5]];
     UILabel *amount = [[UILabel alloc] initWithFrame:amountFrame];
+
+    [percentage setFont:[UIFont systemFontOfSize:10]];
+
+    UISlider *slider = [[UISlider alloc] initWithFrame:frame];
+    UIProgressView *progressView = [[UIProgressView alloc] initWithFrame:progressFrame];
     float equationNumber = [categoryAmount floatValue] / [[self.budgetIncomeArray objectAtIndex:0] floatValue];
     NSLog(@"%.1f",equationNumber);
 
     percentage.text = [NSString stringWithFormat:@"%.1f%%", (equationNumber * 100)];
-
     [slider setTag:indexPath.row];
     slider.maximumValue = [[self.budgetIncomeArray objectAtIndex:0] intValue];
     slider.minimumValue = 0;
     NSLog(@"%@",indexPath);
     slider.continuous = YES;
     slider.value = [categoryAmount intValue];
+    progressView.progress = ([self categoryExpenses:realCategory] / slider.value);
+    NSLog(@"oyoyoyoyoo");
+    NSLog(@"%f", ([self categoryExpenses:realCategory] / slider.value));
+
     amount.text = [NSString stringWithFormat:@"$%.0f",slider.value];
     [slider addSubview:percentage];
         [slider addSubview:amount];
+    [slider addSubview:progressView];
+    [slider addSubview:statusLabel];
     [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 
     [cell.contentView addSubview:slider];
@@ -260,12 +307,23 @@
     NSArray *viewArray = [sender subviews];
     UILabel *label = [viewArray objectAtIndex:0];
     UILabel *amount = [viewArray objectAtIndex:1];
+    UIProgressView *progress = [viewArray objectAtIndex:2];
     label.text = [NSString stringWithFormat:@"%.f %%",(((float)sender.value / [[self.budgetIncomeArray objectAtIndex:0] intValue]) * 100)];
 
     amount.text = [NSString stringWithFormat:@"$%.0f", (float)sender.value];
     [categoryArray replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:sender.value]];
     [self.categories replaceObjectAtIndex:sender.tag withObject:categoryArray];
     [self.categories writeToFile:[self pathForCategories] atomically:YES];
+    [self loadCurrentIncome];
+    progress.progress = ([self categoryExpenses:[categoryArray objectAtIndex:0]] / sender.value);
+    if (progress.progress >= 1.0) {
+        progress.progressTintColor = [UIColor redColor];
+    }
+    else{
+        progress.progressTintColor = [UIColor blueColor];
+        
+    }
+
 }
 
 - (NSString *)pathForCategories {

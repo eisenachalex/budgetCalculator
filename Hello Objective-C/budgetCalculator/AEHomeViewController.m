@@ -126,7 +126,7 @@
         
     } else {
         self.currentIncome = [NSMutableArray array];
-        [self.currentIncome addObject:[NSNumber numberWithInt:54321]];
+        [self.currentIncome addObject:[NSNumber numberWithInt:0]];
 
     }
 }
