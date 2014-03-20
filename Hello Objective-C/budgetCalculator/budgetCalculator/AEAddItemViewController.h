@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @protocol AEAddItemViewControllerDelegate;
-@interface AEAddItemViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface AEAddItemViewController : UIViewController <UIPickerViewDataSource>
 @property (weak) id<AEAddItemViewControllerDelegate> delegate;
 @property IBOutlet UITextField *nameTextField;
-@property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
+@property IBOutlet UILabel *label;
 @property IBOutlet UITextField *priceTextField;
+-(IBAction)cancelEditingForView:(id)sender;
+
 @end
 
 

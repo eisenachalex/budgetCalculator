@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AEAddItemViewController.h"
 #import "AEAdjustIncomeViewController.h"
+#import "AEEditViewController.h"
 
-@interface AEBudgetViewController : UITableViewController <AEAddItemViewControllerDelegate,AEAdjustIncomeViewControllerDelegate>
+@interface AEBudgetViewController : UITableViewController <AEAddItemViewControllerDelegate,AEAdjustIncomeViewControllerDelegate,AEEditViewControllerDelegate>
 
 @end

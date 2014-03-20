@@ -30,8 +30,7 @@
     [self loadItems];
     self.categories = [NSMutableArray arrayWithObjects: @"food",@"transportation",@"rent", nil];
     // Do any additional setup after loading the view from its nib.
-    myPickerView.delegate = self;
-    myPickerView.dataSource = self;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +71,12 @@
     return [documents stringByAppendingPathComponent:@"categories.plist"];
 }
 
-
+-(IBAction)cancelEditingForView:(id)sender {
+    [[self view] endEditing:YES];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self cancelEditingForView:textField]; return YES;
+}
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -84,33 +88,8 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-@synthesize myPickerView;
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [self.categories count];
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 30.0;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [[self.categories objectAtIndex:row] objectAtIndex:0];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    //Let's print in the console what the user had chosen;
-    self.nameTextField.text = [[self.categories objectAtIndex:row] objectAtIndex:0];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

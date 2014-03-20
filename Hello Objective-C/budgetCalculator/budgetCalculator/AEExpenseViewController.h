@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AEAddItemViewController.h"
+#import "AEQuickExpenseViewController.h"
 
-@interface AEExpenseViewController : UITableViewController <AEAddItemViewControllerDelegate>
+
+@interface AEExpenseViewController : UITableViewController <AEAddItemViewControllerDelegate,AEQuickExpenseViewControllerDelegate>
 
 @end

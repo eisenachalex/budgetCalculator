@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AEAddItemViewController.h"
+#import "AEQuickAddViewController.h"
 
-@interface AEIncomeViewController : UITableViewController <AEAddItemViewControllerDelegate>
+@interface AEIncomeViewController : UITableViewController <AEAddItemViewControllerDelegate,AEQuickAddViewControllerDelegate>
 
 
 @end

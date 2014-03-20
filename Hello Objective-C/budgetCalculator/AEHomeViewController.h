@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AEQuickAddViewController.h"
+#import "AEQuickExpenseViewController.h"
 
-
-
-@interface AEHomeViewController : UIViewController
+@interface AEHomeViewController : UIViewController <AEQuickAddViewControllerDelegate,AEQuickExpenseViewControllerDelegate>
 @property IBOutlet UILabel *dailyBudget;
+@property IBOutlet UILabel *month;
+-(IBAction)addItem:(id)sender;
+-(IBAction)addExpense:(id)sender;
 @end

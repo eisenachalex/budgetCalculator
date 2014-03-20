@@ -26,11 +26,24 @@
     UINavigationController *incomeNavController = [[UINavigationController alloc] initWithRootViewController:incomeViewController];
         UINavigationController *budgetNavController = [[UINavigationController alloc] initWithRootViewController:budgetViewController];
     [tabBarController setViewControllers:@[homeViewController, budgetNavController, incomeNavController, expenseNavController]];
+    [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"background.png"]];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window setRootViewController:tabBarController];
     [self.window makeKeyAndVisible];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont boldSystemFontOfSize:10.0f], UITextAttributeFont,
+                                                       [UIColor grayColor], UITextAttributeTextColor,
+                                                       [UIColor grayColor], UITextAttributeTextShadowColor,
+                                                       [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                                       nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont boldSystemFontOfSize:10.0f], UITextAttributeFont,
+                                                       [UIColor greenColor], UITextAttributeTextColor,
+                                                       [UIColor greenColor], UITextAttributeTextShadowColor,
+                                                       [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)], UITextAttributeTextShadowOffset,
+                                                       nil] forState:UIControlStateHighlighted];
     return YES;
 }
 

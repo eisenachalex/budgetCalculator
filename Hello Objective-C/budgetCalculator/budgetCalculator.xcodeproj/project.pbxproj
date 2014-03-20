@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF053C5D18C3B9F2008BC9A3 /* dailyicon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */; };
+		EF053C6518C3C6FA008BC9A3 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6418C3C6FA008BC9A3 /* test.png */; };
+		EF053C6718C3C77F008BC9A3 /* budgetAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6618C3C77F008BC9A3 /* budgetAdd.png */; };
+		EF053C6918C3C82E008BC9A3 /* budgetSubtract.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */; };
+		EF053C6F18C4C913008BC9A3 /* AEEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF053C6D18C4C913008BC9A3 /* AEEditViewController.m */; };
+		EF053C7018C4C913008BC9A3 /* AEEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6E18C4C913008BC9A3 /* AEEditViewController.xib */; };
+		EF054B6D18DA53D500D3909C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B6C18DA53D500D3909C /* background.png */; };
+		EF054B7F18DA5D8A00D3909C /* homenotselected.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B7E18DA5D8A00D3909C /* homenotselected.png */; };
+		EF054B9118DA647B00D3909C /* notincome.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9018DA647B00D3909C /* notincome.png */; };
+		EF054B9518DA651200D3909C /* income.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9418DA651200D3909C /* income.png */; };
+		EF054B9718DA655B00D3909C /* expense.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9618DA655B00D3909C /* expense.png */; };
+		EF054B9918DA656A00D3909C /* notexpense.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9818DA656A00D3909C /* notexpense.png */; };
+		EF054B9B18DA667100D3909C /* budget.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9A18DA667100D3909C /* budget.png */; };
+		EF054B9D18DA667A00D3909C /* notbudget.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9C18DA667A00D3909C /* notbudget.png */; };
+		EF054B9F18DA67F200D3909C /* homehome.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054B9E18DA67F200D3909C /* homehome.png */; };
+		EF054BA118DA67FB00D3909C /* nothome.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054BA018DA67FB00D3909C /* nothome.png */; };
+		EF054BA318DA690E00D3909C /* homeadd.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054BA218DA690E00D3909C /* homeadd.png */; };
+		EF054BA518DA69CB00D3909C /* homeexpense.png in Resources */ = {isa = PBXBuildFile; fileRef = EF054BA418DA69CB00D3909C /* homeexpense.png */; };
 		EF2485F71895899F00C215E2 /* AEExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF2485F61895899F00C215E2 /* AEExpenseViewController.m */; };
 		EF24860F1895A1A700C215E2 /* AEAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */; };
 		EF2486101895A1A700C215E2 /* AEAddItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF24860E1895A1A700C215E2 /* AEAddItemViewController.xib */; };
@@ -20,6 +38,11 @@
 		EF7702A318691A1800B72C6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A218691A1800B72C6B /* Default.png */; };
 		EF7702A518691A1800B72C6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A418691A1800B72C6B /* Default@2x.png */; };
 		EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A618691A1800B72C6B /* Default-568h@2x.png */; };
+		EFBE688218C150540024D8E7 /* AEQuickExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBE688018C150540024D8E7 /* AEQuickExpenseViewController.m */; };
+		EFBE688318C150540024D8E7 /* AEQuickExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFBE688118C150540024D8E7 /* AEQuickExpenseViewController.xib */; };
+		EFBE688518C38E950024D8E7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBE688418C38E950024D8E7 /* Media.xcassets */; };
+		EFD705A318B6DCD0000E54EA /* AEQuickAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD705A118B6DCD0000E54EA /* AEQuickAddViewController.m */; };
+		EFD705A418B6DCD0000E54EA /* AEQuickAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD705A218B6DCD0000E54EA /* AEQuickAddViewController.xib */; };
 		EFD89CE318A74BD3009696FF /* AEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89CE118A74BD3009696FF /* AEHomeViewController.m */; };
 		EFD89CE418A74BD3009696FF /* AEHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */; };
 		EFD89CF918A824D7009696FF /* AEBudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89CF718A824D7009696FF /* AEBudgetViewController.m */; };
@@ -28,6 +51,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyicon.png; sourceTree = "<group>"; };
+		EF053C6418C3C6FA008BC9A3 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		EF053C6618C3C77F008BC9A3 /* budgetAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budgetAdd.png; sourceTree = "<group>"; };
+		EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budgetSubtract.png; sourceTree = "<group>"; };
+		EF053C6C18C4C913008BC9A3 /* AEEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEEditViewController.h; sourceTree = "<group>"; };
+		EF053C6D18C4C913008BC9A3 /* AEEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEEditViewController.m; sourceTree = "<group>"; };
+		EF053C6E18C4C913008BC9A3 /* AEEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEEditViewController.xib; sourceTree = "<group>"; };
+		EF054B6C18DA53D500D3909C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		EF054B7E18DA5D8A00D3909C /* homenotselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homenotselected.png; sourceTree = "<group>"; };
+		EF054B9018DA647B00D3909C /* notincome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notincome.png; sourceTree = "<group>"; };
+		EF054B9418DA651200D3909C /* income.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = income.png; sourceTree = "<group>"; };
+		EF054B9618DA655B00D3909C /* expense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expense.png; sourceTree = "<group>"; };
+		EF054B9818DA656A00D3909C /* notexpense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notexpense.png; sourceTree = "<group>"; };
+		EF054B9A18DA667100D3909C /* budget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budget.png; sourceTree = "<group>"; };
+		EF054B9C18DA667A00D3909C /* notbudget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notbudget.png; sourceTree = "<group>"; };
+		EF054B9E18DA67F200D3909C /* homehome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homehome.png; sourceTree = "<group>"; };
+		EF054BA018DA67FB00D3909C /* nothome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nothome.png; sourceTree = "<group>"; };
+		EF054BA218DA690E00D3909C /* homeadd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeadd.png; sourceTree = "<group>"; };
+		EF054BA418DA69CB00D3909C /* homeexpense.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeexpense.png; sourceTree = "<group>"; };
 		EF2485F51895899F00C215E2 /* AEExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEExpenseViewController.h; path = budgetCalculator/AEExpenseViewController.h; sourceTree = "<group>"; };
 		EF2485F61895899F00C215E2 /* AEExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEExpenseViewController.m; path = budgetCalculator/AEExpenseViewController.m; sourceTree = "<group>"; };
 		EF2485FE18958A1300C215E2 /* AEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEHomeViewController.h; path = budgetCalculator/AEHomeViewController.h; sourceTree = "<group>"; };
@@ -48,6 +90,13 @@
 		EF7702A218691A1800B72C6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EF7702A418691A1800B72C6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EF7702A618691A1800B72C6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EFBE687F18C150540024D8E7 /* AEQuickExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEQuickExpenseViewController.h; sourceTree = "<group>"; };
+		EFBE688018C150540024D8E7 /* AEQuickExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEQuickExpenseViewController.m; sourceTree = "<group>"; };
+		EFBE688118C150540024D8E7 /* AEQuickExpenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEQuickExpenseViewController.xib; sourceTree = "<group>"; };
+		EFBE688418C38E950024D8E7 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		EFD705A018B6DCD0000E54EA /* AEQuickAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEQuickAddViewController.h; sourceTree = "<group>"; };
+		EFD705A118B6DCD0000E54EA /* AEQuickAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEQuickAddViewController.m; sourceTree = "<group>"; };
+		EFD705A218B6DCD0000E54EA /* AEQuickAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEQuickAddViewController.xib; sourceTree = "<group>"; };
 		EFD89CE018A74BD3009696FF /* AEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEHomeViewController.h; sourceTree = "<group>"; };
 		EFD89CE118A74BD3009696FF /* AEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEHomeViewController.m; sourceTree = "<group>"; };
 		EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEHomeViewController.xib; sourceTree = "<group>"; };
@@ -76,17 +125,27 @@
 		EF77028118691A1800B72C6B = {
 			isa = PBXGroup;
 			children = (
+				EFBE688418C38E950024D8E7 /* Media.xcassets */,
 				EF2485FE18958A1300C215E2 /* AEHomeViewController.h */,
-				EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */,
 				EFD89CF618A824D7009696FF /* AEBudgetViewController.h */,
 				EFD89CF718A824D7009696FF /* AEBudgetViewController.m */,
+				EF053C6C18C4C913008BC9A3 /* AEEditViewController.h */,
+				EF053C6D18C4C913008BC9A3 /* AEEditViewController.m */,
+				EF053C6E18C4C913008BC9A3 /* AEEditViewController.xib */,
 				EFD89D0118AAF49D009696FF /* AEAdjustIncomeViewController.h */,
 				EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */,
 				EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */,
 				EFD89CE618A74CFF009696FF /* AEAddItemViewController.h */,
+				EF24860D1895A1A600C215E2 /* AEAddItemViewController.m */,
 				EFD89CE018A74BD3009696FF /* AEHomeViewController.h */,
 				EFD89CE118A74BD3009696FF /* AEHomeViewController.m */,
 				EFD89CE218A74BD3009696FF /* AEHomeViewController.xib */,
+				EFBE687F18C150540024D8E7 /* AEQuickExpenseViewController.h */,
+				EFBE688018C150540024D8E7 /* AEQuickExpenseViewController.m */,
+				EFBE688118C150540024D8E7 /* AEQuickExpenseViewController.xib */,
+				EFD705A018B6DCD0000E54EA /* AEQuickAddViewController.h */,
+				EFD705A118B6DCD0000E54EA /* AEQuickAddViewController.m */,
+				EFD705A218B6DCD0000E54EA /* AEQuickAddViewController.xib */,
 				EF50F3C118A0813400311F5F /* AEIncomeViewController.h */,
 				EF50F3C218A0813400311F5F /* AEIncomeViewController.m */,
 				EF24860E1895A1A700C215E2 /* AEAddItemViewController.xib */,
@@ -130,9 +189,25 @@
 			isa = PBXGroup;
 			children = (
 				EF77029818691A1800B72C6B /* budgetCalculator-Info.plist */,
+				EF054B6C18DA53D500D3909C /* background.png */,
+				EF054BA218DA690E00D3909C /* homeadd.png */,
+				EF054BA418DA69CB00D3909C /* homeexpense.png */,
 				EF77029918691A1800B72C6B /* InfoPlist.strings */,
+				EF054B9818DA656A00D3909C /* notexpense.png */,
+				EF054B9018DA647B00D3909C /* notincome.png */,
+				EF054B9418DA651200D3909C /* income.png */,
+				EF054B9A18DA667100D3909C /* budget.png */,
+				EF054BA018DA67FB00D3909C /* nothome.png */,
+				EF053C6418C3C6FA008BC9A3 /* test.png */,
+				EF053C6618C3C77F008BC9A3 /* budgetAdd.png */,
+				EF054B9618DA655B00D3909C /* expense.png */,
+				EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */,
 				EF77029C18691A1800B72C6B /* main.m */,
+				EF054B9C18DA667A00D3909C /* notbudget.png */,
+				EF054B7E18DA5D8A00D3909C /* homenotselected.png */,
+				EF054B9E18DA67F200D3909C /* homehome.png */,
 				EF77029E18691A1800B72C6B /* budgetCalculator-Prefix.pch */,
+				EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */,
 				EF7702A218691A1800B72C6B /* Default.png */,
 				EF7702A418691A1800B72C6B /* Default@2x.png */,
 				EF7702A618691A1800B72C6B /* Default-568h@2x.png */,
@@ -197,13 +272,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF054B9B18DA667100D3909C /* budget.png in Resources */,
+				EF054B9518DA651200D3909C /* income.png in Resources */,
+				EFBE688518C38E950024D8E7 /* Media.xcassets in Resources */,
+				EFD705A418B6DCD0000E54EA /* AEQuickAddViewController.xib in Resources */,
+				EF054B9D18DA667A00D3909C /* notbudget.png in Resources */,
+				EF054B6D18DA53D500D3909C /* background.png in Resources */,
+				EF053C5D18C3B9F2008BC9A3 /* dailyicon.png in Resources */,
 				EF77029B18691A1800B72C6B /* InfoPlist.strings in Resources */,
+				EF053C7018C4C913008BC9A3 /* AEEditViewController.xib in Resources */,
+				EF054B9F18DA67F200D3909C /* homehome.png in Resources */,
 				EF2486101895A1A700C215E2 /* AEAddItemViewController.xib in Resources */,
 				EF7702A318691A1800B72C6B /* Default.png in Resources */,
+				EF054B9918DA656A00D3909C /* notexpense.png in Resources */,
+				EF053C6718C3C77F008BC9A3 /* budgetAdd.png in Resources */,
+				EF054B7F18DA5D8A00D3909C /* homenotselected.png in Resources */,
+				EF054BA518DA69CB00D3909C /* homeexpense.png in Resources */,
 				EF7702A518691A1800B72C6B /* Default@2x.png in Resources */,
 				EFD89D0518AAF49E009696FF /* AEAdjustIncomeViewController.xib in Resources */,
+				EF054BA118DA67FB00D3909C /* nothome.png in Resources */,
+				EFBE688318C150540024D8E7 /* AEQuickExpenseViewController.xib in Resources */,
+				EF054B9718DA655B00D3909C /* expense.png in Resources */,
+				EF054BA318DA690E00D3909C /* homeadd.png in Resources */,
+				EF054B9118DA647B00D3909C /* notincome.png in Resources */,
 				EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */,
 				EFD89CE418A74BD3009696FF /* AEHomeViewController.xib in Resources */,
+				EF053C6918C3C82E008BC9A3 /* budgetSubtract.png in Resources */,
+				EF053C6518C3C6FA008BC9A3 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,10 +309,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD705A318B6DCD0000E54EA /* AEQuickAddViewController.m in Sources */,
 				EF24860F1895A1A700C215E2 /* AEAddItemViewController.m in Sources */,
 				EF77029D18691A1800B72C6B /* main.m in Sources */,
 				EF2485F71895899F00C215E2 /* AEExpenseViewController.m in Sources */,
 				EF50F3C318A0813400311F5F /* AEIncomeViewController.m in Sources */,
+				EF053C6F18C4C913008BC9A3 /* AEEditViewController.m in Sources */,
+				EFBE688218C150540024D8E7 /* AEQuickExpenseViewController.m in Sources */,
 				EFD89D0418AAF49E009696FF /* AEAdjustIncomeViewController.m in Sources */,
 				EFD89CF918A824D7009696FF /* AEBudgetViewController.m in Sources */,
 				EF7702A118691A1800B72C6B /* AEAppDelegate.m in Sources */,
@@ -293,6 +391,8 @@
 		EF7702AB18691A1800B72C6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -307,6 +407,8 @@
 		EF7702AC18691A1800B72C6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

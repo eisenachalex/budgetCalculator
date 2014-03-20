@@ -21,18 +21,25 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        
         self.title = @"Income";
+        [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"income.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"notincome.png"]];
         [self loadItems];
         [self getItems];
     }
     return self;
 }
 
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath {
+    [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+    
+}
+
 -(void)controller:(AEAddItemViewController *)controller didSaveItemWithName:(NSString *)name andPrice:(float)price
 {
+    NSLog(@"its happening");
     [self loadItems];
-    int newPrice = (int)price;
-    NSNumber *finalPrice = [NSNumber numberWithInt:newPrice];
+    NSNumber *finalPrice = [NSNumber numberWithFloat:price];
     NSMutableDictionary *dictionaryItem = [[NSMutableDictionary alloc] init];
     dictionaryItem[@"description"] = name;
     dictionaryItem[@"price"] = finalPrice;
@@ -72,11 +79,11 @@
 
 - (void)addItem:(id)sender {
     // Initialize Add Item View Controller
-    AEAddItemViewController *addItemViewController = [[AEAddItemViewController alloc] initWithNibName:@"AEAddItemViewController" bundle:nil];
+    AEQuickAddViewController *quickAddViewController = [[AEQuickAddViewController alloc] initWithNibName:@"AEQuickAddViewController" bundle:nil];
     // Present View Controller
-    [addItemViewController setDelegate:self];
+    [quickAddViewController setDelegate:self];
     
-    [self presentViewController:addItemViewController animated:YES completion:nil];
+    [self presentViewController:quickAddViewController animated:YES completion:nil];
 }
 
 - (void)editItems:(id)sender {
@@ -139,23 +146,43 @@
     // Fetch Item
     NSDictionary *expenseDict = [self.items objectAtIndex:[indexPath row]];
     NSLog(@"whoo");
+    for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
+        NSLog(@"here it is %@",[[cell.textLabel subviews] objectAtIndex:i]);
+        UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
+        if([currentView isKindOfClass:[UILabel class]]){
+            [currentView removeFromSuperview];
+        }
+    }
     NSLog(@"%@",expenseDict);
     NSArray *arrayOfValues = [expenseDict valueForKey:@"description"];
     NSArray *arrayOfPrices = [expenseDict valueForKey:@"price"];
-
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.currencyCode = @"USD";
     NSString *expense = [arrayOfValues objectAtIndex:0];
     NSNumber *expensePrice = [arrayOfPrices objectAtIndex:0];
-    NSString *numberString = [NSString stringWithFormat:@"$%@",expensePrice];
+    NSString *numberString = [NSString stringWithFormat:@"$%.02f",[expensePrice floatValue]];
     CGRect expenseFrame = CGRectMake(10.0, 0.0, 280, 50);
     UILabel *subLabel = [[UILabel alloc] initWithFrame:expenseFrame];
     subLabel.textColor = [UIColor greenColor];
-    subLabel.text = numberString;
-    subLabel.textAlignment = NSTextAlignmentRight;
+    NSString *formattedAmount = [formatter stringFromNumber:expensePrice];
+    subLabel.text = [NSString stringWithFormat:@"%@",formattedAmount];    subLabel.textAlignment = NSTextAlignmentRight;
     //    // Configure Cell
     [cell.textLabel addSubview:subLabel];
     [cell.textLabel setText:expense];
                       
     return cell;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // your stuff goes here...
+    [self loadItems];
+    [self getItems];
+    [self.tableView reloadData];
+    
 }
 
 
