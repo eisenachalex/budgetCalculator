@@ -192,7 +192,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.categories count];
+    return [self.categories count] + 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -260,16 +260,27 @@
     static NSString *CellIdentifier = @"Cell Identifier";
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
+        NSLog(@"here it is %@",[[cell.textLabel subviews] objectAtIndex:i]);
         UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
         if([currentView isKindOfClass:[UILabel class]]){
             [currentView removeFromSuperview];
         }
-        else if([currentView isKindOfClass:[UIButton class]]){
-            [currentView removeFromSuperview];
+    }
+    if([indexPath row] == [self.categories count]){
+        if ([self.categories count] == 0){
+            [cell.textLabel setText:@""];
+            
         }
-    }   
+        else{
+            [cell.textLabel setText:@"Clear All"];
+        }        cell.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    else{
+        
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.textColor = [UIColor blackColor];
     NSArray *category = [self.categories objectAtIndex:[indexPath row]];
     NSString *realCategory =[category objectAtIndex:0];
     NSNumber *categoryAmount = [category objectAtIndex:1];
@@ -310,12 +321,14 @@
         [self.colorArray addObject:amount.textColor];
     }
     [cell.textLabel addSubview:amount];
-
+    }
     return cell;
 }
 
 - (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath {
     // Fetch Item
+    if([indexPath row] != [self.categories count]){
+
         NSMutableArray *categoryItem = [self.categories objectAtIndex:[indexPath row]];
 
     // Initialize Edit Item View Controller
@@ -326,7 +339,25 @@
     editViewController.indexNumber = [NSNumber numberWithInt:[indexPath row]];
     // Push View Controller onto Navigation Stack
     [self.navigationController pushViewController:editViewController animated:YES];
+    }
+    else {
+        self.categories = [[NSMutableArray alloc] init];
+        [self.categories writeToFile:[self pathForItems] atomically:YES];
+        
+        [self viewWillAppear:YES];
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
@@ -354,8 +385,13 @@
 //Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    
+    if([indexPath row] == [self.categories count]){
+        return NO;
+    }
+    else{
+        return YES;
+    }
 }
 
 

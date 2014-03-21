@@ -148,11 +148,18 @@
         }
     }
     if([indexPath row] == [self.items count]){
-        [cell.textLabel setText:@"Clear All"];
-        cell.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
+        if ([self.items count] == 0){
+            [cell.textLabel setText:@""];
+            
+        }
+        else{
+            [cell.textLabel setText:@"Clear All"];
+        }        cell.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     else{
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.textColor = [UIColor blackColor];
     NSDictionary *expenseDict = [self.items objectAtIndex:[indexPath row]];
     NSLog(@"whoo");
 
