@@ -72,6 +72,7 @@
 - (void)addItem:(id)sender {
     // Initialize Add Item View Controller
     AEQuickExpenseViewController *addItemViewController = [[AEQuickExpenseViewController alloc] initWithNibName:@"AEQuickExpenseViewController" bundle:nil];
+    addItemViewController.viewTitleValue = @"Add Expense";
     // Present View Controller
     [addItemViewController setDelegate:self];
     [self presentViewController:addItemViewController animated:YES completion:nil];

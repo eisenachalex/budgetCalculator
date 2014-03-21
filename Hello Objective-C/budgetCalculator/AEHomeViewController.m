@@ -388,6 +388,8 @@
     // Initialize Add Item View Controller
     AEQuickAddViewController *quickaddViewController = [[AEQuickAddViewController alloc] initWithNibName:@"AEQuickAddViewController" bundle:nil];
     // Present View Controller
+    quickaddViewController.viewTitleValue = @"Quick Income";
+
     [quickaddViewController setDelegate:self];
     [self presentViewController:quickaddViewController animated:YES completion:nil];
 }
@@ -397,6 +399,7 @@
     // Initialize Add Item View Controller
     AEQuickExpenseViewController *quickexpenseViewController = [[AEQuickExpenseViewController alloc] initWithNibName:@"AEQuickExpenseViewController" bundle:nil];
     // Present View Controller
+    quickexpenseViewController.viewTitleValue = @"Quick Expense";
     [quickexpenseViewController setDelegate:self];
     
     [self presentViewController:quickexpenseViewController animated:YES completion:nil];

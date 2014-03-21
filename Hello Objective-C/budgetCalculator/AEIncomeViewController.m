@@ -77,6 +77,7 @@
     // Initialize Add Item View Controller
     AEQuickAddViewController *quickAddViewController = [[AEQuickAddViewController alloc] initWithNibName:@"AEQuickAddViewController" bundle:nil];
     // Present View Controller
+    quickAddViewController.viewTitleValue = @"Add Income";
     [quickAddViewController setDelegate:self];
     
     [self presentViewController:quickAddViewController animated:YES completion:nil];

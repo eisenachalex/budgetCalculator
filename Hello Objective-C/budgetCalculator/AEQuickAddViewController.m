@@ -32,6 +32,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     NSString *value = @"";
     self.storedValue = [value mutableCopy];
+    self.viewTitle.text = self.viewTitleValue;
 }
 
 

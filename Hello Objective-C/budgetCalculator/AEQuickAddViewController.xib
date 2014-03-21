@@ -10,6 +10,7 @@
                 <outlet property="nameTextField" destination="U3F-WU-HRH" id="UQO-W7-hFQ"/>
                 <outlet property="priceTextField" destination="d17-KJ-GIQ" id="cMn-td-EdU"/>
                 <outlet property="view" destination="1" id="3"/>
+                <outlet property="viewTitle" destination="pDX-6C-HBB" id="gez-vR-A64"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -37,8 +38,8 @@
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="Dbg-Of-aAX"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quick Add" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDX-6C-HBB">
-                    <rect key="frame" x="71" y="72" width="179" height="51"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quick Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDX-6C-HBB">
+                    <rect key="frame" x="0.0" y="72" width="311" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
