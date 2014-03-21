@@ -36,7 +36,7 @@
     [self loadItems];
     NSNumber *finalPrice = [NSNumber numberWithFloat:price];
     NSMutableDictionary *dictionaryItem = [[NSMutableDictionary alloc] init];
-    dictionaryItem[@"description"] = name;
+    dictionaryItem[@"description"] = [name stringByReplacingOccurrencesOfString:@" " withString:@""];
     dictionaryItem[@"price"] = finalPrice;
     dictionaryItem[@"type"] = @"Expense";
     NSMutableArray *newExpense = [[NSMutableArray alloc] init];
@@ -136,7 +136,8 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.items count];
+ 
+    return [self.items count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -145,6 +146,7 @@
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     // Fetch Item
+    
     for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
         NSLog(@"here it is %@",[[cell.textLabel subviews] objectAtIndex:i]);
         UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
@@ -152,6 +154,15 @@
             [currentView removeFromSuperview];
         }
     }
+    if([indexPath row] == [self.items count]){
+        [cell.textLabel setText:@"Clear All"];
+        cell.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    else{
+    
+    
+
     NSDictionary *expenseDict = [self.items objectAtIndex:[indexPath row]];
     NSArray *arrayOfValues = [expenseDict valueForKey:@"description"];
     NSArray *arrayOfPrices = [expenseDict valueForKey:@"price"];
@@ -163,7 +174,7 @@
     CGRect expenseFrame = CGRectMake(10.0, 0.0, 280, 50);
     UILabel *subLabel = [[UILabel alloc] initWithFrame:expenseFrame];
 //    subLabel.backgroundColor = [UIColor grayColor];
-    subLabel.textColor = [UIColor redColor];
+    subLabel.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
     subLabel.textAlignment = NSTextAlignmentRight;
     NSString *formattedAmount = [formatter stringFromNumber:expensePrice];
     subLabel.text = [NSString stringWithFormat:@"%@",formattedAmount];
@@ -171,14 +182,31 @@
     [cell.textLabel addSubview:subLabel];
 //    // Configure Cell
     [cell.textLabel setText:expense];
+    }
     return cell;
 }
+
+- (void) tableView: (UITableView *) tableView didSelectRowAtIndexPath: (NSIndexPath *) indexPath {
+    if([indexPath row] != [self.items count]){
+        [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+    }
+    else{
+        self.expenses = [[NSMutableArray alloc] init];
+        [self.expenses writeToFile:[self pathForItems] atomically:YES];
+        [self viewWillAppear:YES];
+    }
+}
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    if([indexPath row] == [self.items count]){
+        return NO;
+    }
+    else{
     return YES;
+    }
 }
 
 -(void)itemsToExpenses:(NSDictionary *)deleteThis {
@@ -198,7 +226,6 @@
     
     //
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -230,6 +257,7 @@
     [self.tableView reloadData];
     
 }
+
 
 
 /*

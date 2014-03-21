@@ -13,4 +13,6 @@
 
 @interface AEBudgetViewController : UITableViewController <AEAddItemViewControllerDelegate,AEAdjustIncomeViewControllerDelegate,AEEditViewControllerDelegate>
 
+@property NSMutableArray *colorArray;
+
 @end

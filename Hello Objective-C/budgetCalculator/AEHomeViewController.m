@@ -53,10 +53,10 @@
 {
     NSLog(@"its happening");
     [self loadItems];
-    int newPrice = (int)price;
-    NSNumber *finalPrice = [NSNumber numberWithFloat:newPrice];
+    NSNumber *finalPrice = [NSNumber numberWithFloat:price];
     NSMutableDictionary *dictionaryItem = [[NSMutableDictionary alloc] init];
-    dictionaryItem[@"description"] = name;
+    dictionaryItem[@"description"] = [name stringByReplacingOccurrencesOfString:@" " withString:@""
+                                      ];
     dictionaryItem[@"price"] = finalPrice;
     dictionaryItem[@"type"] = @"Income";
     NSMutableArray *newExpense = [[NSMutableArray alloc] init];
@@ -77,10 +77,9 @@
 {
     NSLog(@"its happening");
     [self loadItems];
-    int newPrice = (int)price;
-    NSNumber *finalPrice = [NSNumber numberWithFloat:newPrice];
+    NSNumber *finalPrice = [NSNumber numberWithFloat:price];
     NSMutableDictionary *dictionaryItem = [[NSMutableDictionary alloc] init];
-    dictionaryItem[@"description"] = name;
+    dictionaryItem[@"description"] = [name stringByReplacingOccurrencesOfString:@" " withString:@""];
     dictionaryItem[@"price"] = finalPrice;
     dictionaryItem[@"type"] = @"Expense";
     NSMutableArray *newExpense = [[NSMutableArray alloc] init];
@@ -213,10 +212,9 @@
     self.dailyBudgetValue = [NSNumber numberWithInt:currentIncome + ([self calculateTotalIncome] - [self calculateTotalExpense] - [self calculateTotalCategories])];
     float dailyBudget = [self.dailyBudgetValue floatValue] / [self calculateDay];
     if (dailyBudget > 0.00){
-        self.dailyBudget.textColor = [UIColor greenColor];
-    }
+    self.dailyBudget.textColor =  [[UIColor alloc] initWithRed:(118) / 255.0 green:(192.0) / 255.0 blue:67.0 / 255.0 alpha:1.0];    }
     else {
-        self.dailyBudget.textColor = [UIColor redColor];
+        self.dailyBudget.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
     }
     self.dailyBudget.text = [formatter stringFromNumber:[NSNumber numberWithFloat:dailyBudget]];
 
@@ -380,8 +378,9 @@
     // your stuff goes here...
     [self loadCategories];
     [self loadCurrentIncome];
-
+    
     [self calculateDailyBudget];
+
 }
 
 

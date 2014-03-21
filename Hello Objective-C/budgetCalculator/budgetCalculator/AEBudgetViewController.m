@@ -48,8 +48,8 @@
         formatter.numberStyle = NSNumberFormatterCurrencyStyle;
         formatter.currencyCode = @"USD";
         label.text = [NSString stringWithFormat:@"$%.02f",incomeAnswer];
+        label.textColor = [[UIColor alloc] initWithRed:(118) / 255.0 green:(192.0) / 255.0 blue:67.0 / 255.0 alpha:1.0];
         label.numberOfLines = 0;
-        [label setBackgroundColor:[[UIColor alloc] initWithRed:204./255 green:213./255 blue:216./255 alpha:0.5]];
         [headerView addSubview:label];
         [headerView addSubview:button];
 
@@ -100,7 +100,7 @@
 {
     [self loadItems];
     NSMutableArray *newObject = [[NSMutableArray alloc] init];
-    [newObject addObject:name];
+    [newObject addObject:[name stringByReplacingOccurrencesOfString:@" " withString:@""]];
     NSNumber *number = [NSNumber numberWithInt:price];
     [newObject addObject:number];
     [self.categories addObject:newObject];
@@ -197,7 +197,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.colorArray = [[NSMutableArray alloc] init];
     CGRect frame = CGRectMake(0.0, 75.0, 200.0, 100.0);
     UIView *headerView = [[UIView alloc] initWithFrame:frame];
     CGRect labelFrame = CGRectMake(0.0,0.0,320.0,75.0);
@@ -220,7 +220,7 @@
     NSString *formattedAmount = [formatter stringFromNumber:incomeAnswer];
     label.text = [NSString stringWithFormat:@"Expected Income"];
     actualAmountLabel.text = [NSString stringWithFormat:@"%@",formattedAmount];
-    actualAmountLabel.font = [UIFont boldSystemFontOfSize:22.0];
+    actualAmountLabel.textColor = [[UIColor alloc] initWithRed:(118) / 255.0 green:(192.0) / 255.0 blue:67.0 / 255.0 alpha:1.0];    actualAmountLabel.font = [UIFont boldSystemFontOfSize:22.0];
     button.font = [UIFont systemFontOfSize:7.0];
     [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     label.numberOfLines = 0;
@@ -260,6 +260,7 @@
     static NSString *CellIdentifier = @"Cell Identifier";
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
     for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
         UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
         if([currentView isKindOfClass:[UILabel class]]){
@@ -278,10 +279,36 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     formatter.currencyCode = @"USD";
-    amount.text =[formatter stringFromNumber:categoryAmount];
+    amount.text =[formatter stringFromNumber:[NSNumber numberWithFloat:[self categoryExpenses:realCategory]]];
     amount.textAlignment = NSTextAlignmentRight;
-    amount.font = [UIFont italicSystemFontOfSize:12.0];
-    amount.textColor = [UIColor redColor];
+    amount.font = [UIFont italicSystemFontOfSize:16.0];
+    float level = 0.00;
+   
+        level = ([self categoryExpenses:realCategory] / [categoryAmount floatValue]);
+
+    
+    if(level > 1.00) {
+        NSLog(@"%f",level);
+        float overAmount = [self categoryExpenses:realCategory] - [categoryAmount floatValue];
+        float percentageOver = ((overAmount / [categoryAmount floatValue]));
+        NSLog(@"%f",percentageOver);
+        amount.textColor = [[UIColor alloc] initWithRed:(240.0) / 255.0 green:(82.0) / 255.0 blue:94.0 / 255.0 alpha:1];
+        [self.colorArray addObject:amount.textColor];
+    }
+    else if(level > 0.90){
+        float overAmount = [self categoryExpenses:realCategory] - [categoryAmount floatValue];
+        float percentageOver = ((overAmount / [categoryAmount floatValue]));
+        NSLog(@"%f",percentageOver);
+        amount.textColor = [[UIColor alloc] initWithRed:(255.0) / 255.0 green:(200.0) / 255.0 blue:50.0 / 255.0 alpha:1];
+        [self.colorArray addObject:amount.textColor];
+    }
+    
+    
+    else {
+        NSLog(@"%f",level);
+        amount.textColor = [[UIColor alloc] initWithRed:(118) / 255.0 green:(192.0) / 255.0 blue:67.0 / 255.0 alpha:1.0];
+        [self.colorArray addObject:amount.textColor];
+    }
     [cell.textLabel addSubview:amount];
 
     return cell;
@@ -295,6 +322,7 @@
     AEEditViewController *editViewController = [[AEEditViewController alloc] init];
     editViewController.categoryItem = categoryItem;
     editViewController.totalIncome = self.budgetIncome;
+    editViewController.labelColor = [self.colorArray objectAtIndex:[indexPath row]];
     editViewController.indexNumber = [NSNumber numberWithInt:[indexPath row]];
     // Push View Controller onto Navigation Stack
     [self.navigationController pushViewController:editViewController animated:YES];

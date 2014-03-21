@@ -13,7 +13,7 @@
 @property IBOutlet UILabel *category;
 @property IBOutlet UILabel *price;
 @property NSNumber *indexNumber;
-
+@property UIColor *labelColor;
 @property (strong, nonatomic) NSString * labelText;
 @property (strong, nonatomic) NSMutableArray* categoryItem;
 @property IBOutlet UIProgressView *progress;

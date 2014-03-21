@@ -38,9 +38,10 @@
     NSLog(@"HERE WE GO %@",number);
     self.currentPrice.text = [formatter stringFromNumber:number];
                               
-                              
     self.price.text = [formatter stringFromNumber:[self.categoryItem objectAtIndex:1]];
-        self.progress.progress = ([self categoryExpenses:self.labelText] / self.slider.value);
+    self.progress.progress = ([self categoryExpenses:[self.categoryItem objectAtIndex:0]] / self.slider.value);
+    NSLog(@"HEYYYY UUU HARRY %@",self.labelText);
+
 }
 - (void)viewDidLoad
 {
@@ -54,7 +55,7 @@
     self.slider.minimumValue = 0;
     self.slider.continuous = YES;
     self.slider.value = [[self.categoryItem objectAtIndex:1] intValue];
-
+    self.currentPrice.textColor = self.labelColor;
 }
 
 
