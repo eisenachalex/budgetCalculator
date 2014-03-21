@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF053C5D18C3B9F2008BC9A3 /* dailyicon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */; };
 		EF053C6518C3C6FA008BC9A3 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6418C3C6FA008BC9A3 /* test.png */; };
 		EF053C6718C3C77F008BC9A3 /* budgetAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6618C3C77F008BC9A3 /* budgetAdd.png */; };
 		EF053C6918C3C82E008BC9A3 /* budgetSubtract.png in Resources */ = {isa = PBXBuildFile; fileRef = EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */; };
@@ -38,6 +37,7 @@
 		EF7702A318691A1800B72C6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A218691A1800B72C6B /* Default.png */; };
 		EF7702A518691A1800B72C6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A418691A1800B72C6B /* Default@2x.png */; };
 		EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A618691A1800B72C6B /* Default-568h@2x.png */; };
+		EFBAB97F18DC92CD0051FFCE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EFBAB97E18DC92CD0051FFCE /* icon.png */; };
 		EFBE688218C150540024D8E7 /* AEQuickExpenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFBE688018C150540024D8E7 /* AEQuickExpenseViewController.m */; };
 		EFBE688318C150540024D8E7 /* AEQuickExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFBE688118C150540024D8E7 /* AEQuickExpenseViewController.xib */; };
 		EFBE688518C38E950024D8E7 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBE688418C38E950024D8E7 /* Media.xcassets */; };
@@ -48,10 +48,10 @@
 		EFD89CF918A824D7009696FF /* AEBudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89CF718A824D7009696FF /* AEBudgetViewController.m */; };
 		EFD89D0418AAF49E009696FF /* AEAdjustIncomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */; };
 		EFD89D0518AAF49E009696FF /* AEAdjustIncomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */; };
+		EFDDD59B18DC1BBA00B905A1 /* loadingimage.png in Resources */ = {isa = PBXBuildFile; fileRef = EFDDD59A18DC1BBA00B905A1 /* loadingimage.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dailyicon.png; sourceTree = "<group>"; };
 		EF053C6418C3C6FA008BC9A3 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		EF053C6618C3C77F008BC9A3 /* budgetAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budgetAdd.png; sourceTree = "<group>"; };
 		EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budgetSubtract.png; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 		EF7702A218691A1800B72C6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EF7702A418691A1800B72C6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EF7702A618691A1800B72C6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EFBAB97E18DC92CD0051FFCE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		EFBE687F18C150540024D8E7 /* AEQuickExpenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEQuickExpenseViewController.h; sourceTree = "<group>"; };
 		EFBE688018C150540024D8E7 /* AEQuickExpenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEQuickExpenseViewController.m; sourceTree = "<group>"; };
 		EFBE688118C150540024D8E7 /* AEQuickExpenseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEQuickExpenseViewController.xib; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		EFD89D0118AAF49D009696FF /* AEAdjustIncomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAdjustIncomeViewController.h; sourceTree = "<group>"; };
 		EFD89D0218AAF49E009696FF /* AEAdjustIncomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAdjustIncomeViewController.m; sourceTree = "<group>"; };
 		EFD89D0318AAF49E009696FF /* AEAdjustIncomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAdjustIncomeViewController.xib; sourceTree = "<group>"; };
+		EFDDD59A18DC1BBA00B905A1 /* loadingimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadingimage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,13 +203,14 @@
 				EF053C6418C3C6FA008BC9A3 /* test.png */,
 				EF053C6618C3C77F008BC9A3 /* budgetAdd.png */,
 				EF054B9618DA655B00D3909C /* expense.png */,
+				EFDDD59A18DC1BBA00B905A1 /* loadingimage.png */,
 				EF053C6818C3C82E008BC9A3 /* budgetSubtract.png */,
 				EF77029C18691A1800B72C6B /* main.m */,
+				EFBAB97E18DC92CD0051FFCE /* icon.png */,
 				EF054B9C18DA667A00D3909C /* notbudget.png */,
 				EF054B7E18DA5D8A00D3909C /* homenotselected.png */,
 				EF054B9E18DA67F200D3909C /* homehome.png */,
 				EF77029E18691A1800B72C6B /* budgetCalculator-Prefix.pch */,
-				EF053C5C18C3B9F2008BC9A3 /* dailyicon.png */,
 				EF7702A218691A1800B72C6B /* Default.png */,
 				EF7702A418691A1800B72C6B /* Default@2x.png */,
 				EF7702A618691A1800B72C6B /* Default-568h@2x.png */,
@@ -278,7 +281,6 @@
 				EFD705A418B6DCD0000E54EA /* AEQuickAddViewController.xib in Resources */,
 				EF054B9D18DA667A00D3909C /* notbudget.png in Resources */,
 				EF054B6D18DA53D500D3909C /* background.png in Resources */,
-				EF053C5D18C3B9F2008BC9A3 /* dailyicon.png in Resources */,
 				EF77029B18691A1800B72C6B /* InfoPlist.strings in Resources */,
 				EF053C7018C4C913008BC9A3 /* AEEditViewController.xib in Resources */,
 				EF054B9F18DA67F200D3909C /* homehome.png in Resources */,
@@ -288,6 +290,7 @@
 				EF053C6718C3C77F008BC9A3 /* budgetAdd.png in Resources */,
 				EF054B7F18DA5D8A00D3909C /* homenotselected.png in Resources */,
 				EF054BA518DA69CB00D3909C /* homeexpense.png in Resources */,
+				EFDDD59B18DC1BBA00B905A1 /* loadingimage.png in Resources */,
 				EF7702A518691A1800B72C6B /* Default@2x.png in Resources */,
 				EFD89D0518AAF49E009696FF /* AEAdjustIncomeViewController.xib in Resources */,
 				EF054BA118DA67FB00D3909C /* nothome.png in Resources */,
@@ -299,6 +302,7 @@
 				EFD89CE418A74BD3009696FF /* AEHomeViewController.xib in Resources */,
 				EF053C6918C3C82E008BC9A3 /* budgetSubtract.png in Resources */,
 				EF053C6518C3C6FA008BC9A3 /* test.png in Resources */,
+				EFBAB97F18DC92CD0051FFCE /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};

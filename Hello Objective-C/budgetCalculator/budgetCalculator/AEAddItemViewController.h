@@ -14,6 +14,7 @@
 @property IBOutlet UITextField *nameTextField;
 @property IBOutlet UILabel *label;
 @property IBOutlet UITextField *priceTextField;
+@property NSMutableString *storedValue;
 -(IBAction)cancelEditingForView:(id)sender;
 
 @end

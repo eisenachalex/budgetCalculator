@@ -33,6 +33,32 @@
 
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.currencyCode = @"USD";
+    NSLog(@"city boi %@",string);
+    if(string.length == 0){
+        NSString *value = @"";
+        self.storedValue = [value mutableCopy];
+    }
+    else if (textField == self.priceTextField)
+    {
+        
+        
+        if(string.length <= 2)
+            [self.storedValue appendString:string];
+        NSString *newAmount = self.storedValue;
+        
+        
+        [textField setText:[NSString stringWithFormat:@"%@",[formatter stringFromNumber:[NSNumber numberWithFloat:([self.storedValue intValue] *  0.01)]]]];
+        return NO;
+    }
+    
+    //Returning yes allows the entered chars to be processed
+    return YES;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -83,8 +109,11 @@
 
 -(IBAction)save:(id)sender {
     NSString *name = [self.nameTextField text];
-    float price = [[self.priceTextField text] floatValue];
-    [self.delegate controller:self didSaveItemWithName:name andPrice:price];
+    NSString *stringprice = [NSString stringWithFormat:@"%@",[self.priceTextField text]];
+    NSString *formattedString = [stringprice substringFromIndex:1];
+    NSString *stringWithoutCommas = [formattedString
+                                     stringByReplacingOccurrencesOfString:@"," withString:@""];
+    float price = [stringWithoutCommas floatValue];     [self.delegate controller:self didSaveItemWithName:name andPrice:price];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -96,6 +125,8 @@
     
     // your stuff goes here...
     [self loadCategories];
+    NSString *value = @"";
+    self.storedValue = [value mutableCopy];
 }
 
 @end 

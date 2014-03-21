@@ -13,6 +13,7 @@
 
 @property(weak) id<AEAdjustIncomeViewControllerDelegate> delegate;
 @property IBOutlet UITextField *incomeTextField;
+@property NSMutableString *storedValue;
 @end
 
 

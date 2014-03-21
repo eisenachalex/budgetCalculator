@@ -16,7 +16,7 @@
 @property IBOutlet UITextField *nameTextField;
 @property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 @property IBOutlet UITextField *priceTextField;
-
+@property NSMutableString *storedValue;
 -(IBAction)save:(id)sender;
 -(IBAction)cancel:(id)sender;
 -(IBAction)cancelEditingForView:(id)sender;

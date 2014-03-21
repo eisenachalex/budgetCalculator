@@ -101,7 +101,7 @@
     [self loadItems];
     NSMutableArray *newObject = [[NSMutableArray alloc] init];
     [newObject addObject:[name stringByReplacingOccurrencesOfString:@" " withString:@""]];
-    NSNumber *number = [NSNumber numberWithInt:price];
+    NSNumber *number = [NSNumber numberWithFloat:price];
     [newObject addObject:number];
     [self.categories addObject:newObject];
 
@@ -210,7 +210,7 @@
 
     UIButton *button  = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"TAP TO ADJUST" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(monthlyIncomeChanged:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(monthlyIncomeChanged:) forControlEvents:UIControlEventTouchDown];
     button.center = CGPointMake(160.0, 90.0);
     button.frame = CGRectMake(65.0,73.0,200.0,30.0);
     NSNumber *incomeAnswer = self.budgetIncome;
