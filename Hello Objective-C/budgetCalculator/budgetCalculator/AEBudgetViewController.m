@@ -33,7 +33,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.title = @"Budget";
+        self.title = @"Monthly Budget";
         [self.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"budget.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"notbudget.png"]];
         CGRect frame = CGRectMake(0.0, 75.0, 200.0, 75.0);
         UIView *headerView = [[UIView alloc] initWithFrame:frame];
@@ -237,7 +237,7 @@
 }
 
 -(float)categoryExpenses:(NSString *)category{
-    float answer = 0.0;
+    float answer = 0.00;
     [self loadExpenses];
     for (int i = 0; i < [self.expenses count]; i++){
         NSDictionary *expense = [self.expenses objectAtIndex:i];
@@ -248,7 +248,7 @@
         NSArray *arrayOfDescription = [expense valueForKey:@"description"];
         NSString *descriptionValue = [arrayOfDescription objectAtIndex:0];
         if(([typeValue isEqualToString:@"Expense"] == 1) && ([descriptionValue isEqualToString:category] == 1)){
-             answer += [priceValue intValue];
+             answer += [priceValue floatValue];
         }
     }
     return answer;
@@ -290,7 +290,9 @@
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     formatter.currencyCode = @"USD";
-    amount.text =[formatter stringFromNumber:[NSNumber numberWithFloat:[self categoryExpenses:realCategory]]];
+    NSString *formattedAmount = [formatter stringFromNumber:[NSNumber numberWithFloat:[self categoryExpenses:realCategory]]];
+
+    amount.text =[NSString stringWithFormat:@"%@",formattedAmount];
     amount.textAlignment = NSTextAlignmentRight;
     amount.font = [UIFont italicSystemFontOfSize:16.0];
     float level = 0.00;

@@ -378,7 +378,8 @@
     // your stuff goes here...
     [self loadCategories];
     [self loadCurrentIncome];
-    
+    [[self.tabBarController.tabBar.items objectAtIndex:1] setTitle:@"Budget"];
+
     [self calculateDailyBudget];
 
 }
