@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF1CEC1C193786D00000CDC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1B193786D00000CDC5 /* Foundation.framework */; };
+		EF1CEC1E193786D00000CDC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1D193786D00000CDC5 /* CoreGraphics.framework */; };
+		EF1CEC20193786D00000CDC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1F193786D00000CDC5 /* UIKit.framework */; };
+		EF1CEC26193786D00000CDC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC24193786D00000CDC5 /* InfoPlist.strings */; };
+		EF1CEC28193786D00000CDC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC27193786D00000CDC5 /* main.m */; };
+		EF1CEC2C193786D00000CDC5 /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */; };
+		EF1CEC2E193786D00000CDC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC2D193786D00000CDC5 /* Images.xcassets */; };
+		EF1CEC35193786D00000CDC5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC34193786D00000CDC5 /* XCTest.framework */; };
+		EF1CEC36193786D00000CDC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1B193786D00000CDC5 /* Foundation.framework */; };
+		EF1CEC37193786D00000CDC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1F193786D00000CDC5 /* UIKit.framework */; };
+		EF1CEC3F193786D00000CDC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC3D193786D00000CDC5 /* InfoPlist.strings */; };
+		EF1CEC41193786D00000CDC5 /* PupularTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC40193786D00000CDC5 /* PupularTests.m */; };
+		EF1CEC4B193788240000CDC5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC4A193788240000CDC5 /* CoreLocation.framework */; };
+		EF1CEC4D193788690000CDC5 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC4C193788690000CDC5 /* GoogleMaps.framework */; };
+		EF1CEC4F193788B60000CDC5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC4E193788B60000CDC5 /* QuartzCore.framework */; };
+		EF1CEC51193788C00000CDC5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC50193788C00000CDC5 /* OpenGLES.framework */; };
+		EF1CEC53193788CF0000CDC5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC52193788CF0000CDC5 /* SystemConfiguration.framework */; };
+		EF1CEC55193788E50000CDC5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC54193788E50000CDC5 /* GLKit.framework */; };
+		EF1CEC57193788F00000CDC5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC56193788F00000CDC5 /* ImageIO.framework */; };
+		EF1CEC5B1937B0AC0000CDC5 /* AELogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC591937B0AC0000CDC5 /* AELogInViewController.m */; };
+		EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC5A1937B0AC0000CDC5 /* AELogInViewController.xib */; };
+		EF1CEC6A1937B1380000CDC5 /* AEAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC681937B1380000CDC5 /* AEAboutViewController.m */; };
+		EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */; };
+		EF1CEC6F1937B1550000CDC5 /* AEProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC6D1937B1550000CDC5 /* AEProfileViewController.m */; };
+		EF1CEC701937B1550000CDC5 /* AEProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC6E1937B1550000CDC5 /* AEProfileViewController.xib */; };
+		EF1CEC791937B19A0000CDC5 /* AESignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC771937B19A0000CDC5 /* AESignUpViewController.m */; };
+		EF1CEC7A1937B19A0000CDC5 /* AESignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC781937B19A0000CDC5 /* AESignUpViewController.xib */; };
+		EF1CEC7E1937B1B30000CDC5 /* AENotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC7C1937B1B30000CDC5 /* AENotificationViewController.m */; };
+		EF1CEC7F1937B1B30000CDC5 /* AENotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC7D1937B1B30000CDC5 /* AENotificationViewController.xib */; };
+		EF1CEC8D1937B6580000CDC5 /* AEHomeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */; };
+		EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */; };
+		EF5F1BEF1937CAE6002CDE3E /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */; };
+		EFA858811943713600065ED9 /* AEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8587F1943713600065ED9 /* AEMenuViewController.m */; };
+		EFA858821943713600065ED9 /* AEMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA858801943713600065ED9 /* AEMenuViewController.xib */; };
+		EFA8588619439CBB00065ED9 /* AEMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588419439CBB00065ED9 /* AEMessagesViewController.m */; };
+		EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */; };
+		EFA8588B19439CCE00065ED9 /* AEBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */; };
+		EFA8588C19439CCE00065ED9 /* AEBuddiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */; };
+		EFA8589019439E7700065ED9 /* AEActiveFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588E19439E7700065ED9 /* AEActiveFriendsViewController.m */; };
+		EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */; };
+		EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8589319439F8900065ED9 /* AEConvoViewController.m */; };
+		EFA8589619439F8900065ED9 /* AEConvoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8589419439F8900065ED9 /* AEConvoViewController.xib */; };
+		EFBB8E491937CF410001EB6E /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E481937CF410001EB6E /* libicucore.dylib */; };
+		EFBB8E4B1937CF5E0001EB6E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4A1937CF5E0001EB6E /* libz.dylib */; };
+		EFBB8E4D1937CF8B0001EB6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */; };
+		EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */; };
+		EFC9F4651940C4520078045E /* AENewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4631940C4520078045E /* AENewMessageViewController.m */; };
+		EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4641940C4520078045E /* AENewMessageViewController.xib */; };
+		EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */; };
+		EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4691940C4C10078045E /* AEEditProfileViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF1CEC38193786D00000CDC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF1CEC10193786D00000CDC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF1CEC17193786D00000CDC5;
+			remoteInfo = Pupular;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF1CEC18193786D00000CDC5 /* Pupular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupular.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1CEC1B193786D00000CDC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EF1CEC1D193786D00000CDC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF1CEC1F193786D00000CDC5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EF1CEC23193786D00000CDC5 /* Pupular-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pupular-Info.plist"; sourceTree = "<group>"; };
+		EF1CEC25193786D00000CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF1CEC27193786D00000CDC5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF1CEC29193786D00000CDC5 /* Pupular-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pupular-Prefix.pch"; sourceTree = "<group>"; };
+		EF1CEC2A193786D00000CDC5 /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEAppDelegate.h; sourceTree = "<group>"; };
+		EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AEAppDelegate.m; sourceTree = "<group>"; };
+		EF1CEC2D193786D00000CDC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EF1CEC33193786D00000CDC5 /* PupularTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PupularTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF1CEC34193786D00000CDC5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EF1CEC3C193786D00000CDC5 /* PupularTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PupularTests-Info.plist"; sourceTree = "<group>"; };
+		EF1CEC3E193786D00000CDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF1CEC40193786D00000CDC5 /* PupularTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PupularTests.m; sourceTree = "<group>"; };
+		EF1CEC4A193788240000CDC5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EF1CEC4C193788690000CDC5 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../../../../Downloads/GoogleMaps-iOS-1.7.2/GoogleMaps.framework"; sourceTree = "<group>"; };
+		EF1CEC4E193788B60000CDC5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EF1CEC50193788C00000CDC5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		EF1CEC52193788CF0000CDC5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EF1CEC54193788E50000CDC5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		EF1CEC56193788F00000CDC5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		EF1CEC581937B0AC0000CDC5 /* AELogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AELogInViewController.h; sourceTree = "<group>"; };
+		EF1CEC591937B0AC0000CDC5 /* AELogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AELogInViewController.m; sourceTree = "<group>"; };
+		EF1CEC5A1937B0AC0000CDC5 /* AELogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AELogInViewController.xib; sourceTree = "<group>"; };
+		EF1CEC671937B1380000CDC5 /* AEAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAboutViewController.h; sourceTree = "<group>"; };
+		EF1CEC681937B1380000CDC5 /* AEAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAboutViewController.m; sourceTree = "<group>"; };
+		EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAboutViewController.xib; sourceTree = "<group>"; };
+		EF1CEC6C1937B1550000CDC5 /* AEProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEProfileViewController.h; sourceTree = "<group>"; };
+		EF1CEC6D1937B1550000CDC5 /* AEProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEProfileViewController.m; sourceTree = "<group>"; };
+		EF1CEC6E1937B1550000CDC5 /* AEProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEProfileViewController.xib; sourceTree = "<group>"; };
+		EF1CEC761937B19A0000CDC5 /* AESignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESignUpViewController.h; sourceTree = "<group>"; };
+		EF1CEC771937B19A0000CDC5 /* AESignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESignUpViewController.m; sourceTree = "<group>"; };
+		EF1CEC781937B19A0000CDC5 /* AESignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AESignUpViewController.xib; sourceTree = "<group>"; };
+		EF1CEC7B1937B1B30000CDC5 /* AENotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENotificationViewController.h; sourceTree = "<group>"; };
+		EF1CEC7C1937B1B30000CDC5 /* AENotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENotificationViewController.m; sourceTree = "<group>"; };
+		EF1CEC7D1937B1B30000CDC5 /* AENotificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AENotificationViewController.xib; sourceTree = "<group>"; };
+		EF1CEC8A1937B6580000CDC5 /* AEHomeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEHomeMapViewController.h; path = ../AEHomeMapViewController.h; sourceTree = "<group>"; };
+		EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEHomeMapViewController.m; path = ../AEHomeMapViewController.m; sourceTree = "<group>"; };
+		EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEHomeMapViewController.xib; path = ../AEHomeMapViewController.xib; sourceTree = "<group>"; };
+		EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		EFA8587E1943713600065ED9 /* AEMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEMenuViewController.h; path = ../AEMenuViewController.h; sourceTree = "<group>"; };
+		EFA8587F1943713600065ED9 /* AEMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEMenuViewController.m; path = ../AEMenuViewController.m; sourceTree = "<group>"; };
+		EFA858801943713600065ED9 /* AEMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMenuViewController.xib; path = ../AEMenuViewController.xib; sourceTree = "<group>"; };
+		EFA8588319439CBB00065ED9 /* AEMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEMessagesViewController.h; path = ../AEMessagesViewController.h; sourceTree = "<group>"; };
+		EFA8588419439CBB00065ED9 /* AEMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEMessagesViewController.m; path = ../AEMessagesViewController.m; sourceTree = "<group>"; };
+		EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMessagesViewController.xib; path = ../AEMessagesViewController.xib; sourceTree = "<group>"; };
+		EFA8588819439CCE00065ED9 /* AEBuddiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEBuddiesViewController.h; path = ../AEBuddiesViewController.h; sourceTree = "<group>"; };
+		EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEBuddiesViewController.m; path = ../AEBuddiesViewController.m; sourceTree = "<group>"; };
+		EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEBuddiesViewController.xib; path = ../AEBuddiesViewController.xib; sourceTree = "<group>"; };
+		EFA8588D19439E7700065ED9 /* AEActiveFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEActiveFriendsViewController.h; path = ../AEActiveFriendsViewController.h; sourceTree = "<group>"; };
+		EFA8588E19439E7700065ED9 /* AEActiveFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEActiveFriendsViewController.m; path = ../AEActiveFriendsViewController.m; sourceTree = "<group>"; };
+		EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEActiveFriendsViewController.xib; path = ../AEActiveFriendsViewController.xib; sourceTree = "<group>"; };
+		EFA8589219439F8900065ED9 /* AEConvoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEConvoViewController.h; path = ../AEConvoViewController.h; sourceTree = "<group>"; };
+		EFA8589319439F8900065ED9 /* AEConvoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEConvoViewController.m; path = ../AEConvoViewController.m; sourceTree = "<group>"; };
+		EFA8589419439F8900065ED9 /* AEConvoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEConvoViewController.xib; path = ../AEConvoViewController.xib; sourceTree = "<group>"; };
+		EFBB8E481937CF410001EB6E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		EFBB8E4A1937CF5E0001EB6E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.bundle; sourceTree = "<group>"; };
+		EFC9F4621940C4520078045E /* AENewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewMessageViewController.h; sourceTree = "<group>"; };
+		EFC9F4631940C4520078045E /* AENewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewMessageViewController.m; sourceTree = "<group>"; };
+		EFC9F4641940C4520078045E /* AENewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AENewMessageViewController.xib; sourceTree = "<group>"; };
+		EFC9F4671940C4C10078045E /* AEEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEEditProfileViewController.h; sourceTree = "<group>"; };
+		EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEEditProfileViewController.m; sourceTree = "<group>"; };
+		EFC9F4691940C4C10078045E /* AEEditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEEditProfileViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF1CEC15193786D00000CDC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF1CEC55193788E50000CDC5 /* GLKit.framework in Frameworks */,
+				EFBB8E4D1937CF8B0001EB6E /* CoreData.framework in Frameworks */,
+				EFBB8E4B1937CF5E0001EB6E /* libz.dylib in Frameworks */,
+				EFBB8E491937CF410001EB6E /* libicucore.dylib in Frameworks */,
+				EF5F1BEF1937CAE6002CDE3E /* libc++.dylib in Frameworks */,
+				EF1CEC57193788F00000CDC5 /* ImageIO.framework in Frameworks */,
+				EF1CEC53193788CF0000CDC5 /* SystemConfiguration.framework in Frameworks */,
+				EF1CEC51193788C00000CDC5 /* OpenGLES.framework in Frameworks */,
+				EF1CEC4F193788B60000CDC5 /* QuartzCore.framework in Frameworks */,
+				EF1CEC1E193786D00000CDC5 /* CoreGraphics.framework in Frameworks */,
+				EF1CEC4D193788690000CDC5 /* GoogleMaps.framework in Frameworks */,
+				EF1CEC4B193788240000CDC5 /* CoreLocation.framework in Frameworks */,
+				EF1CEC20193786D00000CDC5 /* UIKit.framework in Frameworks */,
+				EF1CEC1C193786D00000CDC5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF1CEC30193786D00000CDC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF1CEC35193786D00000CDC5 /* XCTest.framework in Frameworks */,
+				EF1CEC37193786D00000CDC5 /* UIKit.framework in Frameworks */,
+				EF1CEC36193786D00000CDC5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF1CEC0F193786D00000CDC5 = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC21193786D00000CDC5 /* Pupular */,
+				EF1CEC3A193786D00000CDC5 /* PupularTests */,
+				EF1CEC1A193786D00000CDC5 /* Frameworks */,
+				EF1CEC19193786D00000CDC5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF1CEC19193786D00000CDC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC18193786D00000CDC5 /* Pupular.app */,
+				EF1CEC33193786D00000CDC5 /* PupularTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF1CEC1A193786D00000CDC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */,
+				EFBB8E4A1937CF5E0001EB6E /* libz.dylib */,
+				EFBB8E481937CF410001EB6E /* libicucore.dylib */,
+				EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */,
+				EF1CEC56193788F00000CDC5 /* ImageIO.framework */,
+				EF1CEC54193788E50000CDC5 /* GLKit.framework */,
+				EF1CEC52193788CF0000CDC5 /* SystemConfiguration.framework */,
+				EF1CEC50193788C00000CDC5 /* OpenGLES.framework */,
+				EF1CEC4E193788B60000CDC5 /* QuartzCore.framework */,
+				EF1CEC4C193788690000CDC5 /* GoogleMaps.framework */,
+				EF1CEC4A193788240000CDC5 /* CoreLocation.framework */,
+				EF1CEC1B193786D00000CDC5 /* Foundation.framework */,
+				EF1CEC1D193786D00000CDC5 /* CoreGraphics.framework */,
+				EF1CEC1F193786D00000CDC5 /* UIKit.framework */,
+				EF1CEC34193786D00000CDC5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF1CEC21193786D00000CDC5 /* Pupular */ = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC2A193786D00000CDC5 /* AEAppDelegate.h */,
+				EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */,
+				EFA8589219439F8900065ED9 /* AEConvoViewController.h */,
+				EFA8589319439F8900065ED9 /* AEConvoViewController.m */,
+				EFA8589419439F8900065ED9 /* AEConvoViewController.xib */,
+				EFA8588D19439E7700065ED9 /* AEActiveFriendsViewController.h */,
+				EFA8588E19439E7700065ED9 /* AEActiveFriendsViewController.m */,
+				EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */,
+				EFA8588819439CCE00065ED9 /* AEBuddiesViewController.h */,
+				EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */,
+				EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */,
+				EFA8588319439CBB00065ED9 /* AEMessagesViewController.h */,
+				EFA8588419439CBB00065ED9 /* AEMessagesViewController.m */,
+				EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */,
+				EF1CEC8A1937B6580000CDC5 /* AEHomeMapViewController.h */,
+				EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */,
+				EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */,
+				EFA8587E1943713600065ED9 /* AEMenuViewController.h */,
+				EFA8587F1943713600065ED9 /* AEMenuViewController.m */,
+				EFA858801943713600065ED9 /* AEMenuViewController.xib */,
+				EFC9F4621940C4520078045E /* AENewMessageViewController.h */,
+				EFC9F4631940C4520078045E /* AENewMessageViewController.m */,
+				EFC9F4641940C4520078045E /* AENewMessageViewController.xib */,
+				EF1CEC581937B0AC0000CDC5 /* AELogInViewController.h */,
+				EF1CEC591937B0AC0000CDC5 /* AELogInViewController.m */,
+				EF1CEC5A1937B0AC0000CDC5 /* AELogInViewController.xib */,
+				EF1CEC671937B1380000CDC5 /* AEAboutViewController.h */,
+				EF1CEC681937B1380000CDC5 /* AEAboutViewController.m */,
+				EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */,
+				EF1CEC6C1937B1550000CDC5 /* AEProfileViewController.h */,
+				EF1CEC6D1937B1550000CDC5 /* AEProfileViewController.m */,
+				EF1CEC6E1937B1550000CDC5 /* AEProfileViewController.xib */,
+				EF1CEC761937B19A0000CDC5 /* AESignUpViewController.h */,
+				EF1CEC771937B19A0000CDC5 /* AESignUpViewController.m */,
+				EF1CEC781937B19A0000CDC5 /* AESignUpViewController.xib */,
+				EFC9F4671940C4C10078045E /* AEEditProfileViewController.h */,
+				EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */,
+				EFC9F4691940C4C10078045E /* AEEditProfileViewController.xib */,
+				EF1CEC7B1937B1B30000CDC5 /* AENotificationViewController.h */,
+				EF1CEC7C1937B1B30000CDC5 /* AENotificationViewController.m */,
+				EF1CEC7D1937B1B30000CDC5 /* AENotificationViewController.xib */,
+				EF1CEC2D193786D00000CDC5 /* Images.xcassets */,
+				EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */,
+				EF1CEC22193786D00000CDC5 /* Supporting Files */,
+			);
+			path = Pupular;
+			sourceTree = "<group>";
+		};
+		EF1CEC22193786D00000CDC5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC23193786D00000CDC5 /* Pupular-Info.plist */,
+				EF1CEC24193786D00000CDC5 /* InfoPlist.strings */,
+				EF1CEC27193786D00000CDC5 /* main.m */,
+				EF1CEC29193786D00000CDC5 /* Pupular-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF1CEC3A193786D00000CDC5 /* PupularTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC40193786D00000CDC5 /* PupularTests.m */,
+				EF1CEC3B193786D00000CDC5 /* Supporting Files */,
+			);
+			path = PupularTests;
+			sourceTree = "<group>";
+		};
+		EF1CEC3B193786D00000CDC5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF1CEC3C193786D00000CDC5 /* PupularTests-Info.plist */,
+				EF1CEC3D193786D00000CDC5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF1CEC17193786D00000CDC5 /* Pupular */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF1CEC44193786D00000CDC5 /* Build configuration list for PBXNativeTarget "Pupular" */;
+			buildPhases = (
+				EF1CEC14193786D00000CDC5 /* Sources */,
+				EF1CEC15193786D00000CDC5 /* Frameworks */,
+				EF1CEC16193786D00000CDC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pupular;
+			productName = Pupular;
+			productReference = EF1CEC18193786D00000CDC5 /* Pupular.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF1CEC32193786D00000CDC5 /* PupularTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF1CEC47193786D00000CDC5 /* Build configuration list for PBXNativeTarget "PupularTests" */;
+			buildPhases = (
+				EF1CEC2F193786D00000CDC5 /* Sources */,
+				EF1CEC30193786D00000CDC5 /* Frameworks */,
+				EF1CEC31193786D00000CDC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF1CEC39193786D00000CDC5 /* PBXTargetDependency */,
+			);
+			name = PupularTests;
+			productName = PupularTests;
+			productReference = EF1CEC33193786D00000CDC5 /* PupularTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF1CEC10193786D00000CDC5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AE;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Free Swim";
+				TargetAttributes = {
+					EF1CEC32193786D00000CDC5 = {
+						TestTargetID = EF1CEC17193786D00000CDC5;
+					};
+				};
+			};
+			buildConfigurationList = EF1CEC13193786D00000CDC5 /* Build configuration list for PBXProject "Pupular" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ar,
+				ca,
+				cs,
+				da,
+				de,
+				el,
+				en_GB,
+				es,
+				fi,
+				fr,
+				he,
+				hr,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nl,
+				no,
+				pl,
+				pt,
+				pt_PT,
+				ro,
+				ru,
+				sk,
+				sv,
+				th,
+				tr,
+				uk,
+				vi,
+				zh_CN,
+				zh_TW,
+			);
+			mainGroup = EF1CEC0F193786D00000CDC5;
+			productRefGroup = EF1CEC19193786D00000CDC5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF1CEC17193786D00000CDC5 /* Pupular */,
+				EF1CEC32193786D00000CDC5 /* PupularTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF1CEC16193786D00000CDC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */,
+				EFA8588C19439CCE00065ED9 /* AEBuddiesViewController.xib in Resources */,
+				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
+				EF1CEC701937B1550000CDC5 /* AEProfileViewController.xib in Resources */,
+				EFA8589619439F8900065ED9 /* AEConvoViewController.xib in Resources */,
+				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
+				EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */,
+				EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */,
+				EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */,
+				EF1CEC26193786D00000CDC5 /* InfoPlist.strings in Resources */,
+				EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */,
+				EF1CEC7F1937B1B30000CDC5 /* AENotificationViewController.xib in Resources */,
+				EF1CEC2E193786D00000CDC5 /* Images.xcassets in Resources */,
+				EF1CEC7A1937B19A0000CDC5 /* AESignUpViewController.xib in Resources */,
+				EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */,
+				EFA858821943713600065ED9 /* AEMenuViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF1CEC31193786D00000CDC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF1CEC3F193786D00000CDC5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF1CEC14193786D00000CDC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFA8589019439E7700065ED9 /* AEActiveFriendsViewController.m in Sources */,
+				EF1CEC6F1937B1550000CDC5 /* AEProfileViewController.m in Sources */,
+				EFC9F4651940C4520078045E /* AENewMessageViewController.m in Sources */,
+				EF1CEC8D1937B6580000CDC5 /* AEHomeMapViewController.m in Sources */,
+				EF1CEC5B1937B0AC0000CDC5 /* AELogInViewController.m in Sources */,
+				EF1CEC791937B19A0000CDC5 /* AESignUpViewController.m in Sources */,
+				EFA8588B19439CCE00065ED9 /* AEBuddiesViewController.m in Sources */,
+				EF1CEC6A1937B1380000CDC5 /* AEAboutViewController.m in Sources */,
+				EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */,
+				EFA8588619439CBB00065ED9 /* AEMessagesViewController.m in Sources */,
+				EF1CEC7E1937B1B30000CDC5 /* AENotificationViewController.m in Sources */,
+				EF1CEC2C193786D00000CDC5 /* AEAppDelegate.m in Sources */,
+				EF1CEC28193786D00000CDC5 /* main.m in Sources */,
+				EFA858811943713600065ED9 /* AEMenuViewController.m in Sources */,
+				EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF1CEC2F193786D00000CDC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF1CEC41193786D00000CDC5 /* PupularTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF1CEC39193786D00000CDC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF1CEC17193786D00000CDC5 /* Pupular */;
+			targetProxy = EF1CEC38193786D00000CDC5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EF1CEC24193786D00000CDC5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF1CEC25193786D00000CDC5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EF1CEC3D193786D00000CDC5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF1CEC3E193786D00000CDC5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF1CEC42193786D00000CDC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EF1CEC43193786D00000CDC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF1CEC45193786D00000CDC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/hoopmiester/Downloads/GoogleMaps-iOS-1.7.2",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pupular/Pupular-Prefix.pch";
+				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EF1CEC46193786D00000CDC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/hoopmiester/Downloads/GoogleMaps-iOS-1.7.2",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pupular/Pupular-Prefix.pch";
+				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EF1CEC48193786D00000CDC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pupular.app/Pupular";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pupular/Pupular-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "PupularTests/PupularTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EF1CEC49193786D00000CDC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Pupular.app/Pupular";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pupular/Pupular-Prefix.pch";
+				INFOPLIST_FILE = "PupularTests/PupularTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF1CEC13193786D00000CDC5 /* Build configuration list for PBXProject "Pupular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF1CEC42193786D00000CDC5 /* Debug */,
+				EF1CEC43193786D00000CDC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF1CEC44193786D00000CDC5 /* Build configuration list for PBXNativeTarget "Pupular" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF1CEC45193786D00000CDC5 /* Debug */,
+				EF1CEC46193786D00000CDC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF1CEC47193786D00000CDC5 /* Build configuration list for PBXNativeTarget "PupularTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF1CEC48193786D00000CDC5 /* Debug */,
+				EF1CEC49193786D00000CDC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF1CEC10193786D00000CDC5 /* Project object */;
+}
