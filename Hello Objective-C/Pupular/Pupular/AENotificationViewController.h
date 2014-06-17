@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AENotificationViewController : UIViewController
-
+@interface AENotificationViewController : UIViewController {
+    NSMutableArray *userInfo;
+    NSMutableData *_responseData;
+}
+@property NSString *notificationType;
+@property NSString *notificationMessage;
+@property NSString *dogID;
+@property IBOutlet UILabel *notificationTitle;
+@property IBOutlet UIButton *actionButton;
 @end

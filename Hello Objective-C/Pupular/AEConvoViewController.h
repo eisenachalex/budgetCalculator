@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AEConvoViewController : UIViewController
+@interface AEConvoViewController : UIViewController <NSURLConnectionDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+    NSMutableArray *userInfo;
+    NSMutableData *_responseData;
+    NSMutableArray *messagesArray;
+    
+}
+@property NSString *dogID;
+@property IBOutlet UITableView *tableView;
+@property NSString *friend_tag;
+@property IBOutlet UIScrollView *scrollView;
+@property IBOutlet UITextField *messageResponse;
+
 
 @end

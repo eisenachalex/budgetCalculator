@@ -10,7 +10,8 @@
 #import "AEMenuViewController.h"
 #import "AENewMessageViewController.h"
 #import "AEActiveFriendsViewController.h"
-
+#import "AENotificationViewController.h"
+#import "AEConvoViewController.h"
 
 @interface AEMessagesViewController ()
 
@@ -31,15 +32,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadUserInfo];
 
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/messages?dog_id=101"]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-    
+    [self.tableView reloadData];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -85,8 +89,10 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
+    NSLog(@"NEW JSONNNN %@",newJSON);
     if([newJSON objectForKey:@"messages"])
     {
+        messagesArray = [[NSMutableArray alloc] init];
         for(int i = 0; i < [[newJSON objectForKey:@"messages"] count]; i++)
         {
         NSDictionary *messageObject = [newJSON objectForKey:@"messages"][i];
@@ -115,22 +121,114 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"ITS LOADING");
     static NSString *CellIdentifier = @"CustomTableCell";
     UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSLog(@"all the views %@",[cell.textLabel subviews]);
+    for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
+
+        UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
+        [currentView removeFromSuperview];
+
+    }
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Display recipe in the table cell
     NSString *user = nil;
-    NSDictionary *message = [messagesArray objectAtIndex:indexPath.row];
-    
+    NSArray *messageArray = [messagesArray objectAtIndex:indexPath.row];
+    NSDictionary *messageDict = [messageArray objectAtIndex:0];
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [message valueForKey:@"body"];
-    cell.textLabel.textColor = [UIColor darkGrayColor];
+    UILabel *sender_tag = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,10)];
+    UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(220,10,100,10)];
+    [date setFont:[UIFont fontWithName:@"Arial" size:10]];
+    [sender_tag setFont:[UIFont fontWithName:@"Arial" size:10]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
+
+    date.text = [messageDict valueForKey:@"created_at"];
+    sender_tag.text = [messageArray objectAtIndex:1];
+    [cell.textLabel addSubview:sender_tag];
+    [cell.textLabel addSubview:date];
+
+    cell.textLabel.text = [messageDict valueForKey:@"body"];
+
+    if ([[messageDict valueForKey:@"message_type"] isEqualToString: @"alert"])
+    {
+    cell.textLabel.textColor = [UIColor redColor];
+    }
+    else if ([[messageDict valueForKey:@"message_type"] isEqualToString: @"friend_request"])
+    {
+        cell.textLabel.textColor = [UIColor greenColor];
+
+    }
+    
+    else if ([[messageDict valueForKey:@"message_type"] isEqualToString: @"message"])
+    {
+        cell.textLabel.textColor = [UIColor orangeColor];
+        
+    }
+    else if ([[messageDict valueForKey:@"message_type"] isEqualToString: @"walk_alert"]){
+        cell.textLabel.textColor = [UIColor orangeColor];
+
+    }
+    else if ([[messageDict valueForKey:@"message_type"] isEqualToString: @"auto_message"]){
+        cell.textLabel.textColor = [UIColor blueColor];
+        
+    }
+
+
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *dogID = [NSString alloc];
+    NSString *messageType = [NSString alloc];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    for (int i = 0; i < messagesArray.count; i++){
+        NSArray *messageArray = [messagesArray objectAtIndex:i];
+        NSDictionary *messageDict = [messageArray objectAtIndex:0];
+        if([[messageDict valueForKey:@"body"] isEqualToString:cell.text]){
+            dogID = [messageDict valueForKey:@"sender_id"];
+            messageType = [messageDict valueForKey:@"message_type"];
+        }
+    }
+    if([messageType isEqualToString:@"friend_request"]){
+    AENotificationViewController *notificationView = [[AENotificationViewController alloc] init];
+    notificationView.notificationType = @"Friend Request";
+    notificationView.notificationMessage = cell.text;
+    notificationView.dogID = dogID;
+    [self presentViewController:notificationView animated:YES completion:nil];
+    }
+    else if ([messageType isEqualToString:@"auto_message"]){
+        
+    }
+    else if([messageType isEqualToString:@"message"]){
+    AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
+        conversationView.dogID = dogID;
+    [self presentViewController:conversationView animated:YES completion:nil];
+    }
+    
+}
+- (void)loadUserInfo {
+    NSString *filePath = [self pathForUserInfo];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        
+    } else {
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
+    }
+}
+
+- (NSString *)pathForUserInfo {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    return [documents stringByAppendingPathComponent:@"userInfo.plist"];
+}
+
 
 
 

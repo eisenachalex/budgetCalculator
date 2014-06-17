@@ -6,10 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AEProfileViewController">
             <connections>
+                <outlet property="actionButton" destination="hbH-UU-N09" id="wwX-Nx-v3z"/>
                 <outlet property="age" destination="7vK-xY-esf" id="Arn-Di-JnO"/>
                 <outlet property="breed" destination="lEB-1r-A9V" id="YQZ-0K-Y8b"/>
                 <outlet property="gender" destination="Vk7-9q-iy6" id="6Bx-ZC-Q8b"/>
                 <outlet property="location" destination="yCs-hc-JxV" id="LC7-0g-j8a"/>
+                <outlet property="navBar" destination="ZHu-cd-Sgg" id="BnC-Qh-hBC"/>
                 <outlet property="owners_name" destination="25x-l8-hnM" id="ihc-gV-p2k"/>
                 <outlet property="personality" destination="Sbf-W7-JGh" id="N4Z-Ye-TNZ"/>
                 <outlet property="size" destination="hKa-PA-chH" id="5ov-Ey-ED1"/>
@@ -104,6 +106,9 @@
                     <state key="normal" title="Edit Profile">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="actionButton:" destination="-1" eventType="touchUpInside" id="nL1-4y-98Y"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

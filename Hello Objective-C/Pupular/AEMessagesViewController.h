@@ -11,7 +11,7 @@
 @interface AEMessagesViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSMutableData *_responseData;
     NSMutableArray *messagesArray;
-    NSMutableArray *userInfo;
+    NSMutableDictionary *userInfo;
 }
 
 @property IBOutlet UITableView *tableView;

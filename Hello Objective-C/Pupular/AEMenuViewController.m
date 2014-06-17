@@ -73,6 +73,9 @@
 
 -(IBAction)profile:(id)sender {
     AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
+    profileView.dogID = [userInfo valueForKey:@"dog_id"];
+    profileView.dogHandle = [userInfo valueForKey:@"dog_handle"];
+    profileView.isMine = TRUE;
     [self presentViewController:profileView animated:NO completion:nil];
 }
 
@@ -83,7 +86,7 @@
 
 
 -(IBAction)signout:(id)sender {
-    [userInfo replaceObjectAtIndex:0 withObject:@"empty"];
+    [userInfo setValue:@"empty" forKey:@"email"];
     [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
     AELogInViewController *loginViewController = [[AELogInViewController alloc] init];
     [self presentViewController:loginViewController animated:YES completion:nil];
@@ -125,8 +128,8 @@
     // Display recipe in the table cell
     NSString *user = nil;
     NSLog(@"DEM SEARCH RESULTS %@",searchResults);
-        user = [searchResults objectAtIndex:indexPath.row];
-
+    user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
+    NSLog(@"THE USER BOI %@",user);
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
@@ -135,6 +138,24 @@
 }
 
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *dogID = [NSString alloc];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    for (int i = 0; i < usersArray.count; i++){
+        NSDictionary *userDict = [usersArray objectAtIndex:i];
+        if([[userDict valueForKey:@"handle"] isEqualToString:cell.text]){
+            dogID = [userDict valueForKey:@"id"];
+        }
+    }
+    NSLog(@"okay %@",dogID);
+    AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
+    profileView.dogID = dogID;
+    profileView.isFriend = FALSE;
+    profileView.dogHandle = cell.text;
+    [self presentViewController:profileView animated:NO completion:nil];
+}
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
     _responseData = [[NSMutableData alloc] init];
@@ -174,7 +195,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"self contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"handle contains[c] %@", searchText];
     searchResults = [usersArray filteredArrayUsingPredicate:resultPredicate];
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -188,12 +209,13 @@
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        userInfo = [NSMutableArray arrayWithContentsOfFile:filePath];
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
         
     } else {
-        userInfo = [NSMutableArray arrayWithObjects:@"empty",@"blank", nil];
-        
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
     }
+
 }
 
 - (NSString *)pathForUserInfo {

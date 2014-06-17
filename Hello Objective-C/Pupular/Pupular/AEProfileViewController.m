@@ -8,7 +8,7 @@
 
 #import "AEProfileViewController.h"
 #import "AEMenuViewController.h"
-
+#import "AEMessagesViewController.h"
 @interface AEProfileViewController ()
 
 @end
@@ -31,8 +31,22 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/profile?dog_id=100"]]];
+    [self loadUserInfo];
+    if(self.isFriend){
+        [self.actionButton setTitle:@"Message" forState:UIControlStateNormal];
+
+    }
+    else if(self.isMine){
+        NSLog(@"is mine is being jowned");
+        [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
+    }
+    else {
+        [self.actionButton setTitle:@"Request" forState:UIControlStateNormal];
+
+    }
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/profile?dog_id=%@",_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    self.navBar.title = [NSString stringWithFormat:@"%@",_dogHandle];
 }- (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -47,6 +61,31 @@
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+-(IBAction)actionButton:(id)sender{
+    NSLog(@"action text %@",[sender currentTitle]);
+    if([[sender currentTitle] isEqualToString:@"Edit Profile"])
+    {
+        NSLog(@"oh yeah");
+    }
+    else if([[sender currentTitle] isEqualToString:@"Request"])
+    {
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        NSLog(@"jowns");
+        AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
+        [self presentViewController:messagesView animated:NO completion:nil];
+
+    }
+    
+    else if([[sender currentTitle] isEqualToString:@"Message"])
+    {
+        NSLog(@"up up and away");
+        
+    }
+}
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
@@ -85,6 +124,26 @@
   
     
 }
+
+- (void)loadUserInfo {
+    NSString *filePath = [self pathForUserInfo];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        
+    } else {
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
+    }
+    NSLog(@"here is the user info %@", userInfo);
+}
+
+- (NSString *)pathForUserInfo {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
+    return [documents stringByAppendingPathComponent:@"userInfo.plist"];
+}
+
 
 
 

@@ -12,7 +12,7 @@
     NSMutableData *_responseData;
     NSArray *searchResults;
     NSMutableArray *usersArray;
-    NSMutableArray *userInfo;
+    NSMutableDictionary *userInfo;
 }
 
 @end

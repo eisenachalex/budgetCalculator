@@ -11,6 +11,7 @@
 @interface AEBuddiesViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSMutableData *_responseData;
     NSMutableArray *friendsArray;
+    NSMutableDictionary *userInfo;
 }
 
 @property IBOutlet UITableView *tableView;

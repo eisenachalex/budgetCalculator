@@ -27,7 +27,7 @@
     [self.window setRootViewController:loginViewController];
     [self loadUserInfo];
 
-    if([[userInfo objectAtIndex:0] isEqualToString:@"empty"])
+    if([[userInfo valueForKey:@"email"] isEqualToString:@"empty"])
     {
         AELogInViewController *loginView = [[AELogInViewController alloc] init];
         [self.window setRootViewController:loginView];
@@ -79,13 +79,16 @@
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        userInfo = [NSMutableArray arrayWithContentsOfFile:filePath];
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
         
     } else {
-        userInfo = [NSMutableArray arrayWithObjects:@"empty", nil];
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
         
     }
+    NSLog(@"here is the user info %@", userInfo);
 }
+
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

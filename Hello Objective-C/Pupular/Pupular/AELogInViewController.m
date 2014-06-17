@@ -118,7 +118,12 @@
     }
     else if([login_response  isEqual: @"success"]){
         NSString *email= [newJSON objectForKey:@"email"];
+        NSString *dog_id = [newJSON objectForKey:@"dog_id"];
+        NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
         [userInfo setValue:email forKey:@"email"];
+        [userInfo setValue:dog_id forKey:@"dog_id"];
+        [userInfo setValue:dog_handle forKey:@"dog_handle"];
+
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
         AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];
@@ -135,7 +140,6 @@
     } else {
         userInfo = [[NSMutableDictionary alloc] init];
         [userInfo setValue:@"empty" forKey:@"email"];
-        
     }
     NSLog(@"here is the user info %@", userInfo);
 }

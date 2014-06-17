@@ -9,6 +9,7 @@
 #import "AEBuddiesViewController.h"
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
+#import "AEProfileViewController.h"
 
 @interface AEBuddiesViewController ()
 
@@ -22,22 +23,23 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=101"]]];
-        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    [self loadUserInfo];
     [super viewDidLoad];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=101"]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=101"]]];
+    [self loadUserInfo];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 
 }
@@ -118,7 +120,7 @@
     // Display recipe in the table cell
     NSString *user = nil;
     NSLog(@"DEM SEARCH RESULTS %@",friendsArray);
-    user = [friendsArray objectAtIndex:indexPath.row];
+    user = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"handle"];
     
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -126,6 +128,47 @@
     cell.textLabel.textColor = [UIColor darkGrayColor];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *dogID = [NSString alloc];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"cell text %@",cell.text);
+    for (int i = 0; i < friendsArray.count; i++){
+        NSDictionary *friendDict = [friendsArray objectAtIndex:i];
+        if([[friendDict valueForKey:@"handle"] isEqualToString:cell.text]){
+            NSLog(@"this should be id %@",[friendDict valueForKey:@"id"]);
+            dogID = [friendDict valueForKey:@"id"];
+        }
+    }
+    NSLog(@"okay %@",dogID);
+    AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
+    profileView.dogID = dogID;
+    profileView.isFriend = TRUE;
+    profileView.dogHandle = cell.text;
+    [self presentViewController:profileView animated:NO completion:nil];
+}
+
+- (void)loadUserInfo {
+    NSString *filePath = [self pathForUserInfo];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        
+    } else {
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
+    }
+    NSLog(@"here is the user info %@", userInfo);
+}
+
+- (NSString *)pathForUserInfo {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
+    return [documents stringByAppendingPathComponent:@"userInfo.plist"];
+}
+
+
 
 
 
