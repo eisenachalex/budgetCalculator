@@ -14,7 +14,7 @@
 @end
 
 @implementation AENewMessageViewController
-
+@synthesize searchBar;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,11 +28,12 @@
 {
     [super viewDidLoad];
     [self loadUserInfo];
+    [self.message becomeFirstResponder];
     // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    self.recipient.delegate = self;
+    self.searchBar.delegate = self;
     self.message.delegate = self;
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/all_dogs"]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
@@ -42,40 +43,28 @@
 
 
 
-- (BOOL) textView: (UITextView*) textView
-shouldChangeTextInRange: (NSRange) range
-  replacementText: (NSString*) text
-{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];    
-    
-    return YES;
-}
-
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.message becomeFirstResponder];
+}
 -(IBAction)menu:(id)sender{
     AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
     [self presentViewController:menuView animated:NO completion:nil];
 }
 -(IBAction)sendMessage:(id)sender{
     //FIX RECEIVER ID FOR NEW MESSAGE
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],@"102",[self.message.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],receiver_id,[self.message.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 
@@ -122,7 +111,21 @@ shouldChangeTextInRange: (NSRange) range
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *dogID = [NSString alloc];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    for(int i = 0; i < usersArray.count; i++){
+        NSString *userDict = [usersArray objectAtIndex:i];
+        if([[userDict valueForKey:@"handle"] isEqualToString:cell.text]){
+           receiver_id = [userDict valueForKey:@"id"];
+        }
+    }
+    [self.searchDisplayController setActive:NO animated:YES];
+    self.searchBar.text = cell.text;
+    [self.message becomeFirstResponder];
 
+}
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
     _responseData = [[NSMutableData alloc] init];
@@ -153,6 +156,8 @@ shouldChangeTextInRange: (NSRange) range
                                                      selectedScopeButtonIndex]]];
     return YES;
 }
+
+
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {

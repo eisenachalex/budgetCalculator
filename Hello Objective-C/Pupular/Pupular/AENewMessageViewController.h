@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AENewMessageViewController : UIViewController <UITextViewDelegate,UITextFieldDelegate,NSURLConnectionDelegate>{
+@interface AENewMessageViewController : UIViewController <UITextFieldDelegate,UITextFieldDelegate,NSURLConnectionDelegate>{
     NSMutableDictionary *userInfo;
     NSMutableData *_responseData;
     NSArray *searchResults;
     NSMutableArray *usersArray;
+    NSString *receiver_id;
 
 }
-@property IBOutlet UITextField *recipient;
-@property IBOutlet UITextView *message;
+@property IBOutlet UITextField *message;
+@property IBOutlet UISearchBar *searchBar;
+@property IBOutlet UIScrollView *scrollView;
 @end

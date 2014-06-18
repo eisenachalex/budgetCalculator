@@ -16,7 +16,7 @@
 @end
 
 @implementation AEConvoViewController
-@synthesize tableView,scrollView;
+@synthesize tableView,scrollView,toolBar,navTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,14 +39,16 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated  {
-        scrollView.contentSize = CGSizeMake(320, 500);
+    navTitle.title = self.dogHandle;
+    scrollView.contentSize = CGSizeMake(320, 500);
     [super viewWillAppear:YES];
+    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
 
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [scrollView setContentOffset:CGPointMake(0,textField.center.y-320) animated:YES];//you can set your  y cordinate as your req also
+    [scrollView setContentOffset:CGPointMake(0,self.toolBar.center.y-270) animated:YES];//you can set your  y cordinate as your req also
 }
 
 
@@ -70,10 +72,6 @@
 }
 
 
--(IBAction)list:(id)sender{
-    AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
-    [self presentViewController:activeFriendsView animated:NO completion:nil];
-}
 
 - (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -89,6 +87,8 @@
     [self.messageResponse resignFirstResponder];
     [self.messageResponse setText:@""];
     [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
+    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -101,15 +101,14 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Succeeded! Received %d bytes of data", [_responseData length]);
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                             error:nil];
-    messagesArray = [[NSMutableArray alloc] init];
-    NSLog(@"JSON DURULLO %@",newJSON);
     
     if([newJSON objectForKey:@"total_convo"])
     {
+        messagesArray = [[NSMutableArray alloc] init];
+
         for(int i = 0; i < [[newJSON objectForKey:@"total_convo"] count]; i++)
         {
             NSDictionary *messageObject = [newJSON objectForKey:@"total_convo"][i];
@@ -117,9 +116,10 @@
         }
 
     }
-    [self.tableView reloadData];
 
     NSLog(@"MESASGAGDSAGSD %@",messagesArray);
+    [self.tableView reloadData];
+
 }
 
 
@@ -146,11 +146,10 @@
     // Display recipe in the table cell
     NSString *user = nil;
     NSDictionary *message = [messagesArray objectAtIndex:indexPath.row];
-    NSLog(@"oh now we got the %@",message);
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [message valueForKey:@"body"];
-    [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
 
     NSString *message_id = [message valueForKey:@"sender_id"];
     NSLog(@"message id %@",message_id);
@@ -158,8 +157,10 @@
 
     if([message_id intValue] == [[userInfo valueForKey:@"dog_id"] intValue] )
     {
-        NSLog(@"it fired...");
         cell.textLabel.textAlignment = NSTextAlignmentRight;
+    }
+    else {
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
     }
     return cell;
 }

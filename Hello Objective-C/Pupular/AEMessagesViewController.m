@@ -43,6 +43,13 @@
     [self.tableView reloadData];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    [self.tableView reloadData];
+}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -146,7 +153,6 @@
     [date setFont:[UIFont fontWithName:@"Arial" size:10]];
     [sender_tag setFont:[UIFont fontWithName:@"Arial" size:10]];
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
-
     date.text = [messageDict valueForKey:@"created_at"];
     sender_tag.text = [messageArray objectAtIndex:1];
     [cell.textLabel addSubview:sender_tag];
@@ -207,6 +213,8 @@
     }
     else if([messageType isEqualToString:@"message"]){
     AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
+        UILabel *handleLabel = [cell.textLabel subviews][1];
+        conversationView.dogHandle = handleLabel.text;
         conversationView.dogID = dogID;
     [self presentViewController:conversationView animated:YES completion:nil];
     }
