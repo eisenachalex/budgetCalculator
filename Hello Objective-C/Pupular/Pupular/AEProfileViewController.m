@@ -9,12 +9,13 @@
 #import "AEProfileViewController.h"
 #import "AEMenuViewController.h"
 #import "AEMessagesViewController.h"
+#import "AEAdditionView.h"
 @interface AEProfileViewController ()
 
 @end
 
 @implementation AEProfileViewController
-
+@synthesize imageView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageView.image = [UIImage imageNamed:@"landing_iamge.png"];
+    self.imageView.layer.cornerRadius = 80;
+
+;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -44,7 +49,7 @@
         [self.actionButton setTitle:@"Request" forState:UIControlStateNormal];
 
     }
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/profile?dog_id=%@",_dogID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/profile?dog_id=%@",_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     self.navBar.title = [NSString stringWithFormat:@"%@",_dogHandle];
 }- (void)didReceiveMemoryWarning
@@ -108,7 +113,6 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
     if([newJSON objectForKey:@"profile"])
     {
         profile = [newJSON objectForKey:@"profile"];
@@ -119,11 +123,21 @@
         self.owners_name.text = [NSString stringWithFormat:@"Owner's name: %@",[profile valueForKey:@"humans_name"]];
         self.breed.text = [NSString stringWithFormat:@"Breed: %@",[profile valueForKey:@"breed"]];
         self.size.text = [NSString stringWithFormat:@"Size: %@",[profile valueForKey:@"size"]];
+        NSData *imageData = [NSData dataWithBase64EncodedString:[profile valueForKey:@"photo"]];
+
+        UIImage *profileImage = [UIImage imageWithData:imageData];
+        [imageView setImage:profileImage];
         
           }
   
     
 }
+
+- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [UIImage imageWithData:data];
+}
+
 
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];

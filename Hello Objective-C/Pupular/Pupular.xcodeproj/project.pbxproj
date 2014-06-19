@@ -44,7 +44,6 @@
 		EFA8588619439CBB00065ED9 /* AEMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588419439CBB00065ED9 /* AEMessagesViewController.m */; };
 		EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */; };
 		EFA8588B19439CCE00065ED9 /* AEBuddiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */; };
-		EFA8588C19439CCE00065ED9 /* AEBuddiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */; };
 		EFA8589019439E7700065ED9 /* AEActiveFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8588E19439E7700065ED9 /* AEActiveFriendsViewController.m */; };
 		EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */; };
 		EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8589319439F8900065ED9 /* AEConvoViewController.m */; };
@@ -53,6 +52,9 @@
 		EFBB8E4B1937CF5E0001EB6E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4A1937CF5E0001EB6E /* libz.dylib */; };
 		EFBB8E4D1937CF8B0001EB6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */; };
 		EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */; };
+		EFC2FF051951FD1F00904361 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2FF041951FD1F00904361 /* Security.framework */; };
+		EFC2FF0A1953590A00904361 /* landing_iamge.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC2FF091953590A00904361 /* landing_iamge.png */; };
+		EFC2FF0E19537B2300904361 /* AEAdditionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2FF0D19537B2300904361 /* AEAdditionView.m */; };
 		EFC9F4651940C4520078045E /* AENewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4631940C4520078045E /* AENewMessageViewController.m */; };
 		EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4641940C4520078045E /* AENewMessageViewController.xib */; };
 		EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */; };
@@ -120,7 +122,6 @@
 		EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMessagesViewController.xib; path = ../AEMessagesViewController.xib; sourceTree = "<group>"; };
 		EFA8588819439CCE00065ED9 /* AEBuddiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEBuddiesViewController.h; path = ../AEBuddiesViewController.h; sourceTree = "<group>"; };
 		EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEBuddiesViewController.m; path = ../AEBuddiesViewController.m; sourceTree = "<group>"; };
-		EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEBuddiesViewController.xib; path = ../AEBuddiesViewController.xib; sourceTree = "<group>"; };
 		EFA8588D19439E7700065ED9 /* AEActiveFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEActiveFriendsViewController.h; path = ../AEActiveFriendsViewController.h; sourceTree = "<group>"; };
 		EFA8588E19439E7700065ED9 /* AEActiveFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEActiveFriendsViewController.m; path = ../AEActiveFriendsViewController.m; sourceTree = "<group>"; };
 		EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEActiveFriendsViewController.xib; path = ../AEActiveFriendsViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +132,10 @@
 		EFBB8E4A1937CF5E0001EB6E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.bundle; sourceTree = "<group>"; };
+		EFC2FF041951FD1F00904361 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EFC2FF091953590A00904361 /* landing_iamge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landing_iamge.png; path = ../../../../../custom_tech_front/app/assets/images/landing_iamge.png; sourceTree = "<group>"; };
+		EFC2FF0C19537B2300904361 /* AEAdditionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEAdditionView.h; path = ../AEAdditionView.h; sourceTree = "<group>"; };
+		EFC2FF0D19537B2300904361 /* AEAdditionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEAdditionView.m; path = ../AEAdditionView.m; sourceTree = "<group>"; };
 		EFC9F4621940C4520078045E /* AENewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewMessageViewController.h; sourceTree = "<group>"; };
 		EFC9F4631940C4520078045E /* AENewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewMessageViewController.m; sourceTree = "<group>"; };
 		EFC9F4641940C4520078045E /* AENewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AENewMessageViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC2FF051951FD1F00904361 /* Security.framework in Frameworks */,
 				EF1CEC55193788E50000CDC5 /* GLKit.framework in Frameworks */,
 				EFBB8E4D1937CF8B0001EB6E /* CoreData.framework in Frameworks */,
 				EFBB8E4B1937CF5E0001EB6E /* libz.dylib in Frameworks */,
@@ -196,6 +202,7 @@
 		EF1CEC1A193786D00000CDC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFC2FF041951FD1F00904361 /* Security.framework */,
 				EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */,
 				EFBB8E4A1937CF5E0001EB6E /* libz.dylib */,
 				EFBB8E481937CF410001EB6E /* libicucore.dylib */,
@@ -220,6 +227,8 @@
 			children = (
 				EF1CEC2A193786D00000CDC5 /* AEAppDelegate.h */,
 				EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */,
+				EFC2FF0C19537B2300904361 /* AEAdditionView.h */,
+				EFC2FF0D19537B2300904361 /* AEAdditionView.m */,
 				EFA8589219439F8900065ED9 /* AEConvoViewController.h */,
 				EFA8589319439F8900065ED9 /* AEConvoViewController.m */,
 				EFA8589419439F8900065ED9 /* AEConvoViewController.xib */,
@@ -228,7 +237,6 @@
 				EFA8588F19439E7700065ED9 /* AEActiveFriendsViewController.xib */,
 				EFA8588819439CCE00065ED9 /* AEBuddiesViewController.h */,
 				EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */,
-				EFA8588A19439CCE00065ED9 /* AEBuddiesViewController.xib */,
 				EFA8588319439CBB00065ED9 /* AEMessagesViewController.h */,
 				EFA8588419439CBB00065ED9 /* AEMessagesViewController.m */,
 				EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */,
@@ -270,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1CEC23193786D00000CDC5 /* Pupular-Info.plist */,
+				EFC2FF091953590A00904361 /* landing_iamge.png */,
 				EF1CEC24193786D00000CDC5 /* InfoPlist.strings */,
 				EF1CEC27193786D00000CDC5 /* main.m */,
 				EF1CEC29193786D00000CDC5 /* Pupular-Prefix.pch */,
@@ -405,9 +414,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */,
-				EFA8588C19439CCE00065ED9 /* AEBuddiesViewController.xib in Resources */,
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
 				EF1CEC701937B1550000CDC5 /* AEProfileViewController.xib in Resources */,
+				EFC2FF0A1953590A00904361 /* landing_iamge.png in Resources */,
 				EFA8589619439F8900065ED9 /* AEConvoViewController.xib in Resources */,
 				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
 				EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */,
@@ -446,6 +455,7 @@
 				EF1CEC791937B19A0000CDC5 /* AESignUpViewController.m in Sources */,
 				EFA8588B19439CCE00065ED9 /* AEBuddiesViewController.m in Sources */,
 				EF1CEC6A1937B1380000CDC5 /* AEAboutViewController.m in Sources */,
+				EFC2FF0E19537B2300904361 /* AEAdditionView.m in Sources */,
 				EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */,
 				EFA8588619439CBB00065ED9 /* AEMessagesViewController.m in Sources */,
 				EF1CEC7E1937B1B30000CDC5 /* AENotificationViewController.m in Sources */,

@@ -10,6 +10,7 @@
                 <outlet property="age" destination="7vK-xY-esf" id="Arn-Di-JnO"/>
                 <outlet property="breed" destination="lEB-1r-A9V" id="YQZ-0K-Y8b"/>
                 <outlet property="gender" destination="Vk7-9q-iy6" id="6Bx-ZC-Q8b"/>
+                <outlet property="imageView" destination="obj-cs-CL6" id="doF-gc-6Kr"/>
                 <outlet property="location" destination="yCs-hc-JxV" id="LC7-0g-j8a"/>
                 <outlet property="navBar" destination="ZHu-cd-Sgg" id="BnC-Qh-hBC"/>
                 <outlet property="owners_name" destination="25x-l8-hnM" id="ihc-gV-p2k"/>

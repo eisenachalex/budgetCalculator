@@ -68,7 +68,7 @@
 -(IBAction)signIn:(id)sender{
     NSString *email = self.email.text;
     NSString *password = self.password.text;
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/login"];
+    NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/login"];
     NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -123,7 +123,6 @@
         [userInfo setValue:email forKey:@"email"];
         [userInfo setValue:dog_id forKey:@"dog_id"];
         [userInfo setValue:dog_handle forKey:@"dog_handle"];
-
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
         AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];

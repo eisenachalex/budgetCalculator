@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AESignUpViewController : UIViewController
+@interface AESignUpViewController : UIViewController <NSURLConnectionDelegate,UIImagePickerControllerDelegate>{
+    NSMutableData *_responseData;
+    NSString *base64string;
+}
 
+@property IBOutlet UIImageView *imageView;
 @end
