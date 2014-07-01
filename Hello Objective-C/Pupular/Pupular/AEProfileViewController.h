@@ -26,5 +26,6 @@
 @property IBOutlet UILabel *breed;
 @property IBOutlet UILabel *size;
 @property IBOutlet UIButton *actionButton;
+@property IBOutlet UIActivityIndicatorView *activity;
 @property IBOutlet UIImageView *imageView;
 @end

@@ -56,7 +56,7 @@
 
 -(IBAction)actionButton:(id)sender{
     if([[sender currentTitle] isEqualToString:@"Accept Request"]){
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/accept_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com//accept_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [self dismissViewControllerAnimated:YES completion:nil];
 

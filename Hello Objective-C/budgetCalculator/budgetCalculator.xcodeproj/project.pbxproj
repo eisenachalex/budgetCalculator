@@ -37,6 +37,7 @@
 		EF7702A318691A1800B72C6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A218691A1800B72C6B /* Default.png */; };
 		EF7702A518691A1800B72C6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A418691A1800B72C6B /* Default@2x.png */; };
 		EF7702A718691A1800B72C6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7702A618691A1800B72C6B /* Default-568h@2x.png */; };
+		EFADC61B192C552600C9F905 /* trackstar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC61A192C552600C9F905 /* trackstar-background.png */; };
 		EFB797DA18FE153300290F27 /* icon-10.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB797D918FE153300290F27 /* icon-10.png */; };
 		EFB797DC18FE190F00290F27 /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB797DB18FE190F00290F27 /* Default@2x~iphone.png */; };
 		EFB797E018FE19DC00290F27 /* landingumage320480.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB797DF18FE19DC00290F27 /* landingumage320480.png */; };
@@ -94,6 +95,7 @@
 		EF7702A218691A1800B72C6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EF7702A418691A1800B72C6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EF7702A618691A1800B72C6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EFADC61A192C552600C9F905 /* trackstar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackstar-background.png"; sourceTree = "<group>"; };
 		EFB797D918FE153300290F27 /* icon-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-10.png"; sourceTree = "<group>"; };
 		EFB797DB18FE190F00290F27 /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~iphone.png"; sourceTree = "<group>"; };
 		EFB797DF18FE19DC00290F27 /* landingumage320480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landingumage320480.png; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				EF77029818691A1800B72C6B /* budgetCalculator-Info.plist */,
 				EF054B6C18DA53D500D3909C /* background.png */,
+				EFADC61A192C552600C9F905 /* trackstar-background.png */,
 				EF054BA218DA690E00D3909C /* homeadd.png */,
 				EF054BA418DA69CB00D3909C /* homeexpense.png */,
 				EF77029918691A1800B72C6B /* InfoPlist.strings */,
@@ -301,6 +304,7 @@
 				EF7702A318691A1800B72C6B /* Default.png in Resources */,
 				EF054B9918DA656A00D3909C /* notexpense.png in Resources */,
 				EF053C6718C3C77F008BC9A3 /* budgetAdd.png in Resources */,
+				EFADC61B192C552600C9F905 /* trackstar-background.png in Resources */,
 				EFB797DC18FE190F00290F27 /* Default@2x~iphone.png in Resources */,
 				EF054B7F18DA5D8A00D3909C /* homenotselected.png in Resources */,
 				EF054BA518DA69CB00D3909C /* homeexpense.png in Resources */,

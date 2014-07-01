@@ -10,6 +10,10 @@
 #import "AEMenuViewController.h"
 #import "AEMessagesViewController.h"
 #import "AEAdditionView.h"
+#import "UIImageView+WebCache.h"
+#import "AEBuddiesViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface AEProfileViewController ()
 
 @end
@@ -28,8 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.imageView.image = [UIImage imageNamed:@"landing_iamge.png"];
-    self.imageView.layer.cornerRadius = 80;
+    self.imageView.clipsToBounds = YES;
+    self.imageView.layer.cornerRadius = 85;
+    [self.activity startAnimating];
+    self.activity.hidesWhenStopped = YES;
+
 
 ;
     // Do any additional setup after loading the view from its nib.
@@ -51,7 +58,11 @@
     }
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/profile?dog_id=%@",_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    
+    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
+    NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
     self.navBar.title = [NSString stringWithFormat:@"%@",_dogHandle];
+    NSLog(@"we got that dawg id %@",_dogID);
 }- (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -67,6 +78,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)buddies:(id)sender {
+    AEBuddiesViewController *buddiesView = [[AEBuddiesViewController alloc] init];
+    buddiesView.foreign_dog_id = _dogID;
+    [self presentViewController:buddiesView animated:YES completion:nil];
+}
+
+
 
 -(IBAction)actionButton:(id)sender{
     NSLog(@"action text %@",[sender currentTitle]);
@@ -76,7 +94,7 @@
     }
     else if([[sender currentTitle] isEqualToString:@"Request"])
     {
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         NSLog(@"jowns");
         AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
@@ -113,22 +131,30 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
+    NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
     if([newJSON objectForKey:@"profile"])
     {
         profile = [newJSON objectForKey:@"profile"];
-        self.location.text = [NSString stringWithFormat:@"Location: %@",[profile valueForKey:@"location"]];
-        self.personality.text = [NSString stringWithFormat:@"Personality: %@",[profile valueForKey:@"personality_type"]];
-        self.gender.text = [NSString stringWithFormat:@"Gender: %@",[profile valueForKey:@"gender"]];
-        self.age.text = [NSString stringWithFormat:@"Age: %@",[profile valueForKey:@"age"]];
-        self.owners_name.text = [NSString stringWithFormat:@"Owner's name: %@",[profile valueForKey:@"humans_name"]];
-        self.breed.text = [NSString stringWithFormat:@"Breed: %@",[profile valueForKey:@"breed"]];
-        self.size.text = [NSString stringWithFormat:@"Size: %@",[profile valueForKey:@"size"]];
-        NSData *imageData = [NSData dataWithBase64EncodedString:[profile valueForKey:@"photo"]];
-
-        UIImage *profileImage = [UIImage imageWithData:imageData];
-        [imageView setImage:profileImage];
+        self.location.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"location"]];
+        self.personality.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"personality_type"]];
+        self.gender.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"gender"]];
+        self.age.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"age"]];
+        self.owners_name.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"humans_name"]];
+        self.breed.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"breed"]];
+        self.size.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"size"]];
+        NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/testImage.png"];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        [imageView setImage:image];
         
           }
+    else if([newJSON objectForKey:@"profile_photo"]){
+        NSLog(@"%@",[newJSON objectForKey:@"profile_photo"]);
+        [self.imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
+                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+        
+        [self.activity stopAnimating];
+    }
   
     
 }

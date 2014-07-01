@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>957B30A6-7E12-40AC-92C3-FEA46C586287</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Track Star</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7D0B1019-5F8C-42B3-887F-758C63BD52CE</key>
+		<string>https://github.com/eisenachalex/friend_tracker_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Track Star.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7D0B1019-5F8C-42B3-887F-758C63BD52CE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/eisenachalex/friend_tracker_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7D0B1019-5F8C-42B3-887F-758C63BD52CE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7D0B1019-5F8C-42B3-887F-758C63BD52CE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Sketch</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AEHomeMapViewController">
             <connections>
                 <outlet property="mapViewContainer" destination="ToG-VE-MmF" id="aYs-PQ-aVy"/>
+                <outlet property="trackingSwitch" destination="o7C-Gf-wy0" id="KtU-fK-21L"/>
                 <outlet property="view" destination="WgB-nB-2yM" id="xU8-Eu-Oyw"/>
             </connections>
         </placeholder>
@@ -52,12 +53,18 @@
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" id="lsD-UD-zA6">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="o7C-Gf-wy0">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="o7C-Gf-wy0">
                                 <rect key="frame" x="255" y="7" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="trackingSwitch:" destination="-1" eventType="valueChanged" id="61T-Zy-D0M"/>
+                                </connections>
                             </switch>
                         </barButtonItem>
                     </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="rdI-d1-BKb"/>
+                    </connections>
                 </toolbar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

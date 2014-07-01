@@ -19,39 +19,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-nF-SVn">
-                    <rect key="frame" x="0.0" y="16" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <items>
-                        <navigationItem title="Conversation" id="ZiZ-jd-wrB">
-                            <barButtonItem key="leftBarButtonItem" title="Back" id="hKD-iA-nus">
-                                <connections>
-                                    <action selector="cancel:" destination="-1" id="z6p-bZ-bAZ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Menu" id="Lot-Ag-Otq">
-                                <connections>
-                                    <action selector="menu:" destination="-1" id="udQ-xf-utO"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iyU-0h-R1h">
-                    <rect key="frame" x="0.0" y="60" width="340" height="508"/>
+                    <rect key="frame" x="0.0" y="60" width="340" height="514"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PwG-V4-q1F">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="459"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="DJY-YY-chj"/>
-                                <outlet property="delegate" destination="-1" id="Sjh-xq-fVa"/>
-                            </connections>
-                        </tableView>
                         <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG1-hW-noV">
-                            <rect key="frame" x="-8" y="464" width="340" height="44"/>
+                            <rect key="frame" x="-8" y="464" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
                                 <barButtonItem style="plain" id="X9l-EN-F6f">
@@ -79,8 +52,34 @@
                         </toolbar>
                     </subviews>
                 </scrollView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PwG-V4-q1F">
+                    <rect key="frame" x="0.0" y="55" width="320" height="458"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="DJY-YY-chj"/>
+                        <outlet property="delegate" destination="-1" id="Sjh-xq-fVa"/>
+                    </connections>
+                </tableView>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-nF-SVn">
+                    <rect key="frame" x="0.0" y="16" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Conversation" id="ZiZ-jd-wrB">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="hKD-iA-nus">
+                                <connections>
+                                    <action selector="cancel:" destination="-1" id="z6p-bZ-bAZ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" title="Menu" id="Lot-Ag-Otq">
+                                <connections>
+                                    <action selector="menu:" destination="-1" id="udQ-xf-utO"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

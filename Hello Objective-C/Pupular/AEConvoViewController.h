@@ -13,6 +13,7 @@
     NSMutableData *_responseData;
     NSMutableArray *messagesArray;
 }
+@property UIImage *senderImage;
 @property NSString *dogID;
 @property IBOutlet UINavigationItem *navTitle;
 @property IBOutlet UITableView *tableView;

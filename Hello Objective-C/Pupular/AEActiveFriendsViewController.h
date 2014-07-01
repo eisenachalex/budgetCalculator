@@ -10,4 +10,6 @@
 
 @interface AEActiveFriendsViewController : UIViewController
 
+@property NSMutableArray *activeFriendsArray;
+@property IBOutlet UITableView *tableView;
 @end

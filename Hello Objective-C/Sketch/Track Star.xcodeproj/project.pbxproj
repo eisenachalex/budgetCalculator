@@ -1,0 +1,669 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF30A4FF1912EFC70037A3E7 /* AELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF30A4FD1912EFC70037A3E7 /* AELoginViewController.m */; };
+		EF3EBB56192E62BA001F3351 /* track_star_people_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EF3EBB55192E62BA001F3351 /* track_star_people_active.png */; };
+		EF3EBB58192E64F5001F3351 /* track_star_people_active_!!.png in Resources */ = {isa = PBXBuildFile; fileRef = EF3EBB57192E64F5001F3351 /* track_star_people_active_!!.png */; };
+		EF51938C190F31B00077B24D /* AEActiveFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF51938B190F31B00077B24D /* AEActiveFriendsViewController.m */; };
+		EF55B0BB1908696200440DF4 /* AECLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF55B0BA1908696200440DF4 /* AECLController.m */; };
+		EF55B0C11908985400440DF4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0C01908985400440DF4 /* QuartzCore.framework */; };
+		EF55B0C31908986500440DF4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0C21908986500440DF4 /* OpenGLES.framework */; };
+		EF55B0C51908987400440DF4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0C41908987400440DF4 /* SystemConfiguration.framework */; };
+		EF55B0C71908988800440DF4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0C61908988800440DF4 /* libz.dylib */; };
+		EF55B0C9190898A900440DF4 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0C8190898A900440DF4 /* libicucore.dylib */; };
+		EF55B0CB190898CC00440DF4 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0CA190898CC00440DF4 /* libc++.dylib */; };
+		EF55B0CD190898D700440DF4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0CC190898D700440DF4 /* ImageIO.framework */; };
+		EF55B0CF190898E700440DF4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0CE190898E700440DF4 /* GLKit.framework */; };
+		EF55B0D1190898F100440DF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0D0190898F100440DF4 /* AVFoundation.framework */; };
+		EF55B0D31908990100440DF4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0D21908990100440DF4 /* CoreText.framework */; };
+		EF55B0D519089CCA00440DF4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0D419089CCA00440DF4 /* CoreData.framework */; };
+		EF55B0DD1908A13E00440DF4 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF55B0DA1908A0BC00440DF4 /* GoogleMaps.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		EF55B0DF1908A79200440DF4 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF55B0DE1908A79200440DF4 /* GoogleMaps.bundle */; };
+		EF755FB6190350D10084E9DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FB5190350D10084E9DE /* Foundation.framework */; };
+		EF755FB8190350D10084E9DE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FB7190350D10084E9DE /* CoreGraphics.framework */; };
+		EF755FBA190350D10084E9DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FB9190350D10084E9DE /* UIKit.framework */; };
+		EF755FC0190350D10084E9DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF755FBE190350D10084E9DE /* InfoPlist.strings */; };
+		EF755FC2190350D10084E9DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF755FC1190350D10084E9DE /* main.m */; };
+		EF755FC6190350D10084E9DE /* AEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF755FC5190350D10084E9DE /* AEAppDelegate.m */; };
+		EF755FC8190350D10084E9DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF755FC7190350D10084E9DE /* Images.xcassets */; };
+		EF755FCF190350D10084E9DE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FCE190350D10084E9DE /* XCTest.framework */; };
+		EF755FD0190350D10084E9DE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FB5190350D10084E9DE /* Foundation.framework */; };
+		EF755FD1190350D10084E9DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF755FB9190350D10084E9DE /* UIKit.framework */; };
+		EF755FD9190350D10084E9DE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF755FD7190350D10084E9DE /* InfoPlist.strings */; };
+		EF755FDB190350D10084E9DE /* SketchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF755FDA190350D10084E9DE /* SketchTests.m */; };
+		EFA10C571905E92200B36348 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA10C561905E92200B36348 /* CoreLocation.framework */; };
+		EFA903211914646100AC3FAB /* AELoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA903231914646100AC3FAB /* AELoginViewController.xib */; };
+		EFADC6101928418600C9F905 /* track-star-logo-150.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC60F1928418600C9F905 /* track-star-logo-150.png */; };
+		EFADC6121929191F00C9F905 /* track-star-logo-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC6111929191E00C9F905 /* track-star-logo-120.png */; };
+		EFADC6151929216D00C9F905 /* track-star-icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC6141929216D00C9F905 /* track-star-icon-120.png */; };
+		EFADC6171929387F00C9F905 /* track-star-launch-image-1136.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC6161929387F00C9F905 /* track-star-launch-image-1136.png */; };
+		EFADC6191929420700C9F905 /* track-star-launch-image-960.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC6181929420700C9F905 /* track-star-launch-image-960.png */; };
+		EFADC61F192D2F4600C9F905 /* track_star_people.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC61E192D2F4600C9F905 /* track_star_people.png */; };
+		EFADC621192D321C00C9F905 /* track_star_target.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC620192D321C00C9F905 /* track_star_target.png */; };
+		EFADC623192D352200C9F905 /* track_star_background.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC622192D352200C9F905 /* track_star_background.png */; };
+		EFADC627192D3C4500C9F905 /* track_star_signal2.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC626192D3C4500C9F905 /* track_star_signal2.png */; };
+		EFADC629192D3D5200C9F905 /* track_star_map_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC628192D3D5200C9F905 /* track_star_map_icon.png */; };
+		EFADC62B192D43B100C9F905 /* track_star_map_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC62A192D43B100C9F905 /* track_star_map_icon2.png */; };
+		EFADC634192D466500C9F905 /* AEAccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFADC632192D466500C9F905 /* AEAccountSettingsViewController.m */; };
+		EFADC635192D466500C9F905 /* AEAccountSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFADC633192D466500C9F905 /* AEAccountSettingsViewController.xib */; };
+		EFADC637192D4A6D00C9F905 /* track_star_logout.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC636192D4A6D00C9F905 /* track_star_logout.png */; };
+		EFADC639192D55D800C9F905 /* track_star_signal_OFF.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC638192D55D800C9F905 /* track_star_signal_OFF.png */; };
+		EFADC63B192D55E100C9F905 /* track_star_signal_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = EFADC63A192D55E100C9F905 /* track_star_signal_ON.png */; };
+		EFC1CC48190D4A000090BD6F /* AEMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC1CC46190D4A000090BD6F /* AEMapViewController.m */; };
+		EFC1CC49190D4A000090BD6F /* AEMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC1CC47190D4A000090BD6F /* AEMapViewController.xib */; };
+		EFC1CC4D190D4A8D0090BD6F /* AEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC1CC4B190D4A8D0090BD6F /* AEHomeViewController.m */; };
+		EFC1CC4E190D4A8D0090BD6F /* AEHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC1CC4C190D4A8D0090BD6F /* AEHomeViewController.xib */; };
+		EFC1CC55190D8A690090BD6F /* AEFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC1CC53190D8A690090BD6F /* AEFriendsViewController.m */; };
+		EFC1CC56190D8A690090BD6F /* AEFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC1CC54190D8A690090BD6F /* AEFriendsViewController.xib */; };
+		EFC9F46D19411FB30078045E /* track_star_people_active_red.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F46C19411FB30078045E /* track_star_people_active_red.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF755FD2190350D10084E9DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EF755FAA190350D10084E9DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EF755FB1190350D10084E9DE;
+			remoteInfo = Sketch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EF30A4FC1912EFC70037A3E7 /* AELoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AELoginViewController.h; sourceTree = "<group>"; };
+		EF30A4FD1912EFC70037A3E7 /* AELoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AELoginViewController.m; sourceTree = "<group>"; };
+		EF3EBB55192E62BA001F3351 /* track_star_people_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_people_active.png; sourceTree = "<group>"; };
+		EF3EBB57192E64F5001F3351 /* track_star_people_active_!!.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track_star_people_active_!!.png"; sourceTree = "<group>"; };
+		EF51938A190F31B00077B24D /* AEActiveFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEActiveFriendsViewController.h; path = Sketch/AEActiveFriendsViewController.h; sourceTree = "<group>"; };
+		EF51938B190F31B00077B24D /* AEActiveFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEActiveFriendsViewController.m; path = Sketch/AEActiveFriendsViewController.m; sourceTree = "<group>"; };
+		EF55B0B91908696200440DF4 /* AECLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AECLController.h; path = Sketch/AECLController.h; sourceTree = "<group>"; };
+		EF55B0BA1908696200440DF4 /* AECLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AECLController.m; path = Sketch/AECLController.m; sourceTree = "<group>"; };
+		EF55B0C01908985400440DF4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EF55B0C21908986500440DF4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		EF55B0C41908987400440DF4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EF55B0C61908988800440DF4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EF55B0C8190898A900440DF4 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		EF55B0CA190898CC00440DF4 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		EF55B0CC190898D700440DF4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		EF55B0CE190898E700440DF4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		EF55B0D0190898F100440DF4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EF55B0D21908990100440DF4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EF55B0D419089CCA00440DF4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EF55B0DA1908A0BC00440DF4 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Sketch/GoogleMaps.framework; sourceTree = "<group>"; };
+		EF55B0DE1908A79200440DF4 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../../Downloads/GoogleMaps-iOS-1.7.2/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
+		EF755FB2190350D10084E9DE /* Track Star.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Track Star.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF755FB5190350D10084E9DE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EF755FB7190350D10084E9DE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF755FB9190350D10084E9DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EF755FBD190350D10084E9DE /* Track Star-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Track Star-Info.plist"; sourceTree = "<group>"; };
+		EF755FBF190350D10084E9DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF755FC1190350D10084E9DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EF755FC3190350D10084E9DE /* Track Star-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Track Star-Prefix.pch"; sourceTree = "<group>"; };
+		EF755FC4190350D10084E9DE /* AEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AEAppDelegate.h; path = Sketch/AEAppDelegate.h; sourceTree = "<group>"; };
+		EF755FC5190350D10084E9DE /* AEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AEAppDelegate.m; path = Sketch/AEAppDelegate.m; sourceTree = "<group>"; };
+		EF755FC7190350D10084E9DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Sketch/Images.xcassets; sourceTree = "<group>"; };
+		EF755FCD190350D10084E9DE /* Track StarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Track StarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF755FCE190350D10084E9DE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		EF755FD6190350D10084E9DE /* Track StarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Track StarTests-Info.plist"; sourceTree = "<group>"; };
+		EF755FD8190350D10084E9DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EF755FDA190350D10084E9DE /* SketchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SketchTests.m; sourceTree = "<group>"; };
+		EFA10C561905E92200B36348 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		EFA903221914646100AC3FAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AELoginViewController.xib; sourceTree = "<group>"; };
+		EFADC60F1928418600C9F905 /* track-star-logo-150.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track-star-logo-150.png"; sourceTree = "<group>"; };
+		EFADC6111929191E00C9F905 /* track-star-logo-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track-star-logo-120.png"; sourceTree = "<group>"; };
+		EFADC6141929216D00C9F905 /* track-star-icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track-star-icon-120.png"; sourceTree = "<group>"; };
+		EFADC6161929387F00C9F905 /* track-star-launch-image-1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track-star-launch-image-1136.png"; sourceTree = "<group>"; };
+		EFADC6181929420700C9F905 /* track-star-launch-image-960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track-star-launch-image-960.png"; sourceTree = "<group>"; };
+		EFADC61E192D2F4600C9F905 /* track_star_people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_people.png; sourceTree = "<group>"; };
+		EFADC620192D321C00C9F905 /* track_star_target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_target.png; sourceTree = "<group>"; };
+		EFADC622192D352200C9F905 /* track_star_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_background.png; sourceTree = "<group>"; };
+		EFADC626192D3C4500C9F905 /* track_star_signal2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_signal2.png; sourceTree = "<group>"; };
+		EFADC628192D3D5200C9F905 /* track_star_map_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_map_icon.png; sourceTree = "<group>"; };
+		EFADC62A192D43B100C9F905 /* track_star_map_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_map_icon2.png; sourceTree = "<group>"; };
+		EFADC631192D466500C9F905 /* AEAccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAccountSettingsViewController.h; sourceTree = "<group>"; };
+		EFADC632192D466500C9F905 /* AEAccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAccountSettingsViewController.m; sourceTree = "<group>"; };
+		EFADC633192D466500C9F905 /* AEAccountSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAccountSettingsViewController.xib; sourceTree = "<group>"; };
+		EFADC636192D4A6D00C9F905 /* track_star_logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_logout.png; sourceTree = "<group>"; };
+		EFADC638192D55D800C9F905 /* track_star_signal_OFF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_signal_OFF.png; sourceTree = "<group>"; };
+		EFADC63A192D55E100C9F905 /* track_star_signal_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_signal_ON.png; sourceTree = "<group>"; };
+		EFC1CC45190D4A000090BD6F /* AEMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEMapViewController.h; path = Sketch/AEMapViewController.h; sourceTree = "<group>"; };
+		EFC1CC46190D4A000090BD6F /* AEMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEMapViewController.m; path = Sketch/AEMapViewController.m; sourceTree = "<group>"; };
+		EFC1CC47190D4A000090BD6F /* AEMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMapViewController.xib; path = Sketch/AEMapViewController.xib; sourceTree = "<group>"; };
+		EFC1CC4A190D4A8D0090BD6F /* AEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEHomeViewController.h; sourceTree = "<group>"; };
+		EFC1CC4B190D4A8D0090BD6F /* AEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEHomeViewController.m; sourceTree = "<group>"; };
+		EFC1CC4C190D4A8D0090BD6F /* AEHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEHomeViewController.xib; sourceTree = "<group>"; };
+		EFC1CC52190D8A690090BD6F /* AEFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFriendsViewController.h; sourceTree = "<group>"; };
+		EFC1CC53190D8A690090BD6F /* AEFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFriendsViewController.m; sourceTree = "<group>"; };
+		EFC1CC54190D8A690090BD6F /* AEFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEFriendsViewController.xib; sourceTree = "<group>"; };
+		EFC9F46C19411FB30078045E /* track_star_people_active_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_people_active_red.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF755FAF190350D10084E9DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF55B0D519089CCA00440DF4 /* CoreData.framework in Frameworks */,
+				EF55B0D31908990100440DF4 /* CoreText.framework in Frameworks */,
+				EF55B0D1190898F100440DF4 /* AVFoundation.framework in Frameworks */,
+				EF55B0CF190898E700440DF4 /* GLKit.framework in Frameworks */,
+				EF55B0CD190898D700440DF4 /* ImageIO.framework in Frameworks */,
+				EF55B0CB190898CC00440DF4 /* libc++.dylib in Frameworks */,
+				EF55B0C9190898A900440DF4 /* libicucore.dylib in Frameworks */,
+				EF55B0C71908988800440DF4 /* libz.dylib in Frameworks */,
+				EF55B0C51908987400440DF4 /* SystemConfiguration.framework in Frameworks */,
+				EF55B0C31908986500440DF4 /* OpenGLES.framework in Frameworks */,
+				EF55B0DD1908A13E00440DF4 /* GoogleMaps.framework in Frameworks */,
+				EF55B0C11908985400440DF4 /* QuartzCore.framework in Frameworks */,
+				EFA10C571905E92200B36348 /* CoreLocation.framework in Frameworks */,
+				EF755FB8190350D10084E9DE /* CoreGraphics.framework in Frameworks */,
+				EF755FBA190350D10084E9DE /* UIKit.framework in Frameworks */,
+				EF755FB6190350D10084E9DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF755FCA190350D10084E9DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF755FCF190350D10084E9DE /* XCTest.framework in Frameworks */,
+				EF755FD1190350D10084E9DE /* UIKit.framework in Frameworks */,
+				EF755FD0190350D10084E9DE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF755FA9190350D10084E9DE = {
+			isa = PBXGroup;
+			children = (
+				EF755FC4190350D10084E9DE /* AEAppDelegate.h */,
+				EF755FC5190350D10084E9DE /* AEAppDelegate.m */,
+				EFC1CC4A190D4A8D0090BD6F /* AEHomeViewController.h */,
+				EFC1CC4B190D4A8D0090BD6F /* AEHomeViewController.m */,
+				EFC1CC4C190D4A8D0090BD6F /* AEHomeViewController.xib */,
+				EFADC631192D466500C9F905 /* AEAccountSettingsViewController.h */,
+				EFADC632192D466500C9F905 /* AEAccountSettingsViewController.m */,
+				EFADC633192D466500C9F905 /* AEAccountSettingsViewController.xib */,
+				EF30A4FC1912EFC70037A3E7 /* AELoginViewController.h */,
+				EF30A4FD1912EFC70037A3E7 /* AELoginViewController.m */,
+				EFA903231914646100AC3FAB /* AELoginViewController.xib */,
+				EFC1CC52190D8A690090BD6F /* AEFriendsViewController.h */,
+				EF755FC7190350D10084E9DE /* Images.xcassets */,
+				EFC1CC53190D8A690090BD6F /* AEFriendsViewController.m */,
+				EF51938A190F31B00077B24D /* AEActiveFriendsViewController.h */,
+				EF51938B190F31B00077B24D /* AEActiveFriendsViewController.m */,
+				EFC1CC54190D8A690090BD6F /* AEFriendsViewController.xib */,
+				EFC1CC45190D4A000090BD6F /* AEMapViewController.h */,
+				EFC1CC46190D4A000090BD6F /* AEMapViewController.m */,
+				EFC1CC47190D4A000090BD6F /* AEMapViewController.xib */,
+				EF55B0B91908696200440DF4 /* AECLController.h */,
+				EF55B0BA1908696200440DF4 /* AECLController.m */,
+				EF755FBC190350D10084E9DE /* Supporting Files */,
+				EF55B0DE1908A79200440DF4 /* GoogleMaps.bundle */,
+				EF755FD4190350D10084E9DE /* SketchTests */,
+				EF755FB4190350D10084E9DE /* Frameworks */,
+				EF755FB3190350D10084E9DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF755FB3190350D10084E9DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF755FB2190350D10084E9DE /* Track Star.app */,
+				EF755FCD190350D10084E9DE /* Track StarTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF755FB4190350D10084E9DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF55B0D419089CCA00440DF4 /* CoreData.framework */,
+				EF55B0D21908990100440DF4 /* CoreText.framework */,
+				EF55B0D0190898F100440DF4 /* AVFoundation.framework */,
+				EF55B0CE190898E700440DF4 /* GLKit.framework */,
+				EF55B0CC190898D700440DF4 /* ImageIO.framework */,
+				EF55B0CA190898CC00440DF4 /* libc++.dylib */,
+				EF55B0C8190898A900440DF4 /* libicucore.dylib */,
+				EF55B0C61908988800440DF4 /* libz.dylib */,
+				EF55B0C41908987400440DF4 /* SystemConfiguration.framework */,
+				EF55B0C21908986500440DF4 /* OpenGLES.framework */,
+				EF55B0C01908985400440DF4 /* QuartzCore.framework */,
+				EFA10C561905E92200B36348 /* CoreLocation.framework */,
+				EF755FB5190350D10084E9DE /* Foundation.framework */,
+				EF755FB7190350D10084E9DE /* CoreGraphics.framework */,
+				EF755FB9190350D10084E9DE /* UIKit.framework */,
+				EF55B0DA1908A0BC00440DF4 /* GoogleMaps.framework */,
+				EF755FCE190350D10084E9DE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF755FBC190350D10084E9DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF755FBD190350D10084E9DE /* Track Star-Info.plist */,
+				EFADC6141929216D00C9F905 /* track-star-icon-120.png */,
+				EFADC6181929420700C9F905 /* track-star-launch-image-960.png */,
+				EFADC622192D352200C9F905 /* track_star_background.png */,
+				EFADC628192D3D5200C9F905 /* track_star_map_icon.png */,
+				EFADC63A192D55E100C9F905 /* track_star_signal_ON.png */,
+				EFC9F46C19411FB30078045E /* track_star_people_active_red.png */,
+				EFADC638192D55D800C9F905 /* track_star_signal_OFF.png */,
+				EF3EBB57192E64F5001F3351 /* track_star_people_active_!!.png */,
+				EFADC636192D4A6D00C9F905 /* track_star_logout.png */,
+				EFADC620192D321C00C9F905 /* track_star_target.png */,
+				EFADC62A192D43B100C9F905 /* track_star_map_icon2.png */,
+				EF3EBB55192E62BA001F3351 /* track_star_people_active.png */,
+				EFADC6111929191E00C9F905 /* track-star-logo-120.png */,
+				EFADC626192D3C4500C9F905 /* track_star_signal2.png */,
+				EFADC61E192D2F4600C9F905 /* track_star_people.png */,
+				EFADC60F1928418600C9F905 /* track-star-logo-150.png */,
+				EFADC6161929387F00C9F905 /* track-star-launch-image-1136.png */,
+				EF755FBE190350D10084E9DE /* InfoPlist.strings */,
+				EF755FC1190350D10084E9DE /* main.m */,
+				EF755FC3190350D10084E9DE /* Track Star-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = Sketch;
+			sourceTree = "<group>";
+		};
+		EF755FD4190350D10084E9DE /* SketchTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF755FDA190350D10084E9DE /* SketchTests.m */,
+				EF755FD5190350D10084E9DE /* Supporting Files */,
+			);
+			path = SketchTests;
+			sourceTree = "<group>";
+		};
+		EF755FD5190350D10084E9DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF755FD6190350D10084E9DE /* Track StarTests-Info.plist */,
+				EF755FD7190350D10084E9DE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF755FB1190350D10084E9DE /* Track Star */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF755FDE190350D10084E9DE /* Build configuration list for PBXNativeTarget "Track Star" */;
+			buildPhases = (
+				EF755FAE190350D10084E9DE /* Sources */,
+				EF755FAF190350D10084E9DE /* Frameworks */,
+				EF755FB0190350D10084E9DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Track Star";
+			productName = Sketch;
+			productReference = EF755FB2190350D10084E9DE /* Track Star.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EF755FCC190350D10084E9DE /* Track StarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF755FE1190350D10084E9DE /* Build configuration list for PBXNativeTarget "Track StarTests" */;
+			buildPhases = (
+				EF755FC9190350D10084E9DE /* Sources */,
+				EF755FCA190350D10084E9DE /* Frameworks */,
+				EF755FCB190350D10084E9DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF755FD3190350D10084E9DE /* PBXTargetDependency */,
+			);
+			name = "Track StarTests";
+			productName = SketchTests;
+			productReference = EF755FCD190350D10084E9DE /* Track StarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF755FAA190350D10084E9DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AE;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Free Swim";
+				TargetAttributes = {
+					EF755FB1190350D10084E9DE = {
+						DevelopmentTeam = 7G6GV9247B;
+					};
+					EF755FCC190350D10084E9DE = {
+						TestTargetID = EF755FB1190350D10084E9DE;
+					};
+				};
+			};
+			buildConfigurationList = EF755FAD190350D10084E9DE /* Build configuration list for PBXProject "Track Star" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EF755FA9190350D10084E9DE;
+			productRefGroup = EF755FB3190350D10084E9DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF755FB1190350D10084E9DE /* Track Star */,
+				EF755FCC190350D10084E9DE /* Track StarTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF755FB0190350D10084E9DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF3EBB58192E64F5001F3351 /* track_star_people_active_!!.png in Resources */,
+				EFADC63B192D55E100C9F905 /* track_star_signal_ON.png in Resources */,
+				EFADC6151929216D00C9F905 /* track-star-icon-120.png in Resources */,
+				EFADC623192D352200C9F905 /* track_star_background.png in Resources */,
+				EFADC635192D466500C9F905 /* AEAccountSettingsViewController.xib in Resources */,
+				EFC1CC56190D8A690090BD6F /* AEFriendsViewController.xib in Resources */,
+				EF3EBB56192E62BA001F3351 /* track_star_people_active.png in Resources */,
+				EFC1CC4E190D4A8D0090BD6F /* AEHomeViewController.xib in Resources */,
+				EFA903211914646100AC3FAB /* AELoginViewController.xib in Resources */,
+				EF755FC0190350D10084E9DE /* InfoPlist.strings in Resources */,
+				EFADC637192D4A6D00C9F905 /* track_star_logout.png in Resources */,
+				EFADC627192D3C4500C9F905 /* track_star_signal2.png in Resources */,
+				EFADC621192D321C00C9F905 /* track_star_target.png in Resources */,
+				EFADC62B192D43B100C9F905 /* track_star_map_icon2.png in Resources */,
+				EFADC61F192D2F4600C9F905 /* track_star_people.png in Resources */,
+				EFADC639192D55D800C9F905 /* track_star_signal_OFF.png in Resources */,
+				EFC9F46D19411FB30078045E /* track_star_people_active_red.png in Resources */,
+				EF55B0DF1908A79200440DF4 /* GoogleMaps.bundle in Resources */,
+				EFADC6191929420700C9F905 /* track-star-launch-image-960.png in Resources */,
+				EFADC6171929387F00C9F905 /* track-star-launch-image-1136.png in Resources */,
+				EFADC629192D3D5200C9F905 /* track_star_map_icon.png in Resources */,
+				EFC1CC49190D4A000090BD6F /* AEMapViewController.xib in Resources */,
+				EFADC6121929191F00C9F905 /* track-star-logo-120.png in Resources */,
+				EF755FC8190350D10084E9DE /* Images.xcassets in Resources */,
+				EFADC6101928418600C9F905 /* track-star-logo-150.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF755FCB190350D10084E9DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF755FD9190350D10084E9DE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF755FAE190350D10084E9DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF30A4FF1912EFC70037A3E7 /* AELoginViewController.m in Sources */,
+				EF55B0BB1908696200440DF4 /* AECLController.m in Sources */,
+				EF51938C190F31B00077B24D /* AEActiveFriendsViewController.m in Sources */,
+				EF755FC6190350D10084E9DE /* AEAppDelegate.m in Sources */,
+				EFC1CC55190D8A690090BD6F /* AEFriendsViewController.m in Sources */,
+				EFC1CC48190D4A000090BD6F /* AEMapViewController.m in Sources */,
+				EFADC634192D466500C9F905 /* AEAccountSettingsViewController.m in Sources */,
+				EFC1CC4D190D4A8D0090BD6F /* AEHomeViewController.m in Sources */,
+				EF755FC2190350D10084E9DE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF755FC9190350D10084E9DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF755FDB190350D10084E9DE /* SketchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EF755FD3190350D10084E9DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EF755FB1190350D10084E9DE /* Track Star */;
+			targetProxy = EF755FD2190350D10084E9DE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EF755FBE190350D10084E9DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF755FBF190350D10084E9DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EF755FD7190350D10084E9DE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EF755FD8190350D10084E9DE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EFA903231914646100AC3FAB /* AELoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFA903221914646100AC3FAB /* en */,
+			);
+			name = AELoginViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EF755FDC190350D10084E9DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EF755FDD190350D10084E9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EF755FDF190350D10084E9DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/hoopmiester/Downloads/GoogleMaps-iOS-1.7.2",
+					2,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Sketch",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sketch/Track Star-Prefix.pch";
+				INFOPLIST_FILE = "Sketch/Track Star-Info.plist";
+				PRODUCT_NAME = "Track Star";
+				PROVISIONING_PROFILE = "FE5A1078-42FA-4BCF-B975-848726ACE46E";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EF755FE0190350D10084E9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/hoopmiester/Downloads/GoogleMaps-iOS-1.7.2",
+					2,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Sketch",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sketch/Track Star-Prefix.pch";
+				INFOPLIST_FILE = "Sketch/Track Star-Info.plist";
+				PRODUCT_NAME = "Track Star";
+				PROVISIONING_PROFILE = "FE5A1078-42FA-4BCF-B975-848726ACE46E";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		EF755FE2190350D10084E9DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sketch.app/Sketch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sketch/Sketch-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SketchTests/Track StarTests-Info.plist";
+				PRODUCT_NAME = "Track StarTests";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		EF755FE3190350D10084E9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sketch.app/Sketch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sketch/Sketch-Prefix.pch";
+				INFOPLIST_FILE = "SketchTests/Track StarTests-Info.plist";
+				PRODUCT_NAME = "Track StarTests";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF755FAD190350D10084E9DE /* Build configuration list for PBXProject "Track Star" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF755FDC190350D10084E9DE /* Debug */,
+				EF755FDD190350D10084E9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF755FDE190350D10084E9DE /* Build configuration list for PBXNativeTarget "Track Star" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF755FDF190350D10084E9DE /* Debug */,
+				EF755FE0190350D10084E9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF755FE1190350D10084E9DE /* Build configuration list for PBXNativeTarget "Track StarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF755FE2190350D10084E9DE /* Debug */,
+				EF755FE3190350D10084E9DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EF755FAA190350D10084E9DE /* Project object */;
+}

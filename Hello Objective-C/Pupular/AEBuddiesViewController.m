@@ -16,14 +16,13 @@
 @end
 
 @implementation AEBuddiesViewController
-@synthesize tableView;
+@synthesize tableView,foreign_dog_id,searchBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-
     }
     return self;
 }
@@ -32,15 +31,24 @@
 {
     [self loadUserInfo];
     [super viewDidLoad];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
-    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-    // Do any additional setup after loading the view from its nib.
+    if(foreign_dog_id){
+        NSLog(@"foreign jowns");
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",foreign_dog_id]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        // Do any additional setup after loading the view from its nib.
+        
+        
+    }
+    else{
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        // Do any additional setup after loading the view from its nib.
+    }
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self loadUserInfo];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
-    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+
 
 }
 
@@ -117,6 +125,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
     // Display recipe in the table cell
     NSString *user = nil;
     NSLog(@"DEM SEARCH RESULTS %@",friendsArray);

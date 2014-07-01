@@ -15,5 +15,7 @@
 }
 
 @property IBOutlet UITableView *tableView;
+@property IBOutlet UISearchBar *searchBar;
+@property NSString *foreign_dog_id;
 
 @end

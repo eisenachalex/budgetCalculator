@@ -14,6 +14,9 @@
 #import "AEBuddiesViewController.h"
 #import "AELogInViewController.h"
 #import "AEActiveFriendsViewController.h"
+#import "AEAdditionView.h"
+#import "UIImageView+WebCache.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AEMenuViewController ()
 
@@ -32,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     // Do any additional setup after loading the view from its nib.
     
@@ -117,6 +121,10 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CustomTableCell";
@@ -129,11 +137,22 @@
     NSString *user = nil;
     NSLog(@"DEM SEARCH RESULTS %@",searchResults);
     user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
-    NSLog(@"THE USER BOI %@",user);
-    //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+    NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
+    NSLog(@"image jownt %@",imageString);
+    if([imageString isEqualToString:@"none"]){
+        [cell.imageView setImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
+    else{
+        NSLog(@"yes");
+        [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
+                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
     return cell;
 }
 

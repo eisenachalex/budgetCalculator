@@ -12,6 +12,7 @@
 #import "AEActiveFriendsViewController.h"
 #import "AENotificationViewController.h"
 #import "AEConvoViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface AEMessagesViewController ()
 
@@ -38,14 +39,14 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     [self.tableView reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     [self.tableView reloadData];
 }
@@ -126,6 +127,11 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.0;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"ITS LOADING");
@@ -155,6 +161,7 @@
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:13]];
     date.text = [messageDict valueForKey:@"created_at"];
     sender_tag.text = [messageArray objectAtIndex:1];
+    NSString *imageURL = [messageArray objectAtIndex:2];
     [cell.textLabel addSubview:sender_tag];
     [cell.textLabel addSubview:date];
 
@@ -183,8 +190,17 @@
         cell.textLabel.textColor = [UIColor blueColor];
         
     }
+    if([imageURL isEqualToString:@"none"]){
+        [cell.imageView setImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
+    else{
+        NSLog(@"yes");
+        [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageURL]]
+                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
 
-
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
     return cell;
 }
 
@@ -214,6 +230,7 @@
     else if([messageType isEqualToString:@"message"]){
     AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         UILabel *handleLabel = [cell.textLabel subviews][1];
+        conversationView.senderImage = cell.imageView.image;
         conversationView.dogHandle = handleLabel.text;
         conversationView.dogID = dogID;
     [self presentViewController:conversationView animated:YES completion:nil];

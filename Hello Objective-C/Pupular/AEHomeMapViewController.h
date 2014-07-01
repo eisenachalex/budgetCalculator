@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AECLController.h"
 
-@interface AEHomeMapViewController : UIViewController
+@interface AEHomeMapViewController : UIViewController<AECLControllerDelegate,NSURLConnectionDataDelegate>{
+    AECLController *locationController;
+    NSMutableData *_responseData;
+    NSMutableDictionary *userInfo;
+    NSMutableArray *activeFriendsArray;
+    BOOL firstLocationUpdate_;
 
+}
+@property NSTimer *myTime;
 @property IBOutlet UIView *mapViewContainer;
+@property IBOutlet UISwitch *trackingSwitch;
 @end

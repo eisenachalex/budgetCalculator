@@ -10,6 +10,8 @@
 #import "AEConvoViewController.h"
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface AEConvoViewController ()
 
@@ -31,7 +33,7 @@
 {
     [super viewDidLoad];
     [self loadUserInfo];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     // Do any additional setup after loading the view from its nib.
     self.messageResponse.delegate = self;
@@ -42,18 +44,21 @@
     navTitle.title = self.dogHandle;
     scrollView.contentSize = CGSizeMake(320, 500);
     [super viewWillAppear:YES];
-    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
 
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [scrollView setContentOffset:CGPointMake(0,self.toolBar.center.y-270) animated:YES];//you can set your  y cordinate as your req also
+    [self.view bringSubviewToFront:scrollView];
+    CGPoint bottomOffset = CGPointMake(0, tableView.contentSize.height - tableView.bounds.size.height + 270);
+    [tableView setContentOffset:bottomOffset animated:NO];
+    [scrollView setContentOffset:CGPointMake(0,self.toolBar.center.y-270) animated:NO];//you can set your  y cordinate as your req also
 }
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [self.view bringSubviewToFront:tableView];
     [textField resignFirstResponder];
     [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
     
@@ -78,16 +83,18 @@
 }
 
 -(IBAction)sendMessage:(id)sender{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],_dogID,[self.messageResponse.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    [self.view bringSubviewToFront:tableView];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],_dogID,[self.messageResponse.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     
     [self.messageResponse resignFirstResponder];
+
     [self.messageResponse setText:@""];
     [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
 
 }
 
@@ -116,6 +123,7 @@
         }
 
     }
+    
 
     NSLog(@"MESASGAGDSAGSD %@",messagesArray);
     [self.tableView reloadData];
@@ -135,6 +143,10 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 90.0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CustomTableCell";
@@ -147,6 +159,7 @@
     NSString *user = nil;
     NSDictionary *message = [messagesArray objectAtIndex:indexPath.row];
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+    cell.imageView.image = nil;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [message valueForKey:@"body"];
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
@@ -161,8 +174,12 @@
     }
     else {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.imageView.image = self.senderImage;
     }
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
     return cell;
+    
 }
 
 - (void)loadUserInfo {
