@@ -6,23 +6,36 @@
 //  Copyright (c) 2014 Free Swim. All rights reserved.
 //
 
+
+//
+//  AEBuddiesViewController.m
+//  Pupular
+//
+//  Created by Alex Eisenach on 6/7/14.
+//  Copyright (c) 2014 Free Swim. All rights reserved.
+//
+
 #import "AEBuddiesViewController.h"
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
-#import "AEProfileViewController.h"
+#import "AEFriendProfileViewController.h"
+#import "UIImageView+WebCache.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AEBuddiesViewController ()
 
 @end
 
 @implementation AEBuddiesViewController
-@synthesize tableView,foreign_dog_id,searchBar;
+@synthesize tableView,foreign_dog_id,searchBar,trackingSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        
     }
     return self;
 }
@@ -31,8 +44,10 @@
 {
     [self loadUserInfo];
     [super viewDidLoad];
+    
     if(foreign_dog_id){
         NSLog(@"foreign jowns");
+        _navBar.topItem.rightBarButtonItem = nil;
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",foreign_dog_id]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         // Do any additional setup after loading the view from its nib.
@@ -40,16 +55,28 @@
         
     }
     else{
+        _navBar.topItem.leftBarButtonItem = nil;
+
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         // Do any additional setup after loading the view from its nib.
     }
-
+    
 }
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
-
-
+    [self loadUserInfo];
+    if([userInfo valueForKey:@"is_active"]){
+        if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
+            [trackingSwitch setOn:YES];
+        }
+        else{
+            [trackingSwitch setOn:NO];
+        }
+    }
+    
 }
 
 
@@ -60,8 +87,15 @@
 }
 -(IBAction)menu:(id)sender{
     AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    [self presentViewController:menuView animated:NO completion:nil];
+    menuView.locationController = _locationController;
+    [self presentViewController:menuView animated:YES completion:nil];
 }
+
+
+-(IBAction)back:(id)sender{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 
 -(IBAction)list:(id)sender{
     AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
@@ -111,9 +145,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [friendsArray count];
-    NSLog(@"FRANNDS %@",friendsArray);
-
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
+        return [friendsArray count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,16 +162,42 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    NSString *user = nil;
+    NSString *imageString = nil;
+    [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
+        imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
+
+    } else {
+        user = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"handle"];
+       imageString = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"photo"];
+
+    }
     
     // Display recipe in the table cell
-    NSString *user = nil;
     NSLog(@"DEM SEARCH RESULTS %@",friendsArray);
-    user = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"handle"];
     
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    NSLog(@"image jownt %@",imageString);
+    if([imageString isEqualToString:@"none"]){
+        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+    }
+    else{
+        NSLog(@"yes");
+        [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
+                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = user;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
+
     return cell;
 }
 
@@ -151,13 +214,29 @@
         }
     }
     NSLog(@"okay %@",dogID);
-    AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
-    profileView.dogID = dogID;
-    profileView.isFriend = TRUE;
-    profileView.dogHandle = cell.text;
-    [self presentViewController:profileView animated:NO completion:nil];
+    AEFriendProfileViewController *friendProfileView = [[AEFriendProfileViewController alloc] init];
+    friendProfileView.locationController = _locationController;
+    friendProfileView.isFriend = YES;
+    friendProfileView.dogHandle = cell.text;
+    friendProfileView.dogID = dogID;
+    [self presentViewController:friendProfileView animated:NO completion:nil];
 }
 
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    return YES;
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSLog(@"jowtn");
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"handle contains[c] %@", searchText];
+    searchResults = [friendsArray filteredArrayUsingPredicate:resultPredicate];
+}
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {

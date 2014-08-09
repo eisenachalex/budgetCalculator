@@ -6,26 +6,25 @@
 //  Copyright (c) 2014 Free Swim. All rights reserved.
 //
 
-#import "AEMenuViewController.h"
+#import "AEViewController.h"
 #import "AEHomeMapViewController.h"
-#import "AEFriendProfileViewController.h"
+#import "AEProfileViewController.h"
 #import "AEMessagesViewController.h"
 #import "AEAboutViewController.h"
 #import "AEConvoViewController.h"
 #import "AEBuddiesViewController.h"
 #import "AELogInViewController.h"
-#import "AEProfileViewController.h"
 #import "AEActiveFriendsViewController.h"
 #import "AEAdditionView.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface AEMenuViewController ()
+@interface AEViewController ()
 
 @end
 
-@implementation AEMenuViewController
-@synthesize spinner;
+@implementation AEViewController
+@synthesize spinner,locationController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +32,7 @@
     if (self) {
         // Custom initialization
         
-
+        
     }
     return self;
 }
@@ -41,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"LOCATION CONTROLLER %@",_locationController);
+    
     
     // Do any additional setup after loading the view from its nib.
     
@@ -50,9 +49,11 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self loadUserInfo];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs"]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    [self loadUserInfo];
+    NSLog(@"THE LOCATION MANAGER %@",locationController);
+    
 }
 
 
@@ -64,59 +65,56 @@
 }
 
 -(IBAction)home:(id)sender {
-    AEHomeMapViewController *homeMapView = [[AEHomeMapViewController alloc] init];
-    homeMapView.locationController = _locationController;
-    [self presentViewController:homeMapView animated:NO completion:nil];
+    AEHomeMapViewController *homeMap = [[AEHomeMapViewController alloc] init];
+    homeMap.navigationController = locationController;
+    [self presentViewController:homeMap animated:YES completion:nil];
+    
 }
 
 -(IBAction)messages:(id)sender {
     AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
-    messagesView.locationController = _locationController;
-
     [self presentViewController:messagesView animated:NO completion:nil];
 }
 
 -(IBAction)about:(id)sender {
     AEAboutViewController *aboutView = [[AEAboutViewController alloc] init];
-    aboutView.locationController = _locationController;
     [self presentViewController:aboutView animated:NO completion:nil];
 }
 
 -(IBAction)buddies:(id)sender {
     AEBuddiesViewController *buddiesView = [[AEBuddiesViewController alloc] init];
-    buddiesView.locationController = _locationController;
+    buddiesView.locationController = locationController;
     [self presentViewController:buddiesView animated:NO completion:nil];
 }
 
--(IBAction)back:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
+
 -(IBAction)profile:(id)sender {
     AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
     profileView.dogID = [userInfo valueForKey:@"dog_id"];
     profileView.dogHandle = [userInfo valueForKey:@"dog_handle"];
-    profileView.locationController = _locationController;
-    profileView.isMine = YES;
+    profileView.locationController = locationController;
+    profileView.isMine = TRUE;
     [self presentViewController:profileView animated:NO completion:nil];
 }
 
 -(IBAction)activeFriends:(id)sender {
     AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
-    activeFriendsView.locationController = _locationController;
     [self presentViewController:activeFriendsView animated:NO completion:nil];
 }
 
 
 -(IBAction)signout:(id)sender {
-    NSLog(@"location CONTROLLER %@",_locationController);
-    [_locationController.locationManager stopUpdatingLocation];
+    [locationController.locationManager stopUpdatingLocation];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [userInfo setValue:@"empty" forKey:@"email"];
     [userInfo setValue:@"false" forKey:@"is_active"];
     [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
     AELogInViewController *loginViewController = [[AELogInViewController alloc] init];
-    [self presentViewController:loginViewController animated:NO completion:nil];
+    [self presentViewController:loginViewController animated:YES completion:nil];
     
 }
 
@@ -140,7 +138,6 @@
     else {
         return 0;
     }
-    NSLog(@"NUMBERS %@",searchResults);
     
 }
 
@@ -156,21 +153,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    
     // Display recipe in the table cell
     NSString *user = nil;
-    NSLog(@"DEM SEARCH RESULTS %@",searchResults);
     user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
     NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
-    NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"git_icon_hover.png"]];
     }
     else{
-        NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -191,21 +183,11 @@
         NSDictionary *userDict = [usersArray objectAtIndex:i];
         if([[userDict valueForKey:@"handle"] isEqualToString:cell.text]){
             dogID = [userDict valueForKey:@"id"];
-            NSString *stringValue = [NSString stringWithFormat:@"%@",[userDict valueForKey:@"is_friend"]];
-            if([stringValue isEqualToString:@"1"]){
-                NSLog(@"A FRIEND");
-                _isFriend = YES;
-            }
-            else{
-                _isFriend = NO;
-            }
         }
     }
-    NSLog(@"okay %@",dogID);
-    AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
+    AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
     profileView.dogID = dogID;
-    profileView.view.translatesAutoresizingMaskIntoConstraints = YES;
-    profileView.isFriend = _isFriend;
+    profileView.isFriend = FALSE;
     profileView.dogHandle = cell.text;
     [self presentViewController:profileView animated:NO completion:nil];
 }
@@ -232,7 +214,6 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    NSLog(@"JSON %@",newJSON);
     if([newJSON objectForKey:@"all_dogs"])
     {
         usersArray = [newJSON valueForKey:@"all_dogs"];

@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class AECLController;
 
 @interface AEConvoViewController : UIViewController <NSURLConnectionDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     NSMutableArray *userInfo;
     NSMutableData *_responseData;
     NSMutableArray *messagesArray;
 }
+@property BOOL *backToMenu;
+@property AECLController *locationController;
 @property UIImage *senderImage;
+@property IBOutlet UIImageView *senderImageView;
 @property NSString *dogID;
 @property IBOutlet UINavigationItem *navTitle;
 @property IBOutlet UITableView *tableView;
@@ -21,6 +25,5 @@
 @property IBOutlet UIScrollView *scrollView;
 @property IBOutlet UITextField *messageResponse;
 @property IBOutlet UIToolbar *toolBar;
-
 
 @end

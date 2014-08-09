@@ -7,6 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AETargetMapViewController">
             <connections>
                 <outlet property="mapViewContainer" destination="kH8-Fl-RPj" id="5JV-ow-kXP"/>
+                <outlet property="targetButton" destination="oqe-78-fTP" id="R5a-ko-5tg"/>
+                <outlet property="targetItem" destination="ktc-bQ-PVL" id="cwF-kP-qb8"/>
+                <outlet property="trackingSwitch" destination="rqk-79-Nfh" id="X1c-NL-mOL"/>
                 <outlet property="view" destination="hl9-UD-chC" id="JVd-li-9kk"/>
             </connections>
         </placeholder>
@@ -23,13 +26,13 @@
                     <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Home Map" id="ktc-bQ-PVL">
+                        <navigationItem title="Tracking..." id="ktc-bQ-PVL">
                             <barButtonItem key="leftBarButtonItem" title="Target" id="oqe-78-fTP">
                                 <connections>
                                     <action selector="target:" destination="-1" id="KIV-li-fmm"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Menu" id="lIJ-CO-GgL">
+                            <barButtonItem key="rightBarButtonItem" image="list23.png" id="lIJ-CO-GgL">
                                 <connections>
                                     <action selector="menu:" destination="-1" id="t7a-aW-9Pi"/>
                                 </connections>
@@ -47,7 +50,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="rLx-gQ-KKb"/>
-                        <barButtonItem title="Track me" id="ajV-WI-81v">
+                        <barButtonItem title="Wagging" id="ajV-WI-81v">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" id="6fZ-4I-Vga">
@@ -67,4 +70,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="list23.png" width="16" height="16"/>
+    </resources>
 </document>

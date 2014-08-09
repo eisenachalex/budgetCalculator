@@ -6,21 +6,21 @@
 //  Copyright (c) 2014 Free Swim. All rights reserved.
 //
 
-#import "AEAboutViewController.h"
+#import "AEAboutGuestViewController.h"
 #import "AEMenuViewController.h"
-@interface AEAboutViewController ()
+@interface AEAboutGuestViewController ()
 
 @end
 
-@implementation AEAboutViewController
+@implementation AEAboutGuestViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-
-
+        
+        
     }
     return self;
 }
@@ -39,9 +39,7 @@
 
 
 - (IBAction)cancel:(id)sender {
-    AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    menuView.locationController = _locationController;
-    [self presentViewController:menuView animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

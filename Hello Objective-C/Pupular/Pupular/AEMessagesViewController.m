@@ -54,7 +54,6 @@
 
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-    [self.tableView reloadData];
 }
 
 
@@ -138,12 +137,53 @@
     return 80.0;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        NSString *messageID = [[NSString alloc] init];
+        NSString *sender_id = [[NSString alloc] init];
+        NSString *receiver_id = [[NSString alloc] init];
+        UILabel *messageText = [[cell.contentView subviews][1] subviews][2];
+        NSLog(@"message text %@",messageText.text);
+        for (int i = 0; i < messagesArray.count; i++){
+            NSArray *messageArray = [messagesArray objectAtIndex:i];
+            NSDictionary *messageDict = [messageArray objectAtIndex:0];
+            NSLog(@"messagedict %@",[messageDict valueForKey:@"body"]);
+            if([[messageDict valueForKey:@"body"] isEqualToString:messageText.text]){
+                NSLog(@"no fire");
+                messageID = [messageDict valueForKey:@"id"];
+                sender_id = [messageDict valueForKey:@"sender_id"];
+                receiver_id = [messageDict valueForKey:@"receiver_id"];
+            }
+        }
+
+        NSLog(@"message id jowns %@",messageID);
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_message?message_id=%@",messageID]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        [messagesArray removeObjectAtIndex:[indexPath row]];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+    }
+
+
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CustomTableCell";
-    UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    for(int i = 0; i < [[cell.contentView subviews] count]; i++){
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+
+    for(int i = 0; i < [cell.contentView.subviews count]; i++){
 
         UIView *currentView = [[cell.contentView subviews] objectAtIndex:i];
         [currentView removeFromSuperview];
@@ -163,13 +203,12 @@
     
     UILabel *sender_tag = [[UILabel alloc] initWithFrame:CGRectMake(0,20,100,10)];
     UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0,50,150,10)];
+    message.text = [messageDict valueForKey:@"body"];
     UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(100,20,100,10)];
     UILabel *reader = [[UILabel alloc] initWithFrame:CGRectMake(200,40,20,20)];
-    message.text = [messageDict valueForKey:@"body"];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,20,20)];
     imageView.image = [UIImage imageNamed:@"git_icon_hover.png"];
     [reader addSubview:imageView];
-    [reader setBackgroundColor:[UIColor redColor]];
     [cellSubView addSubview:date];
 
     [cellSubView addSubview:sender_tag];
@@ -186,7 +225,6 @@
     sender_tag.text = [messageArray objectAtIndex:1];
     NSString *imageURL = [messageArray objectAtIndex:2];
 
-    [cell.contentView addSubview:cellSubView];
     if ([[messageDict objectForKey:@"read"] boolValue] == NO)
     {
         [cellSubView addSubview:reader];
@@ -226,6 +264,8 @@
 
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
+    [cell.contentView addSubview:cellSubView];
+
     return cell;
 }
 
@@ -237,6 +277,7 @@
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSLog(@"test 1");
+    NSLog(@"dem subview jowns %@",[cell.contentView subviews]);
     UILabel *messageText = [[cell.contentView subviews][1] subviews][2];
     NSLog(@"test 2");
     for (int i = 0; i < messagesArray.count; i++){
@@ -262,6 +303,13 @@
     }
     else if ([messageType isEqualToString:@"auto_message"]){
         
+        AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
+        
+        notificationView.notificationType = @"Auto Message";
+        notificationView.notificationMessage = messageText.text;
+        notificationView.locationController = _locationController;
+        notificationView.dogID = dogID;
+        [self presentViewController:notificationView animated:NO completion:nil];
     }
     else if([messageType isEqualToString:@"message"]){
     AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];

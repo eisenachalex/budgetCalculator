@@ -1,5 +1,5 @@
 //
-//  AEMenuViewController.h
+//  AEMessagesViewController.h
 //  Pupular
 //
 //  Created by Alex Eisenach on 6/7/14.
@@ -9,15 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AECLController.h"
 
-
-@interface AEMenuViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate> {
+@interface AEMessagesViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource>{
     NSMutableData *_responseData;
-    NSArray *searchResults;
-    NSMutableArray *usersArray;
+    NSMutableArray *messagesArray;
     NSMutableDictionary *userInfo;
 }
 @property AECLController *locationController;
-@property BOOL *isFriend;
+@property IBOutlet UITableView *tableView;
 @property IBOutlet UIActivityIndicatorView *spinner;
-@property IBOutlet UISwitch *trackingSwitch;
 @end

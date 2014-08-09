@@ -9,19 +9,21 @@
 #define SCROLLVIEW_CONTENT_WIDTH  320
 #import "AELogInViewController.h"
 #import "AEHomeMapViewController.h"
-#import "AEAboutViewController.h"
+#import "AEConvoViewController.h"
+#import "AEAboutGuestViewController.h"
 #import "AESignUpViewController.h"
 @interface AELogInViewController ()
 
 @end
 
 @implementation AELogInViewController
-@synthesize scrollView;
+@synthesize scrollView,spinner;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -42,6 +44,7 @@
     scrollView.contentSize = CGSizeMake(320, 500);
     [self loadUserInfo];
     [super viewWillAppear:YES];
+
 
 }
 
@@ -66,6 +69,7 @@
 }
 
 -(IBAction)signIn:(id)sender{
+    [spinner startAnimating];
     NSString *email = self.email.text;
     NSString *password = self.password.text;
     NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/login"];
@@ -84,14 +88,14 @@
 
 -(IBAction)signUp:(id)sender{
     AESignUpViewController *signUpViewController = [[AESignUpViewController alloc] init];
-    [self presentViewController:signUpViewController animated:YES completion:nil];
+    [self presentViewController:signUpViewController animated:NO completion:nil];
     
     
 }
 
 -(IBAction)about:(id)sender{
-    AEAboutViewController *aboutViewController = [[AEAboutViewController alloc] init];
-    [self presentViewController:aboutViewController animated:YES completion:nil];
+    AEAboutGuestViewController *aboutViewController = [[AEAboutGuestViewController alloc] init];
+    [self presentViewController:aboutViewController animated:NO completion:nil];
     
 }
 
@@ -105,6 +109,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [spinner stopAnimating];
     NSLog(@"Succeeded! Received %d bytes of data", [_responseData length]);
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
@@ -120,13 +125,16 @@
         NSString *email= [newJSON objectForKey:@"email"];
         NSString *dog_id = [newJSON objectForKey:@"dog_id"];
         NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
+        NSString *image_url = [newJSON objectForKey:@"dog_url"];
+        NSLog(@"image_url %@",image_url);
         [userInfo setValue:email forKey:@"email"];
         [userInfo setValue:dog_id forKey:@"dog_id"];
         [userInfo setValue:dog_handle forKey:@"dog_handle"];
+        [userInfo setValue:image_url forKey:@"image_url"];
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
         AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];
-        [self presentViewController:mapViewController animated:YES completion:nil];
+        [self presentViewController:mapViewController animated:NO completion:nil];
         
     }
 }

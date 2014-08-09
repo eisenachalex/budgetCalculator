@@ -17,7 +17,7 @@
 @end
 
 @implementation AEActiveFriendsViewController
-@synthesize activeFriendsArray, tableView;
+@synthesize activeFriendsArray, tableView,trackingSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +32,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"active friends array: %@",activeFriendsArray);
+    [self loadUserInfo];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
+    NSLog(@"user jowns %@",[userInfo objectForKey:@"image_url"]);
+    NSLog(@"we got that imageurl %@",imageURL);
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *image = [UIImage imageWithData:imageData];
+    
+    
+    UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
+    [face addTarget:self action:@selector(target:) forControlEvents:UIControlEventTouchUpInside];
+
+    face.imageView.clipsToBounds = YES;
+    face.imageView.layer.cornerRadius = 25;
+    face.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );
+    [face setImage:image forState:UIControlStateNormal];
+    UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
+    [_targetItem setLeftBarButtonItem:faceBtn];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -42,15 +59,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self loadUserInfo];
+    if([userInfo valueForKey:@"is_active"]){
+        if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
+            [trackingSwitch setOn:YES];
+        }
+        else {
+            [trackingSwitch setOn:NO];
+        }
+    }
+}
+
 -(IBAction)homeMapView:(id)sender{
-    AEHomeMapViewController *homeMapView = [[AEHomeMapViewController alloc] init];
-    [self presentViewController:homeMapView animated:NO completion:nil];
+
+    [self dismissViewControllerAnimated:NO completion:nil];
+
+
 }
 
 
 -(IBAction)menu:(id)sender{
     AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    [self presentViewController:menuView animated:NO completion:nil];
+    menuView.locationController = _locationController;
+
+    [self presentViewController:menuView animated:YES completion:nil];
 }
 
 
@@ -72,10 +105,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"ITS LOADING");
     static NSString *CellIdentifier = @"CustomTableCell";
     UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    NSLog(@"all the views %@",[cell.textLabel subviews]);
     for(int i = 0; i < [[cell.textLabel subviews] count]; i++){
         
         UIView *currentView = [[cell.textLabel subviews] objectAtIndex:i];
@@ -89,17 +120,15 @@
     NSDictionary *friendDict = [activeFriendsArray objectAtIndex:indexPath.row];
     cell.text = [friendDict objectForKey:@"handle"];
     NSString *photoURL = [friendDict objectForKey:@"photo"];
-    NSLog(@"that url boi %@",photoURL);
     if([photoURL isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
     }
     else{
-        NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:photoURL]
-                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
     }
     
-    //message button
+    //messaeg button
     
     UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     messageButton.frame = CGRectMake(150.0, 22.5, 80.0, 50.0);
@@ -130,6 +159,7 @@
     NSDictionary *friendDict = [activeFriendsArray objectAtIndex:[sender tag]];
     NSString *dog_id = [friendDict valueForKey:@"id"];
     AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
+    conversationView.locationController = _locationController;
     UILabel *handleLabel = [[UILabel alloc] init];
     handleLabel.text = [friendDict valueForKey:@"handle"];
     NSString *photoURL = [friendDict objectForKey:@"photo"];
@@ -143,7 +173,7 @@
     }
     conversationView.dogHandle = handleLabel.text;
     conversationView.dogID = dog_id;
-    [self presentViewController:conversationView animated:YES completion:nil];
+    [self presentViewController:conversationView animated:NO completion:nil];
     
 }
 
@@ -151,9 +181,68 @@
 {
     NSDictionary *friendDict = [activeFriendsArray objectAtIndex:[sender tag]];
     NSString *dog_id = [friendDict valueForKey:@"id"];
+    NSLog(@"on the active friends view it is %@",dog_id);
     AETargetMapViewController *targetView = [[AETargetMapViewController alloc] init];
+    targetView.locationController = _locationController;
     targetView.target_id = dog_id;
     [self presentViewController:targetView animated:NO completion:nil];
 }
+
+- (void)target:(id)sender
+{
+
+    AETargetMapViewController *targetView = [[AETargetMapViewController alloc] init];
+    targetView.locationController = _locationController;
+    targetView.target_id = [userInfo valueForKey:@"dog_id"];
+    [self presentViewController:targetView animated:NO completion:nil];
+}
+
+
+
+-(IBAction)trackingSwitch:(id)sender{
+    if([sender isOn])
+    {
+        NSLog(@"trakcing controller %@",_locationController);
+        NSLog(@"True");
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/walk_alert?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [_locationController.locationManager startUpdatingLocation];
+        [userInfo setValue:@"true" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    }
+    else{
+        NSLog(@"false");
+        [userInfo setValue:@"false" forKey:@"is_active"];
+        
+        [_locationController.locationManager stopUpdatingLocation];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [userInfo setValue:@"false" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    }
+    
+}
+
+
+
+
+- (void)loadUserInfo {
+    NSString *filePath = [self pathForUserInfo];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+        
+    } else {
+        userInfo = [[NSMutableDictionary alloc] init];
+        [userInfo setValue:@"empty" forKey:@"email"];
+    }
+    
+}
+
+- (NSString *)pathForUserInfo {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths lastObject];
+    return [documents stringByAppendingPathComponent:@"userInfo.plist"];
+}
+
 
 @end

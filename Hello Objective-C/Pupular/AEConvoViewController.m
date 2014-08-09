@@ -5,12 +5,13 @@
 //  Created by Alex Eisenach on 6/7/14.
 //  Copyright (c) 2014 Free Swim. All rights reserved.
 //
-#define SCROLLVIEW_CONTENT_HEIGHT 460
 #define SCROLLVIEW_CONTENT_WIDTH  320
 #import "AEConvoViewController.h"
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
 #import "UIImageView+WebCache.h"
+#import "AEMessagesViewController.h"
+
 
 
 @interface AEConvoViewController ()
@@ -18,13 +19,15 @@
 @end
 
 @implementation AEConvoViewController
-@synthesize tableView,scrollView,toolBar,navTitle;
+@synthesize tableView,scrollView,toolBar,navTitle,senderImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        messagesArray = [[NSMutableArray alloc] init];
+        self.senderImage = [UIImage imageNamed:@"filler_icon.png"];
+        messagesArray = [[NSMutableArray alloc]init];
+        
     }
     return self;
 }
@@ -37,6 +40,10 @@
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     // Do any additional setup after loading the view from its nib.
     self.messageResponse.delegate = self;
+    _senderImageView.clipsToBounds = YES;
+    _senderImageView.layer.cornerRadius = 30;
+    _senderImageView.image = senderImage;
+
 
 }
 
@@ -44,14 +51,13 @@
     navTitle.title = self.dogHandle;
     scrollView.contentSize = CGSizeMake(320, 500);
     [super viewWillAppear:YES];
-
+    [tableView reloadData];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [self.view bringSubviewToFront:scrollView];
-    CGPoint bottomOffset = CGPointMake(0, tableView.contentSize.height - tableView.bounds.size.height + 270);
-    [tableView setContentOffset:bottomOffset animated:NO];
+    CGPoint bottomOffset = CGPointMake(0, tableView.contentSize.height - tableView.bounds.size.height);
     [scrollView setContentOffset:CGPointMake(0,self.toolBar.center.y-270) animated:NO];//you can set your  y cordinate as your req also
 }
 
@@ -71,19 +77,22 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)menu:(id)sender{
-    AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    [self presentViewController:menuView animated:NO completion:nil];
-}
-
 
 
 - (IBAction)cancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(_backToMenu){
+        NSLog(@"get it");
+        AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
+        messagesView.locationController = _locationController;
+        [self presentViewController:messagesView animated:NO completion:nil];
+    }
+    else{
+        [self dismissViewControllerAnimated:NO completion:nil];
+
+    }
 }
 
 -(IBAction)sendMessage:(id)sender{
-    [self.view bringSubviewToFront:tableView];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],_dogID,[self.messageResponse.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -92,7 +101,6 @@
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     
     [self.messageResponse resignFirstResponder];
-
     [self.messageResponse setText:@""];
     [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
 
@@ -127,6 +135,12 @@
 
     NSLog(@"MESASGAGDSAGSD %@",messagesArray);
     [self.tableView reloadData];
+    [self.view bringSubviewToFront:tableView];
+
+    if([messagesArray count] != 0){
+        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messagesArray count]-1 inSection: 1-1];
+        [tableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+    }
 
 }
 
@@ -144,8 +158,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90.0;
-}
+    NSString *cellText = @"Go get some text for your cell.";
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [cellText sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    
+    return labelSize.height + 40;}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -163,7 +181,8 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [message valueForKey:@"body"];
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:15]];
-
+    cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+    cell.textLabel.numberOfLines = 0;
     NSString *message_id = [message valueForKey:@"sender_id"];
     NSLog(@"message id %@",message_id);
     NSLog(@"and dog... id %@", [userInfo valueForKey:@"dog_id"]);

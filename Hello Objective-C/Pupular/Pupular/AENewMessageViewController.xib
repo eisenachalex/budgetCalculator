@@ -17,17 +17,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tbk-WS-Mvj">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbk-WS-Mvj">
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="New Message" id="Wi1-kq-kX7">
-                            <barButtonItem key="leftBarButtonItem" title="Cancel" id="RWx-sC-kVC">
+                            <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RWx-sC-kVC">
                                 <connections>
                                     <action selector="cancel:" destination="-1" id="kxV-oi-WfV"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Menu" id="j7b-AH-sXC">
+                            <barButtonItem key="rightBarButtonItem" image="list23.png" id="j7b-AH-sXC">
                                 <connections>
                                     <action selector="menu:" destination="-1" id="ojU-6O-xjT"/>
                                 </connections>
@@ -35,15 +35,21 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgZ-RT-BmA">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgZ-RT-BmA">
                     <rect key="frame" x="11" y="93" width="42" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Vbz-ry-wfn"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avh-cR-UwU">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avh-cR-UwU">
                     <rect key="frame" x="261" y="309" width="59" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="59" id="c8N-CK-5m9"/>
+                    </constraints>
                     <state key="normal" title="Send">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -51,7 +57,7 @@
                         <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="XPj-es-HM6"/>
                     </connections>
                 </button>
-                <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="VsW-hm-ziw">
+                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="VsW-hm-ziw">
                     <rect key="frame" x="46" y="82" width="264" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="barTintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -60,7 +66,7 @@
                         <outlet property="delegate" destination="-1" id="Aa9-cN-ZTa"/>
                     </connections>
                 </searchBar>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dqa-H7-T1M">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dqa-H7-T1M">
                     <rect key="frame" x="11" y="309" width="242" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -68,6 +74,21 @@
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="avh-cR-UwU" firstAttribute="leading" secondItem="dqa-H7-T1M" secondAttribute="trailing" constant="8" symbolic="YES" id="1Os-su-SX1"/>
+                <constraint firstAttribute="trailing" secondItem="avh-cR-UwU" secondAttribute="trailing" id="1lJ-Sl-bnJ"/>
+                <constraint firstItem="avh-cR-UwU" firstAttribute="trailing" secondItem="Tbk-WS-Mvj" secondAttribute="trailing" id="5yy-jG-jgQ"/>
+                <constraint firstAttribute="bottom" secondItem="dqa-H7-T1M" secondAttribute="bottom" constant="229" id="E2G-a0-qnb"/>
+                <constraint firstItem="AgZ-RT-BmA" firstAttribute="leading" secondItem="bci-o5-h3s" secondAttribute="leading" constant="11" id="Rxz-Yl-Eaz"/>
+                <constraint firstItem="AgZ-RT-BmA" firstAttribute="leading" secondItem="dqa-H7-T1M" secondAttribute="leading" id="SgB-29-pOL"/>
+                <constraint firstItem="Tbk-WS-Mvj" firstAttribute="top" secondItem="bci-o5-h3s" secondAttribute="top" constant="16" id="Ujw-Le-W25"/>
+                <constraint firstItem="Tbk-WS-Mvj" firstAttribute="leading" secondItem="bci-o5-h3s" secondAttribute="leading" id="ZQt-8l-q56"/>
+                <constraint firstItem="VsW-hm-ziw" firstAttribute="leading" secondItem="bci-o5-h3s" secondAttribute="leading" constant="46" id="aZm-EY-KS1"/>
+                <constraint firstAttribute="trailing" secondItem="VsW-hm-ziw" secondAttribute="trailing" constant="10" id="b1o-sl-4rV"/>
+                <constraint firstItem="AgZ-RT-BmA" firstAttribute="top" secondItem="Tbk-WS-Mvj" secondAttribute="bottom" constant="33" id="gnX-lO-bMA"/>
+                <constraint firstItem="avh-cR-UwU" firstAttribute="top" secondItem="dqa-H7-T1M" secondAttribute="top" id="ps8-Lo-xWh"/>
+                <constraint firstItem="VsW-hm-ziw" firstAttribute="top" secondItem="Tbk-WS-Mvj" secondAttribute="bottom" constant="22" id="y5F-bf-xLQ"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
@@ -81,4 +102,7 @@
             </connections>
         </searchDisplayController>
     </objects>
+    <resources>
+        <image name="list23.png" width="16" height="16"/>
+    </resources>
 </document>

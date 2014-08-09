@@ -10,6 +10,7 @@
                 <outlet property="loginError" destination="wiJ-eU-B3T" id="q7I-hm-wgB"/>
                 <outlet property="password" destination="C4l-22-wm5" id="w07-p7-Kea"/>
                 <outlet property="scrollView" destination="i5M-Pr-FkT" id="eww-HQ-nD4"/>
+                <outlet property="spinner" destination="bnd-9i-Vxe" id="OSO-dY-8Sc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,9 +43,11 @@
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXZ-Ha-nd4">
-                    <rect key="frame" x="45" y="416" width="68" height="30"/>
+                    <rect key="frame" x="20" y="453" width="122" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.92537337539999998" green="0.92534565930000001" blue="0.92536139490000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Sign Up">
+                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -52,9 +55,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-v2-B1j">
-                    <rect key="frame" x="206" y="416" width="69" height="31"/>
+                    <rect key="frame" x="184" y="450" width="116" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.92537337539999998" green="0.92534565930000001" blue="0.92536139490000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Sign In">
+                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -62,9 +67,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9j-2e-Ho4">
-                    <rect key="frame" x="137" y="442" width="46" height="30"/>
+                    <rect key="frame" x="137" y="505" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="?">
+                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -78,6 +84,10 @@
                     <color key="textColor" red="1" green="0.0" blue="0.1187502725" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bnd-9i-Vxe">
+                    <rect key="frame" x="150" y="412" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

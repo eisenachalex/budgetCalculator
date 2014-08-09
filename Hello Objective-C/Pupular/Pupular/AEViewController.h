@@ -10,14 +10,13 @@
 #import "AECLController.h"
 
 
-@interface AEMenuViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate> {
+@interface AEViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate> {
     NSMutableData *_responseData;
     NSArray *searchResults;
     NSMutableArray *usersArray;
     NSMutableDictionary *userInfo;
 }
 @property AECLController *locationController;
-@property BOOL *isFriend;
 @property IBOutlet UIActivityIndicatorView *spinner;
-@property IBOutlet UISwitch *trackingSwitch;
 @end
+

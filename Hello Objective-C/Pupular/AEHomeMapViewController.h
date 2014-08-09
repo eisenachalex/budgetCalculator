@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AECLController.h"
-
 @interface AEHomeMapViewController : UIViewController<AECLControllerDelegate,NSURLConnectionDataDelegate>{
-    AECLController *locationController;
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
     NSMutableArray *activeFriendsArray;
@@ -18,6 +16,10 @@
 
 }
 @property NSTimer *myTime;
+@property IBOutlet UINavigationBar *navBar;
+@property AECLController *locationController;
 @property IBOutlet UIView *mapViewContainer;
 @property IBOutlet UISwitch *trackingSwitch;
+@property IBOutlet UIBarButtonItem *targetButton;
+@property IBOutlet UINavigationItem *targetItem;
 @end

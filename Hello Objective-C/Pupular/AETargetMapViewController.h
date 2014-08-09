@@ -7,18 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AECLController.h"
-
-@interface AETargetMapViewController : UIViewController<AECLControllerDelegate,NSURLConnectionDataDelegate>{
-    AECLController *locationController;
+@class AECLController;
+@interface AETargetMapViewController : UIViewController<NSURLConnectionDataDelegate>{
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
     NSMutableArray *activeFriendsArray;
     BOOL firstLocationUpdate_;
     
 }
+@property AECLController *locationController;
+@property IBOutlet UISwitch *trackingSwitch;
 @property NSTimer *myTime;
 @property NSString *target_id;
 @property IBOutlet UIView *mapViewContainer;
-@property IBOutlet UISwitch *trackingSwitch;
+@property IBOutlet UIBarButtonItem *targetButton;
+@property IBOutlet UINavigationItem *targetItem;
 @end

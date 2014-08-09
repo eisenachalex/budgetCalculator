@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AEBuddiesViewController">
             <connections>
-                <outlet property="searchBar" destination="gg2-xn-n1M" id="pEB-eV-dlZ"/>
+                <outlet property="backButton" destination="ADH-Fs-qbb" id="AzO-dw-ttd"/>
+                <outlet property="menuButton" destination="waG-uk-5K9" id="Ya9-TX-PEr"/>
+                <outlet property="navBar" destination="Ok4-KE-bRq" id="qGQ-7u-Afa"/>
+                <outlet property="searchDisplayController" destination="2CH-y8-Lhi" id="LcK-gC-XBr"/>
                 <outlet property="tableView" destination="dti-Xz-dtf" id="fgZ-eg-uNF"/>
                 <outlet property="view" destination="Sqa-Lw-K4M" id="cvi-fv-GTM"/>
             </connections>
@@ -16,34 +19,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wpC-SQ-Ac6">
-                    <rect key="frame" x="0.0" y="519" width="320" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                    <items>
-                        <barButtonItem title="List" id="xU8-jC-8qc">
-                            <connections>
-                                <action selector="list:" destination="-1" id="Ge1-38-eig"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="RJx-cG-ZJO"/>
-                        <barButtonItem title="Track me" id="8SJ-f0-mgZ">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                        <barButtonItem style="plain" id="CIY-U7-U7W">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="ieY-Ak-wGY">
-                                <rect key="frame" x="255" y="7" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
                 <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ok4-KE-bRq">
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
-                        <navigationItem title="Buddies" id="u47-m6-vR8">
-                            <barButtonItem key="leftBarButtonItem" title="Target" id="ADH-Fs-qbb"/>
-                            <barButtonItem key="rightBarButtonItem" title="Menu" id="waG-uk-5K9">
+                        <navigationItem title="Pack" id="u47-m6-vR8">
+                            <barButtonItem key="leftBarButtonItem" title="Back" id="ADH-Fs-qbb">
+                                <connections>
+                                    <action selector="back:" destination="-1" id="bMK-MA-wLw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" image="list23.png" id="waG-uk-5K9">
                                 <connections>
                                     <action selector="menu:" destination="-1" id="MfI-1N-GBd"/>
                                 </connections>
@@ -52,7 +38,7 @@
                     </items>
                 </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dti-Xz-dtf">
-                    <rect key="frame" x="0.0" y="113" width="320" height="406"/>
+                    <rect key="frame" x="0.0" y="113" width="320" height="455"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -60,15 +46,30 @@
                         <outlet property="delegate" destination="-1" id="8tH-ve-0KN"/>
                     </connections>
                 </tableView>
-                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gg2-xn-n1M">
+                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i24-ck-ISC">
                     <rect key="frame" x="0.0" y="60" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="mWE-g1-SKf"/>
+                    </connections>
                 </searchBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <searchDisplayController id="2CH-y8-Lhi">
+            <connections>
+                <outlet property="delegate" destination="-1" id="oWQ-Y0-1ax"/>
+                <outlet property="searchBar" destination="i24-ck-ISC" id="AXI-Df-nWx"/>
+                <outlet property="searchContentsController" destination="-1" id="5FM-sa-QvM"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="PAc-pK-bME"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="TsR-zw-bnb"/>
+            </connections>
+        </searchDisplayController>
     </objects>
+    <resources>
+        <image name="list23.png" width="16" height="16"/>
+    </resources>
 </document>

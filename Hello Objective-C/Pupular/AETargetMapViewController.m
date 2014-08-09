@@ -7,6 +7,7 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
+#import "AEHomeMapViewController.h"
 #import "AETargetMapViewController.h"
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
@@ -24,18 +25,48 @@ GMSMarker *marker;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        target_id = [userInfo valueForKey:@"dog_id"];
         
     }
     return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"the id yo %@",target_id);
+
     [self loadUserInfo];
     [self retrieveActiveFriends];
     [self startTimer];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
+    NSLog(@"user jowns %@",[userInfo objectForKey:@"image_url"]);
+    NSLog(@"we got that imageurl %@",imageURL);
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UIImage *image = [UIImage imageWithData:imageData];
     
+    
+    UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
+    [face addTarget:self action:@selector(target:) forControlEvents:UIControlEventTouchUpInside];
+
+    face.imageView.clipsToBounds = YES;
+    face.imageView.layer.cornerRadius = 25;
+    face.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );
+    [face setImage:image forState:UIControlStateNormal];
+    UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
+    [_targetItem setLeftBarButtonItem:faceBtn];
+
+            if([userInfo valueForKey:@"is_active"]){
+            if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
+                [trackingSwitch setOn:YES];
+            }
+            else {
+                [trackingSwitch setOn:NO];
+            }
+        }
+    NSLog(@"THE LOCATION MANAGER %@",_locationController);
+
 }
+
+
 
 
 
@@ -51,47 +82,30 @@ GMSMarker *marker;
     
     
     [self.mapViewContainer addSubview:mapView_];
-    locationController = [[AECLController alloc] init];
-    locationController.delegate = self;
-    [mapView_ addObserver:self
-               forKeyPath:@"myLocation"
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        mapView_.myLocationEnabled = YES;
-    });
-    
-    
-}
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-    if (!firstLocationUpdate_) {
-        // If the first location update has not yet been recieved, then jump to that
-        // location.
-        firstLocationUpdate_ = YES;
-        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
-        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate
-                                                         zoom:8];
-    }
+    mapView_.myLocationEnabled = YES;
+
 }
 
 
 
 -(IBAction)trackingSwitch:(id)sender{
-    if([sender isOn] == true){
+    if([sender isOn]){
         NSLog(@"True");
-        [locationController.locationManager startUpdatingLocation];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/walk_alert?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [_locationController.locationManager startUpdatingLocation];
+        [userInfo setValue:@"true" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
     }
     else{
+        NSLog(@"False");
         
-        [locationController.locationManager stopUpdatingLocation];
+        [_locationController.locationManager stopUpdatingLocation];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
         NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        
+        [userInfo setValue:@"false" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
     }
     
 }
@@ -108,6 +122,7 @@ GMSMarker *marker;
 
 -(IBAction)menu:(id)sender{
     AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
+    menuView.locationController = _locationController;
     [self presentViewController:menuView animated:NO completion:nil];
 }
 
@@ -165,7 +180,8 @@ GMSMarker *marker;
             float long_coord = [longitude floatValue];
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat_coord, long_coord);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
-            if(activeFriendId == target_id){
+
+            if([[NSString stringWithFormat:@"%@",activeFriendId] isEqualToString:[NSString stringWithFormat:@"%@",target_id]]){
                 GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat_coord
                                                                         longitude:long_coord
                                                                              zoom:18];

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AECLController.h"
-@interface AEAboutViewController : UIViewController
+
+@interface AEAboutGuestViewController : UIViewController
 @property NSString *jowns;
 @property UIImage *image;
-@property AECLController *locationController;
 @end

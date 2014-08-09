@@ -15,6 +15,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self loadUserInfo];
+    [self startTimer];
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    application.applicationIconBadgeNumber = 0;
+
+    if (notification) {
+        [self showAlarm:notification.alertBody];
+        application.applicationIconBadgeNumber = 0;
+    }
+    
+
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [GMSServices provideAPIKey:@"AIzaSyAnpYPYlB5Noxyo40Ttz1PtWEgjQN48xHs"];
 
@@ -25,8 +37,8 @@
     AEHomeMapViewController *homeMapView = [[AEHomeMapViewController alloc] init];
 
     [self.window setRootViewController:loginViewController];
-    [self loadUserInfo];
-
+    [userInfo setObject:@"false" forKey:@"is_active"];
+    [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
     if([[userInfo valueForKey:@"email"] isEqualToString:@"empty"])
     {
         AELogInViewController *loginView = [[AELogInViewController alloc] init];
@@ -38,6 +50,12 @@
     return YES;
 }
 
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [self showAlarm:notification.alertBody];
+    application.applicationIconBadgeNumber = application.applicationIconBadgeNumber += 1;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -47,6 +65,14 @@
     return YES;
 }
 
+
+- (void)showAlarm:(NSString *)text {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alarm"
+                                                        message:text delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -73,6 +99,11 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self loadUserInfo];
+    [userInfo setValue:@"false" forKey:@"is_active"];
+    [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 
@@ -86,16 +117,93 @@
         [userInfo setValue:@"empty" forKey:@"email"];
         
     }
-    NSLog(@"here is the user info %@", userInfo);
 }
 
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
-    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
+
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
+    _responseData = [[NSMutableData alloc] init];
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_responseData appendData:data];
+}
+
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // The request is complete and data has been receive3d
+    // You can parse the stuff in your instance variable now
+    NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
+                                                            options:0
+                                                              error:nil];
+    
+    if([newJSON objectForKey:@"messages"]){
+        NSMutableArray *messages = [[NSMutableArray alloc] init];
+        messages = [newJSON objectForKey:@"messages"];
+        if (_all_messages){
+            
+            if([messages count] > [_all_messages count]){
+                [[UIApplication sharedApplication] cancelAllLocalNotifications];
+                NSArray *thisMessage = [messages firstObject];
+                NSDictionary *thisMessageContent = [thisMessage objectAtIndex:0];
+                NSString *notificationText = [thisMessageContent objectForKey:@"body"];
+                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                
+                // current time plus 10 secs
+                NSDate *now = [NSDate date];
+                NSDate *dateToFire = [now dateByAddingTimeInterval:5];
+                localNotification.fireDate = dateToFire;
+                localNotification.alertBody = notificationText;
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                localNotification.applicationIconBadgeNumber += 1; // increment
+                
+                NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
+                localNotification.userInfo = infoDict;
+                
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            }
+        }
+        _all_messages = messages;
+        
+    }
+    
+    else {
+    }
+    
+}
+
+
+- (void) startTimer
+{
+    self.messageTime = [NSTimer scheduledTimerWithTimeInterval:5
+                                                   target:self
+                                                 selector:@selector(timerFired:)
+                                                 userInfo:nil
+                                                  repeats:YES];
+}
+
+- (void) stopTimer
+{
+    [self.messageTime invalidate];
+}
+
+- (void) timerFired:(NSTimer*)theTimer
+{
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    
+}
+
 
 
 @end

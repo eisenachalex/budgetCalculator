@@ -12,12 +12,14 @@
 @end
 
 @implementation AESignUpViewController
-@synthesize imageView,scrollView,contentView;
+@synthesize imageView,scrollView,contentView,spinner;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        base64string = @"none";
+
     }
     return self;
 }
@@ -34,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pickerArray  = [[NSMutableArray alloc]         initWithObjects:@"Blue",@"Green",@"Orange",@"Purple",@"Red",@"Yellow" , nil];
+
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -53,7 +57,6 @@
         self.spayed.delegate = self;
         self.personality.delegate = self;
         scrollView.delegate = self;
-        base64string = @"jown_IMAGE";
         
         }
 }// Do any additional setup after loading the view from its nib.
@@ -83,14 +86,16 @@
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
     [self presentViewController:picker animated:YES completion:NULL];
     
 }
 
 - (IBAction)selectPhoto:(UIButton *)sender {
-    
-    self.imageView.image = [UIImage imageNamed:@"default_marker.png"];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
 
 }
 
@@ -130,17 +135,19 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [spinner stopAnimating];
     NSLog(@"Succeeded! Received %d bytes of data", [_responseData length]);
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
     NSString *login_response = [newJSON objectForKey:@"login_status"];
-    
+    NSLog(@"jsonnnn %@",newJSON);
     //if([login_response  isEqual: @"failed"]){
        // self.loginError.hidden = FALSE;
    
    // }
-    if([login_response  isEqual: @"success"]){
+    if([login_response isEqualToString: @"success"]){
+        NSLog(@"cuz we own");
         NSString *email= [newJSON objectForKey:@"email"];
         NSString *dog_id = [newJSON objectForKey:@"dog_id"];
         NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
@@ -150,7 +157,7 @@
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
         AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];
-        [self presentViewController:mapViewController animated:YES completion:nil];
+        [self presentViewController:mapViewController animated:NO completion:nil];
         
     }
 
@@ -159,18 +166,34 @@
 }
 
 -(IBAction)submit:(id)sender {
-    NSLog(@"firing");
+    NSLog(@"yoyoyo its thats base %@",base64string);
+    if([base64string isEqualToString:@"none"]){
+        NSLog(@"trigger central");
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"You Must Choose A Photo!"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+    }
+    else{
+    [spinner startAnimating];
     NSString *email = self.email.text;
     NSString *password = self.password.text;
     NSString *passwordConfirm = self.passwordConfirm.text;
     NSString *handle = self.handle.text;
     NSString *zip = self.zip.text;
+    NSString *breed = self.breed.text;
+    NSString *age = self.age.text;
+    NSString *location = self.location.text;
     NSString *owner = self.owner.text;
     NSString *gender = self.gender.text;
     NSString *spayed =  self.spayed.text;
+    NSString *size = self.size.text;
     NSString *personality =  self.personality.text;
     NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/sign_up"];
-    NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",owner,@"owner",gender,@"gender",spayed,@"spayed",personality,@"personality",base64string,@"photo",nil];
+    NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",owner,@"owner",size,@"size",age,@"age",breed,@"breed",gender,@"gender",spayed,@"spayed",personality,@"personality",base64string,@"photo",nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -184,6 +207,7 @@
     
 
     
+    }
 
 }
 
@@ -204,6 +228,35 @@
     NSString *documents = [paths lastObject];
     NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
+}
+
+
+//data picker
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component
+{
+    return 6;
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
+{
+    return [self.pickerArray objectAtIndex:row];
+
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
+{
+
+  
 }
 
 

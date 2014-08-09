@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class AECLController;
 @interface AENewMessageViewController : UIViewController <UITextFieldDelegate,UITextFieldDelegate,NSURLConnectionDelegate>{
     NSMutableDictionary *userInfo;
     NSMutableData *_responseData;
@@ -19,4 +19,8 @@
 @property IBOutlet UITextField *message;
 @property IBOutlet UISearchBar *searchBar;
 @property IBOutlet UIScrollView *scrollView;
+@property AECLController *locationController;
+@property UIImage *receiverImage;
+@property NSString *receiverHandle;
+@property NSString *dogID;
 @end

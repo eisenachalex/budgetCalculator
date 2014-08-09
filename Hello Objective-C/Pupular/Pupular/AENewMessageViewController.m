@@ -5,9 +5,11 @@
 //  Created by Alex Eisenach on 6/5/14.
 //  Copyright (c) 2014 Free Swim. All rights reserved.
 //
-
 #import "AENewMessageViewController.h"
+#import "AEActiveFriendsViewController.h"
 #import "AEMenuViewController.h"
+#import "AEConvoViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface AENewMessageViewController ()
 
@@ -15,11 +17,23 @@
 
 @implementation AENewMessageViewController
 @synthesize searchBar;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
+
+        activeFriendsView.locationController;
+        
+        AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
+        menuView.locationController;
+
+        
+  
+        
     }
     return self;
 }
@@ -29,15 +43,18 @@
     [super viewDidLoad];
     [self loadUserInfo];
     [self.message becomeFirstResponder];
+    
+
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [self loadUserInfo];
     self.searchBar.delegate = self;
     self.message.delegate = self;
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com//all_dogs"]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-    [self loadUserInfo];
 }
 
 
@@ -51,7 +68,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -66,7 +83,13 @@
     //FIX RECEIVER ID FOR NEW MESSAGE
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],receiver_id,[self.message.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
+    conversationView.backToMenu = YES;
+    conversationView.locationController = _locationController;
+    conversationView.senderImage = _receiverImage;
+    conversationView.dogHandle = _receiverHandle;
+    conversationView.dogID = _dogID;
+    [self presentViewController:conversationView animated:NO completion:nil];
 
 }
 
@@ -104,6 +127,22 @@
     user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
     NSLog(@"THE USER BOI %@",user);
     //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+    NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
+    NSLog(@"image jownt %@",imageString);
+    if([imageString isEqualToString:@"none"]){
+        [cell.imageView setImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
+    else{
+        NSLog(@"yes");
+        [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
+                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = user;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.imageView.clipsToBounds = YES;
+    cell.imageView.layer.cornerRadius = 25;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
     cell.textLabel.textColor = [UIColor darkGrayColor];
@@ -121,8 +160,11 @@
            receiver_id = [userDict valueForKey:@"id"];
         }
     }
-    [self.searchDisplayController setActive:NO animated:YES];
+    [self.searchDisplayController setActive:NO animated:NO];
     self.searchBar.text = cell.text;
+    _receiverImage = cell.imageView.image;
+    _receiverHandle = cell.text;
+    _dogID = receiver_id;
     [self.message becomeFirstResponder];
 
 }

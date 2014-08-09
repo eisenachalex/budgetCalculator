@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AEBuddiesViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource>{
+@class AECLController;
+@interface AEBuddiesViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>{
     NSMutableData *_responseData;
     NSMutableArray *friendsArray;
+    NSArray *searchResults;
+
     NSMutableDictionary *userInfo;
 }
-
+@property AECLController *locationController;
+@property IBOutlet UINavigationBar *navBar;
+@property IBOutlet UIBarButtonItem *menuButton;
+@property IBOutlet UIBarButtonItem *backButton;
 @property IBOutlet UITableView *tableView;
 @property IBOutlet UISearchBar *searchBar;
 @property NSString *foreign_dog_id;
+@property IBOutlet UISwitch *trackingSwitch;
 
 @end

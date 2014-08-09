@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AECLController.h"
 
 @interface AELogInViewController : UIViewController <UITextFieldDelegate,UIScrollViewDelegate>{
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
 }
+@property IBOutlet UIActivityIndicatorView *spinner;
 @property IBOutlet UITextField *email;
 @property IBOutlet UITextField *password;
 @property IBOutlet UILabel *loginError;
