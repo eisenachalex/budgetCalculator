@@ -39,9 +39,7 @@
 
 
 - (IBAction)cancel:(id)sender {
-    AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    menuView.locationController = _locationController;
-    [self presentViewController:menuView animated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

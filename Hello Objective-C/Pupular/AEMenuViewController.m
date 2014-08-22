@@ -32,7 +32,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
+        self.title = @"More";
+
 
     }
     return self;
@@ -40,6 +41,7 @@
 
 - (void)viewDidLoad
 {
+    [self loadUserInfo];
     [super viewDidLoad];
     NSLog(@"LOCATION CONTROLLER %@",_locationController);
     
@@ -185,12 +187,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *dogID = [NSString alloc];
+    NSString *dogID = [[NSString alloc] init];
+    NSString *handle = [[NSString alloc] init];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     for (int i = 0; i < usersArray.count; i++){
         NSDictionary *userDict = [usersArray objectAtIndex:i];
         if([[userDict valueForKey:@"handle"] isEqualToString:cell.text]){
+            
             dogID = [userDict valueForKey:@"id"];
+            handle = [userDict valueForKey:@"handle"];
+            NSLog(@"HANDLE IT SON %@",handle);
             NSString *stringValue = [NSString stringWithFormat:@"%@",[userDict valueForKey:@"is_friend"]];
             if([stringValue isEqualToString:@"1"]){
                 NSLog(@"A FRIEND");
@@ -206,7 +212,7 @@
     profileView.dogID = dogID;
     profileView.view.translatesAutoresizingMaskIntoConstraints = YES;
     profileView.isFriend = _isFriend;
-    profileView.dogHandle = cell.text;
+    profileView.dogHandle = handle;
     [self presentViewController:profileView animated:NO completion:nil];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

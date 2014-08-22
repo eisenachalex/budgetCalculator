@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="spinner" destination="WrX-fA-MRC" id="emf-vO-NzY"/>
                 <outlet property="tableView" destination="u36-6o-bgn" id="QDc-Pd-h2E"/>
+                <outlet property="trackingSwitch" destination="oVM-xG-nTe" id="OAw-gx-gde"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="fNR-pb-exw"/>
             </connections>
         </placeholder>
@@ -19,17 +20,26 @@
                 <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F61-wa-afm">
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
                     <items>
                         <navigationItem title="Messages" id="YSJ-xP-laF">
                             <barButtonItem key="leftBarButtonItem" systemItem="compose" id="rbb-ZQ-AEs">
+                                <color key="tintColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="newMessage:" destination="-1" id="Dvx-R0-DVm"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" image="list23.png" id="eoN-YN-ygZ">
-                                <connections>
-                                    <action selector="menu:" destination="-1" id="fTP-6H-6Gw"/>
-                                </connections>
+                            <barButtonItem key="rightBarButtonItem" style="plain" id="1qO-ld-9c6">
+                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="oVM-xG-nTe">
+                                    <rect key="frame" x="255" y="6" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="onTintColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="trackingSwitch:" destination="-1" eventType="valueChanged" id="LW0-c3-fdb"/>
+                                    </connections>
+                                </switch>
                             </barButtonItem>
                         </navigationItem>
                     </items>
@@ -52,7 +62,4 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
-    <resources>
-        <image name="list23.png" width="16" height="16"/>
-    </resources>
 </document>

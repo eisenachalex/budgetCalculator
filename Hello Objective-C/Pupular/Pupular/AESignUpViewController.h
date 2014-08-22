@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AESignUpViewController : UIViewController <NSURLConnectionDelegate,UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>{
+@interface AESignUpViewController : UIViewController <NSURLConnectionDelegate,UIImagePickerControllerDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,UIScrollViewDelegate>{
     NSMutableData *_responseData;
     NSString *base64string;
     NSMutableDictionary *userInfo;
 }
+@property IBOutlet UILabel *statusLabel;
 @property IBOutlet UIActivityIndicatorView *spinner;
 @property IBOutlet UIImageView *imageView;
 @property IBOutlet UIScrollView *scrollView;
@@ -23,13 +24,7 @@
 @property IBOutlet UITextField *passwordConfirm;
 @property IBOutlet UITextField *handle;
 @property IBOutlet UITextField *zip;
-@property IBOutlet UITextField *owner;
-@property IBOutlet UITextField *breed;
-@property IBOutlet UITextField *age;
-@property IBOutlet UITextField *gender;
-@property IBOutlet UITextField *size;
-@property IBOutlet UITextField *spayed;
-@property IBOutlet UITextField *personality;
+@property IBOutlet UIButton *submitButton;
 @property IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (strong, nonatomic)          NSMutableArray *pickerArray;

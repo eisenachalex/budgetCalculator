@@ -10,6 +10,7 @@
 #import "AEHomeMapViewController.h"
 #import "AETargetMapViewController.h"
 #import "AEMenuViewController.h"
+#import "UIImageView+WebCache.h"
 #import "AEActiveFriendsViewController.h"
 @interface AETargetMapViewController ()
 
@@ -48,8 +49,8 @@ GMSMarker *marker;
     [face addTarget:self action:@selector(target:) forControlEvents:UIControlEventTouchUpInside];
 
     face.imageView.clipsToBounds = YES;
-    face.imageView.layer.cornerRadius = 25;
-    face.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );
+    face.imageView.layer.cornerRadius = 18;
+    face.bounds = CGRectMake( 0, 0, 35, 35 );
     [face setImage:image forState:UIControlStateNormal];
     UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
     [_targetItem setLeftBarButtonItem:faceBtn];
@@ -176,11 +177,18 @@ GMSMarker *marker;
             NSString *lat = [activeFriend valueForKey:@"lat"];
             NSString *longitude = [activeFriend valueForKey:@"long"];
             NSString *activeFriendId = [activeFriend valueForKey:@"id"];
+            NSString *photo = [activeFriend valueForKey:@"photo"];
             float lat_coord = [lat floatValue];
             float long_coord = [longitude floatValue];
+            UIImageView *iconImageView = [[UIImageView alloc] init];
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat_coord, long_coord);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
+            
 
+            marker.infoWindowAnchor = CGPointMake(0.44f, 0.45f);
+
+            NSLog(@"active friend id is %@",activeFriendId);
+            NSLog(@"target id is %@",target_id);
             if([[NSString stringWithFormat:@"%@",activeFriendId] isEqualToString:[NSString stringWithFormat:@"%@",target_id]]){
                 GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat_coord
                                                                         longitude:long_coord
@@ -195,8 +203,14 @@ GMSMarker *marker;
     
 }
 
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,30,30)];
+
+    return view;
+}
+
 -(void)retrieveActiveFriends{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_active_friends?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_active_friends?dog_id=%@&small_photo=yes",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 

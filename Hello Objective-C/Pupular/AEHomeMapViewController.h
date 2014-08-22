@@ -16,10 +16,13 @@
 
 }
 @property NSTimer *myTime;
+@property BOOL *hasNotification;
 @property IBOutlet UINavigationBar *navBar;
 @property AECLController *locationController;
 @property IBOutlet UIView *mapViewContainer;
 @property IBOutlet UISwitch *trackingSwitch;
 @property IBOutlet UIBarButtonItem *targetButton;
+@property NSString *targetID;
+@property BOOL *mapHasTarget;
 @property IBOutlet UINavigationItem *targetItem;
 @end

@@ -40,6 +40,14 @@
 		EF1CEC7A1937B19A0000CDC5 /* AESignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC781937B19A0000CDC5 /* AESignUpViewController.xib */; };
 		EF1CEC8D1937B6580000CDC5 /* AEHomeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */; };
 		EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */; };
+		EF2B4B6C19A3EE5000376182 /* list24.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2B4B6B19A3EE5000376182 /* list24.png */; };
+		EF4C615D19A638C50012D696 /* AESearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4C615B19A638C50012D696 /* AESearchViewController.m */; };
+		EF4C615E19A638C50012D696 /* AESearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF4C615C19A638C50012D696 /* AESearchViewController.xib */; };
+		EF4C616019A77D040012D696 /* track_star_signal_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C615F19A77D040012D696 /* track_star_signal_ON.png */; };
+		EF4C618819A7A1390012D696 /* pupular_more_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C618719A7A1390012D696 /* pupular_more_default.png */; };
+		EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C618F19A7A33F0012D696 /* pupular_search_default.png */; };
+		EF4C619819A7CF5D0012D696 /* pupular_pack_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */; };
+		EF4C619A19A7CF690012D696 /* pupular_pack_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619919A7CF690012D696 /* pupular_pack_active.png */; };
 		EF5A1E2C19624CEF009F193D /* AETargetMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5A1E2A19624CEF009F193D /* AETargetMapViewController.m */; };
 		EF5A1E2D19624CEF009F193D /* AETargetMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5A1E2B19624CEF009F193D /* AETargetMapViewController.xib */; };
 		EF5F1BEF1937CAE6002CDE3E /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */; };
@@ -59,6 +67,7 @@
 		EFBB8E4B1937CF5E0001EB6E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4A1937CF5E0001EB6E /* libz.dylib */; };
 		EFBB8E4D1937CF8B0001EB6E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */; };
 		EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */; };
+		EFBCBCED19971939006EEA45 /* readIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = EFBCBCEC19971939006EEA45 /* readIndicator.png */; };
 		EFC2FF051951FD1F00904361 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2FF041951FD1F00904361 /* Security.framework */; };
 		EFC2FF0A1953590A00904361 /* landing_iamge.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC2FF091953590A00904361 /* landing_iamge.png */; };
 		EFC2FF0E19537B2300904361 /* AEAdditionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2FF0D19537B2300904361 /* AEAdditionView.m */; };
@@ -79,6 +88,9 @@
 		EFC2FFDF195498D300904361 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2FFCF195498D300904361 /* UIImageView+HighlightedWebCache.m */; };
 		EFC2FFE0195498D300904361 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2FFD1195498D300904361 /* UIImageView+WebCache.m */; };
 		EFC2FFE21954DA4500904361 /* git_icon_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC2FFE11954DA4500904361 /* git_icon_hover.png */; };
+		EFC868CF19A7D21D00E0937B /* pupular_home_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868CE19A7D21D00E0937B /* pupular_home_default.png */; };
+		EFC868D519A7D69800E0937B /* pupular_message_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868D419A7D69800E0937B /* pupular_message_default.png */; };
+		EFC868D719A7D75400E0937B /* pupular_message_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868D619A7D75400E0937B /* pupular_message_notification.png */; };
 		EFC9F4651940C4520078045E /* AENewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4631940C4520078045E /* AENewMessageViewController.m */; };
 		EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4641940C4520078045E /* AENewMessageViewController.xib */; };
 		EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */; };
@@ -145,6 +157,15 @@
 		EF1CEC8A1937B6580000CDC5 /* AEHomeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEHomeMapViewController.h; path = ../AEHomeMapViewController.h; sourceTree = "<group>"; };
 		EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEHomeMapViewController.m; path = ../AEHomeMapViewController.m; sourceTree = "<group>"; };
 		EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEHomeMapViewController.xib; path = ../AEHomeMapViewController.xib; sourceTree = "<group>"; };
+		EF2B4B6B19A3EE5000376182 /* list24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list24.png; sourceTree = "<group>"; };
+		EF4C615A19A638C50012D696 /* AESearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AESearchViewController.h; path = ../AESearchViewController.h; sourceTree = "<group>"; };
+		EF4C615B19A638C50012D696 /* AESearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AESearchViewController.m; path = ../AESearchViewController.m; sourceTree = "<group>"; };
+		EF4C615C19A638C50012D696 /* AESearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AESearchViewController.xib; path = ../AESearchViewController.xib; sourceTree = "<group>"; };
+		EF4C615F19A77D040012D696 /* track_star_signal_ON.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_star_signal_ON.png; sourceTree = "<group>"; };
+		EF4C618719A7A1390012D696 /* pupular_more_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_more_default.png; sourceTree = "<group>"; };
+		EF4C618F19A7A33F0012D696 /* pupular_search_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_search_default.png; sourceTree = "<group>"; };
+		EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_default.png; sourceTree = "<group>"; };
+		EF4C619919A7CF690012D696 /* pupular_pack_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_active.png; sourceTree = "<group>"; };
 		EF5A1E2919624CEF009F193D /* AETargetMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AETargetMapViewController.h; path = ../AETargetMapViewController.h; sourceTree = "<group>"; };
 		EF5A1E2A19624CEF009F193D /* AETargetMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AETargetMapViewController.m; path = ../AETargetMapViewController.m; sourceTree = "<group>"; };
 		EF5A1E2B19624CEF009F193D /* AETargetMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AETargetMapViewController.xib; path = ../AETargetMapViewController.xib; sourceTree = "<group>"; };
@@ -170,6 +191,7 @@
 		EFBB8E4A1937CF5E0001EB6E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EFBB8E4C1937CF8B0001EB6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EFBB8F011937D2B10001EB6E /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = ../GoogleMaps.bundle; sourceTree = "<group>"; };
+		EFBCBCEC19971939006EEA45 /* readIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = readIndicator.png; sourceTree = "<group>"; };
 		EFC2FF041951FD1F00904361 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EFC2FF091953590A00904361 /* landing_iamge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landing_iamge.png; path = ../../../../../custom_tech_front/app/assets/images/landing_iamge.png; sourceTree = "<group>"; };
 		EFC2FF0C19537B2300904361 /* AEAdditionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEAdditionView.h; path = ../AEAdditionView.h; sourceTree = "<group>"; };
@@ -208,6 +230,9 @@
 		EFC2FFD0195498D300904361 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		EFC2FFD1195498D300904361 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		EFC2FFE11954DA4500904361 /* git_icon_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = git_icon_hover.png; sourceTree = "<group>"; };
+		EFC868CE19A7D21D00E0937B /* pupular_home_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_home_default.png; sourceTree = "<group>"; };
+		EFC868D419A7D69800E0937B /* pupular_message_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_default.png; sourceTree = "<group>"; };
+		EFC868D619A7D75400E0937B /* pupular_message_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_notification.png; sourceTree = "<group>"; };
 		EFC9F4621940C4520078045E /* AENewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewMessageViewController.h; sourceTree = "<group>"; };
 		EFC9F4631940C4520078045E /* AENewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewMessageViewController.m; sourceTree = "<group>"; };
 		EFC9F4641940C4520078045E /* AENewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AENewMessageViewController.xib; sourceTree = "<group>"; };
@@ -331,6 +356,9 @@
 				EFA8587E1943713600065ED9 /* AEMenuViewController.h */,
 				EFA8587F1943713600065ED9 /* AEMenuViewController.m */,
 				EFA858801943713600065ED9 /* AEMenuViewController.xib */,
+				EF4C615A19A638C50012D696 /* AESearchViewController.h */,
+				EF4C615B19A638C50012D696 /* AESearchViewController.m */,
+				EF4C615C19A638C50012D696 /* AESearchViewController.xib */,
 				EFC9F4621940C4520078045E /* AENewMessageViewController.h */,
 				EFC9F4631940C4520078045E /* AENewMessageViewController.m */,
 				EFC9F4641940C4520078045E /* AENewMessageViewController.xib */,
@@ -376,8 +404,18 @@
 			children = (
 				EF1CEC23193786D00000CDC5 /* Pupular-Info.plist */,
 				EFC2FFE11954DA4500904361 /* git_icon_hover.png */,
+				EF4C618F19A7A33F0012D696 /* pupular_search_default.png */,
+				EFC868CE19A7D21D00E0937B /* pupular_home_default.png */,
+				EF4C618719A7A1390012D696 /* pupular_more_default.png */,
+				EF4C619919A7CF690012D696 /* pupular_pack_active.png */,
+				EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */,
+				EFC868D419A7D69800E0937B /* pupular_message_default.png */,
 				EFC2FF091953590A00904361 /* landing_iamge.png */,
+				EFC868D619A7D75400E0937B /* pupular_message_notification.png */,
 				EF1CEC24193786D00000CDC5 /* InfoPlist.strings */,
+				EF4C615F19A77D040012D696 /* track_star_signal_ON.png */,
+				EF2B4B6B19A3EE5000376182 /* list24.png */,
+				EFBCBCEC19971939006EEA45 /* readIndicator.png */,
 				EF7456E019831B190056F429 /* filler_icon.png */,
 				EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */,
 				EFB7A4AC197624810059CF44 /* list23.png */,
@@ -561,26 +599,37 @@
 			files = (
 				EF7456E119831B190056F429 /* filler_icon.png in Resources */,
 				EFC2FFE21954DA4500904361 /* git_icon_hover.png in Resources */,
+				EF4C619819A7CF5D0012D696 /* pupular_pack_default.png in Resources */,
 				EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */,
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
 				EF1BCC421979CC56008D9EDC /* AEAboutGuestViewController.xib in Resources */,
 				EFB368DA1971DF8D0007FC1E /* AENotification2ViewController.xib in Resources */,
+				EF4C618819A7A1390012D696 /* pupular_more_default.png in Resources */,
 				EFC2FF0A1953590A00904361 /* landing_iamge.png in Resources */,
 				EF5A1E2D19624CEF009F193D /* AETargetMapViewController.xib in Resources */,
 				EFA8589619439F8900065ED9 /* AEConvoViewController.xib in Resources */,
+				EF2B4B6C19A3EE5000376182 /* list24.png in Resources */,
+				EF4C615E19A638C50012D696 /* AESearchViewController.xib in Resources */,
 				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
+				EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */,
+				EFC868CF19A7D21D00E0937B /* pupular_home_default.png in Resources */,
 				EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */,
+				EFC868D719A7D75400E0937B /* pupular_message_notification.png in Resources */,
 				EFB7A4AD197624810059CF44 /* list23.png in Resources */,
 				EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */,
 				EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */,
 				EF1CEC26193786D00000CDC5 /* InfoPlist.strings in Resources */,
 				EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */,
+				EF4C616019A77D040012D696 /* track_star_signal_ON.png in Resources */,
+				EFC868D519A7D69800E0937B /* pupular_message_default.png in Resources */,
 				EFD32F31195CA4F100700FEA /* AEBuddiesViewController.xib in Resources */,
 				EF1CEC2E193786D00000CDC5 /* Images.xcassets in Resources */,
 				EF7456DF19831A680056F429 /* git_icon_hover_the_second.png in Resources */,
+				EF4C619A19A7CF690012D696 /* pupular_pack_active.png in Resources */,
 				EF1CEC7A1937B19A0000CDC5 /* AESignUpViewController.xib in Resources */,
 				EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */,
 				EF1A3B1A1977048400174C83 /* AEProfileViewController.xib in Resources */,
+				EFBCBCED19971939006EEA45 /* readIndicator.png in Resources */,
 				EFA858821943713600065ED9 /* AEMenuViewController.xib in Resources */,
 				EF1BCC3D1979C991008D9EDC /* AEFriendProfileViewController.xib in Resources */,
 			);
@@ -627,6 +676,7 @@
 				EF1BCC411979CC56008D9EDC /* AEAboutGuestViewController.m in Sources */,
 				EF1CEC2C193786D00000CDC5 /* AEAppDelegate.m in Sources */,
 				EFC2FFD4195498D300904361 /* SDImageCache.m in Sources */,
+				EF4C615D19A638C50012D696 /* AESearchViewController.m in Sources */,
 				EFC2FFD8195498D300904361 /* SDWebImageDownloaderOperation.m in Sources */,
 				EF1CEC28193786D00000CDC5 /* main.m in Sources */,
 				EFC2FFD2195498D300904361 /* MKAnnotationView+WebCache.m in Sources */,
@@ -764,6 +814,7 @@
 				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -786,6 +837,7 @@
 				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

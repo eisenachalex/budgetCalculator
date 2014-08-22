@@ -7,6 +7,11 @@
 //
 #import "AESignUpViewController.h"
 #import "AEHomeMapViewController.h"
+#import "AESearchViewController.h"
+#import "AEActiveFriendsViewController.h"
+#import "AEMessagesViewController.h"
+#import "AEMenuViewController.h"
+#import "AEAppDelegate.h"
 
 @interface AESignUpViewController ()
 @end
@@ -19,7 +24,7 @@
     if (self) {
         // Custom initialization
         base64string = @"none";
-
+        
     }
     return self;
 }
@@ -33,9 +38,22 @@
     return YES;
 }
 
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"%@",NSStringFromCGRect(textField.frame));
+    [scrollView setContentOffset:CGPointMake(0,textField.center.y-100)animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+    _statusLabel.hidden = YES;
     self.pickerArray  = [[NSMutableArray alloc]         initWithObjects:@"Blue",@"Green",@"Orange",@"Purple",@"Red",@"Yellow" , nil];
 
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -52,10 +70,6 @@
         self.passwordConfirm.delegate = self;
         self.handle.delegate = self;
         self.zip.delegate = self;
-        self.owner.delegate = self;
-        self.gender.delegate = self;
-        self.spayed.delegate = self;
-        self.personality.delegate = self;
         scrollView.delegate = self;
         
         }
@@ -151,14 +165,57 @@
         NSString *email= [newJSON objectForKey:@"email"];
         NSString *dog_id = [newJSON objectForKey:@"dog_id"];
         NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
+        NSString *image_url = [newJSON objectForKey:@"dog_url"];
+
         [userInfo setValue:email forKey:@"email"];
         [userInfo setValue:dog_id forKey:@"dog_id"];
         [userInfo setValue:dog_handle forKey:@"dog_handle"];
+        [userInfo setValue:image_url forKey:@"image_url"];
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
-        AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];
-        [self presentViewController:mapViewController animated:NO completion:nil];
+       AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AEHomeMapViewController *mapView = [[AEHomeMapViewController alloc] init];
+        mapView.locationController = appDelegate.locationController;
+        mapView.view.tag = 23;
+        AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
+        messageView.view.tag = 12;
+        AESearchViewController *searchView = [[AESearchViewController alloc] init];
+        AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
+        packView.locationController = appDelegate.locationController;
+        AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
+        NSLog(@"good here 1");
         
+        UIImage *homeImage = [UIImage imageNamed:@"pupular_home_default.png"] ;
+        UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
+        UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
+        UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
+        UIImage *moreImage = [UIImage imageNamed:@"pupular_more_default.png"];
+        [mapView.tabBarItem setImage:homeImage];
+        [searchView.tabBarItem setImage:searchImage];
+        [packView.tabBarItem setImage:packImage];
+        [moreView.tabBarItem setImage:moreImage];
+        [messageView.tabBarItem setImage:messageImage];
+        
+        
+        //    [mapView.tabBarItem setImage:mapImage];
+        //    [accountView.tabBarItem setImage:logOutImage];
+        //
+        //    UINavigationController *mapNavController = [[UINavigationController alloc]
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
+
+        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];        [self presentViewController:tabBarController animated:NO completion:nil];
+        
+        
+    }
+    if([login_response isEqualToString: @"failure"]){
+        _statusLabel.textColor = [UIColor redColor];
+        NSString *email= [newJSON objectForKey:@"email"];
+        NSString *dog_id = [newJSON objectForKey:@"dog_id"];
+        NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
+        _statusLabel.text = [newJSON objectForKey:@"reason"];
+        _statusLabel.hidden = NO;
+        [_submitButton setTitle:@"Complete" forState:UIControlStateNormal];
     }
 
     
@@ -178,22 +235,18 @@
         [myAlertView show];
     }
     else{
+    _statusLabel.textColor = [UIColor blackColor];
+    _statusLabel.text = @"Processing...";
+    _statusLabel.hidden = NO;
+    [_submitButton setTitle:@"" forState:UIControlStateNormal];
     [spinner startAnimating];
     NSString *email = self.email.text;
     NSString *password = self.password.text;
     NSString *passwordConfirm = self.passwordConfirm.text;
     NSString *handle = self.handle.text;
     NSString *zip = self.zip.text;
-    NSString *breed = self.breed.text;
-    NSString *age = self.age.text;
-    NSString *location = self.location.text;
-    NSString *owner = self.owner.text;
-    NSString *gender = self.gender.text;
-    NSString *spayed =  self.spayed.text;
-    NSString *size = self.size.text;
-    NSString *personality =  self.personality.text;
     NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/sign_up"];
-    NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",owner,@"owner",size,@"size",age,@"age",breed,@"breed",gender,@"gender",spayed,@"spayed",personality,@"personality",base64string,@"photo",nil];
+    NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",base64string,@"photo",nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -237,6 +290,16 @@
 {
     return 1;
 }
+
+-(void)dismissKeyboard {
+    [_zip resignFirstResponder];
+    [_passwordConfirm resignFirstResponder];
+    [_password resignFirstResponder];
+    [_email resignFirstResponder];
+    [_handle resignFirstResponder];
+    
+}
+
 
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component

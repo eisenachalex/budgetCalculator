@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AEEditProfileViewController : UIViewController <UITextFieldDelegate,NSURLConnectionDelegate,UIImagePickerControllerDelegate>{
+@interface AEEditProfileViewController : UIViewController <UITextFieldDelegate,NSURLConnectionDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>{
     NSString *base64string;
 
 }
@@ -24,5 +24,9 @@
 @property IBOutlet UITextField *personality;
 @property IBOutlet UIImageView *imageView;
 @property IBOutlet UIActivityIndicatorView *spinner;
+@property NSMutableArray *fixedOptions;
+@property UITextField *targetField;
+@property IBOutlet UIView *contentView;
+@property IBOutlet UIScrollView *scrollView;
 @property UIImage *image;
 @end

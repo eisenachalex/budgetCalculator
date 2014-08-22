@@ -10,9 +10,10 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "AEMenuViewController.h"
 #import "AEActiveFriendsViewController.h"
+#import "AEMessagesViewController.h"
 #import "UIImageView+WebCache.h"
 #import "AEConvoViewController.h"
-
+#import "AEAppDelegate.h"
 
 
 @interface AEHomeMapViewController ()
@@ -29,7 +30,8 @@ GMSMarker *marker;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
+        self.title = @"Home";
+
     }
     return self;
     
@@ -39,6 +41,9 @@ GMSMarker *marker;
     
     [self loadUserInfo];
     [self startTimer];
+    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+    _targetID = appDelegate.targetID;
+    _mapHasTarget = appDelegate.mapHasTarget;
 
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
     NSLog(@"user jowns %@",[userInfo objectForKey:@"image_url"]);
@@ -52,8 +57,8 @@ GMSMarker *marker;
     [face addTarget:self action:@selector(target:) forControlEvents:UIControlEventTouchUpInside];
 
     face.imageView.clipsToBounds = YES;
-    face.imageView.layer.cornerRadius = 25;
-    face.bounds = CGRectMake( 0, 0, image.size.width, image.size.height );
+    face.imageView.layer.cornerRadius = 18;
+    face.bounds = CGRectMake( 0, 0, 35, 35 );
     [face setImage:image forState:UIControlStateNormal];
     UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
     [_targetItem setLeftBarButtonItem:faceBtn];
@@ -66,42 +71,13 @@ GMSMarker *marker;
         }
     }
     [self retrieveActiveFriends];
-    if(_locationController){
-        NSLog(@"new one not initialized");
-    }
-    else{
-        _locationController = [[AECLController alloc] init];
-        _locationController.delegate = self;
-    }
-    NSLog(@"THE LOCATION MANAGER %@",_locationController);
 }
 
 
-//- (void)setupLocalNotifications {
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//    
-//    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-//    
-//    // current time plus 10 secs
-//    NSDate *now = [NSDate date];
-//    NSDate *dateToFire = [now dateByAddingTimeInterval:5];
-//    
-//    NSLog(@"now time: %@", now);
-//    NSLog(@"fire time: %@", dateToFire);
-//    
-//    localNotification.fireDate = dateToFire;
-//    localNotification.alertBody = @"Time to get up!";
-//    localNotification.soundName = UILocalNotificationDefaultSoundName;
-//    localNotification.applicationIconBadgeNumber = 1; // increment
-//    
-//    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-//    localNotification.userInfo = infoDict;
-//    
-//    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-//}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [self stopTimer];
+
 }
 
 
@@ -170,6 +146,8 @@ GMSMarker *marker;
 
 - (IBAction)target:(id)sender{
     NSLog(@"twelve twelve carrots");
+    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.mapHasTarget = NO;
         GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:mapView_.myLocation.coordinate.latitude
                                                                 longitude:mapView_.myLocation.coordinate.longitude
                                                                      zoom:14];
@@ -184,6 +162,13 @@ GMSMarker *marker;
     [self presentViewController:menuView animated:YES completion:nil];
 }
 
+-(IBAction)messages:(id)sender{
+    AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
+    messagesView.locationController = _locationController;
+    
+    [self presentViewController:messagesView animated:NO completion:nil];
+}
+
 -(IBAction)list:(id)sender{
     AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
     activeFriendsView.activeFriendsArray = activeFriendsArray;
@@ -194,15 +179,6 @@ GMSMarker *marker;
 
 
 
-- (void)locationUpdate:(CLLocation *)location {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/update_coordinates?lat=%f&long=%f&active=t&email=%@",location.coordinate.latitude, location.coordinate.longitude,[userInfo objectForKey:@"email"]]]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-}
-
-- (void)locationError:(NSError *)error {
-    
-}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
@@ -239,12 +215,24 @@ GMSMarker *marker;
             NSDictionary *activeFriend = [activeFriendsArray objectAtIndex:i];
             NSString *lat = [activeFriend valueForKey:@"lat"];
             NSString *longitude = [activeFriend valueForKey:@"long"];
+            NSString *activeFriendId = [activeFriend valueForKey:@"id"];
             float lat_coord = [lat floatValue];
             float long_coord = [longitude floatValue];
             CLLocationCoordinate2D position = CLLocationCoordinate2DMake(lat_coord, long_coord);
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
             marker.title = [activeFriend valueForKey:@"handle"];
             marker.map = mapView_;
+            NSLog(@"target id %@",_targetID);
+            if(_mapHasTarget){
+            if([[NSString stringWithFormat:@"%@",activeFriendId] isEqualToString:[NSString stringWithFormat:@"%@",_targetID]]){
+                NSLog(@"should b winning");
+                GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:lat_coord
+                                                                        longitude:long_coord
+                                                                             zoom:18];
+                [mapView_ animateToCameraPosition:camera];
+                _targetID = @"DEFAULT";
+            }
+            }
         }
     }
     else {
@@ -257,6 +245,8 @@ GMSMarker *marker;
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
 }
+
+
 
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
@@ -278,7 +268,7 @@ GMSMarker *marker;
 
 - (void) startTimer
 {
-    self.myTime = [NSTimer scheduledTimerWithTimeInterval:5
+    self.myTime = [NSTimer scheduledTimerWithTimeInterval:1
                                                    target:self
                                                  selector:@selector(timerFired:)
                                                  userInfo:nil
@@ -292,8 +282,8 @@ GMSMarker *marker;
 
 - (void) timerFired:(NSTimer*)theTimer
 {
-    
-    
+//    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    _hasNotification = appDelegate.hasNotification;
     [self retrieveActiveFriends];
     
     

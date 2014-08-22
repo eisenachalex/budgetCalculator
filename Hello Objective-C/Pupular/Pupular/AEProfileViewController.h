@@ -15,6 +15,7 @@
     NSMutableDictionary *profile;
     NSMutableDictionary *userInfo;
 }
+@property NSMutableDictionary *profile;
 @property NSString *dogID;
 @property BOOL *isFriend;
 @property IBOutlet UINavigationItem *navTitle;

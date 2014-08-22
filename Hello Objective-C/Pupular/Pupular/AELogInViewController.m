@@ -12,6 +12,11 @@
 #import "AEConvoViewController.h"
 #import "AEAboutGuestViewController.h"
 #import "AESignUpViewController.h"
+#import "AESearchViewController.h"
+#import "AEActiveFriendsViewController.h"
+#import "AEMessagesViewController.h"
+#import "AEMenuViewController.h"
+#import "AEAppDelegate.h"
 @interface AELogInViewController ()
 
 @end
@@ -133,8 +138,37 @@
         [userInfo setValue:image_url forKey:@"image_url"];
         //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
-        AEHomeMapViewController *mapViewController = [[AEHomeMapViewController alloc] init];
-        [self presentViewController:mapViewController animated:NO completion:nil];
+        AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AEHomeMapViewController *mapView = [[AEHomeMapViewController alloc] init];
+        mapView.locationController = appDelegate.locationController;
+        mapView.view.tag = 23;
+        AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
+        messageView.view.tag = 12;
+        AESearchViewController *searchView = [[AESearchViewController alloc] init];
+        AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
+        packView.locationController = appDelegate.locationController;
+        AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
+        NSLog(@"good here 1");
+        
+        UIImage *homeImage = [UIImage imageNamed:@"pupular_home_default.png"] ;
+        UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
+        UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
+        UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
+        UIImage *moreImage = [UIImage imageNamed:@"pupular_more_default.png"];
+        [mapView.tabBarItem setImage:homeImage];
+        [searchView.tabBarItem setImage:searchImage];
+        [packView.tabBarItem setImage:packImage];
+        [moreView.tabBarItem setImage:moreImage];
+        [messageView.tabBarItem setImage:messageImage];
+        
+        
+        //    [mapView.tabBarItem setImage:mapImage];
+        //    [accountView.tabBarItem setImage:logOutImage];
+        //
+        //    UINavigationController *mapNavController = [[UINavigationController alloc]
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
+        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];        [self presentViewController:tabBarController animated:NO completion:nil];
         
     }
 }

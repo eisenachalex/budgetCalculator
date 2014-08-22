@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AECLController.h"
 
 @interface AEAppDelegate : UIResponder <UIApplicationDelegate, NSURLConnectionDelegate> {
     NSMutableData *_responseData;
@@ -16,5 +17,10 @@
 @property (strong, nonatomic) UIWindow *window;
 @property NSTimer *messageTime;
 @property NSMutableArray *all_messages;
-
+@property BOOL *hasNotification;
+@property AECLController *locationController;
+@property UITabBarController *tabBarController;
+@property bool applicationFromBackground;
+@property NSString *targetID;
+@property BOOL *mapHasTarget;
 @end

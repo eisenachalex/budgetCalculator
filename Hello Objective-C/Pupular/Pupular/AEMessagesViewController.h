@@ -17,5 +17,11 @@
 
 @property AECLController *locationController;
 @property IBOutlet UITableView *tableView;
+@property BOOL *isEditing;
 @property IBOutlet UIActivityIndicatorView *spinner;
+@property NSTimer *messageTime;
+@property IBOutlet UISwitch *trackingSwitch;
+
+
 @end
+

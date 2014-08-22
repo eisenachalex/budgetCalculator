@@ -19,11 +19,13 @@
 @property UIImage *senderImage;
 @property IBOutlet UIImageView *senderImageView;
 @property NSString *dogID;
+@property NSTimer *myTime;
 @property IBOutlet UINavigationItem *navTitle;
 @property IBOutlet UITableView *tableView;
 @property NSString *dogHandle;
+@property BOOL *keyBoardVisible;
 @property IBOutlet UIScrollView *scrollView;
 @property IBOutlet UITextField *messageResponse;
 @property IBOutlet UIToolbar *toolBar;
-
+@property BOOL *firstRequest;
 @end

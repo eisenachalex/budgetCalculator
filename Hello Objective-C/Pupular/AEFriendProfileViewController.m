@@ -29,6 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.isMine = NO;
 
     }
     return self;
@@ -38,13 +39,14 @@
 {
     [super viewDidLoad];
     _navTitle.title = _dogHandle;
-
+    NSLog(@"nav title duh %@",_dogHandle);
+    NSLog(@"dog id %@",_dogID);
     self.imageView.clipsToBounds = YES;
-    self.imageView.layer.cornerRadius = 85;
+    self.imageView.layer.cornerRadius = 60;
     [self.activity startAnimating];
     self.activity.hidesWhenStopped = YES;
-
-    
+    NSString *title = [NSString stringWithFormat:@"%@'s Pack",_dogHandle];
+    [_packButton setTitle:title forState:UIControlStateNormal];
     ;
     // Do any additional setup after loading the view from its nib.
 }
@@ -53,13 +55,16 @@
     
     [self loadUserInfo];
     if(self.isFriend){
+        NSLog(@"friend trew");
         [self.actionButton setTitle:@"Message" forState:UIControlStateNormal];
         
     }
     else if(self.isMine){
+        NSLog(@"mine trew");
         [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
-    }
+    } 
     else {
+        NSLog(@"request trew");
         [self.actionButton setTitle:@"Request" forState:UIControlStateNormal];
         
     }
@@ -106,9 +111,8 @@
     else if([[sender currentTitle] isEqualToString:@"Request"])
     {
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
-        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-        AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
-        [self presentViewController:messagesView animated:NO completion:nil];
+
+        [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     
@@ -146,19 +150,39 @@
                                                               error:nil];
     if([newJSON objectForKey:@"profile"])
     {
-        profile = [newJSON objectForKey:@"profile"];
-        self.location.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"location"]];
-        self.personality.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"personality_type"]];
-        self.gender.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"gender"]];
-        self.age.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"age"]];
-        self.owners_name.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"humans_name"]];
-        self.breed.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"breed"]];
-        self.size.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"size"]];
-        self.spayed.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"fertility"]];
+        NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
         
-        NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/testImage.png"];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
+        _profile = [newJSON objectForKey:@"profile"];
+        if([NSNull null] != [_profile valueForKey:@"age"]){
+            NSLog(@"golden jowns %@",[_profile valueForKey:@"age"]);
+            _age.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"age"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"gender"]){
+            _gender.text = [_profile valueForKey:@"gender"];
+        }
+        if([NSNull null] != [_profile valueForKey:@"size"]){
+            _size.text = [_profile valueForKey:@"size"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"fertility"]){
+            _spayed.text = [_profile valueForKey:@"fertility"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
+            _personality.text = [_profile valueForKey:@"personality_type"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"humans_name"]){
+            _owners_name.text = [_profile valueForKey:@"humans_name"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"location"]){
+            _location.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"location"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"breed"]){
+            _breed.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"breed"]];
+        }
+
         
     }
     else if([newJSON objectForKey:@"profile_photo"]){

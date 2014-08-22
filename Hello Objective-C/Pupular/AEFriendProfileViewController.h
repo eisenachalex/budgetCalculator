@@ -15,6 +15,7 @@
     NSMutableDictionary *profile;
     NSMutableDictionary *userInfo;
 }
+@property NSMutableDictionary *profile;
 @property NSString *dogID;
 @property BOOL *isFriend;
 @property BOOL *isMine;
@@ -30,6 +31,7 @@
 @property IBOutlet UILabel *size;
 @property IBOutlet UILabel *spayed;
 @property IBOutlet UIButton *actionButton;
+@property IBOutlet UIButton *packButton;
 @property IBOutlet UIActivityIndicatorView *activity;
 @property IBOutlet UIImageView *imageView;
 @property AECLController *locationController;

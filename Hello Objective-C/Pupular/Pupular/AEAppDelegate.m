@@ -7,9 +7,13 @@
 //
 
 #import <GoogleMaps/GoogleMaps.h>
-#import "AEAppDelegate.h"
 #import "AELogInViewController.h"
-#import "AEhomeMapViewController.h"
+#import "AEHomeMapViewController.h"
+#import "AEMessagesViewController.h"
+#import "AEMenuViewController.h"
+#import "AESearchViewController.h"
+#import "AEActiveFriendsViewController.h"
+#import "AEAppDelegate.h"
 
 @implementation AEAppDelegate
 
@@ -17,42 +21,79 @@
 {
     [self loadUserInfo];
     [self startTimer];
+    _locationController = [[AECLController alloc] init];
+    _locationController.delegate = self;
+    _targetID = @"DEFAULT";
+    _mapHasTarget = NO;
     UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     application.applicationIconBadgeNumber = 0;
-
-    if (notification) {
-        [self showAlarm:notification.alertBody];
-        application.applicationIconBadgeNumber = 0;
-    }
-    
-
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
     [GMSServices provideAPIKey:@"AIzaSyAnpYPYlB5Noxyo40Ttz1PtWEgjQN48xHs"];
+
+
+    NSLog(@"good here");
+
+//    [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"track_star_background.png"]];
+//    
+
+
+
 
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    AELogInViewController *loginViewController = [[AELogInViewController alloc] init];
-    AEHomeMapViewController *homeMapView = [[AEHomeMapViewController alloc] init];
+    AELogInViewController *loginView = [[AELogInViewController alloc] init];
 
-    [self.window setRootViewController:loginViewController];
     [userInfo setObject:@"false" forKey:@"is_active"];
     [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    NSLog(@"still good");
     if([[userInfo valueForKey:@"email"] isEqualToString:@"empty"])
     {
-        AELogInViewController *loginView = [[AELogInViewController alloc] init];
         [self.window setRootViewController:loginView];
     }
     else{
-        [self.window setRootViewController:homeMapView];
+        AEHomeMapViewController *mapView = [[AEHomeMapViewController alloc] init];
+        mapView.locationController = _locationController;
+        mapView.view.tag = 23;
+        AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
+        messageView.view.tag = 12;
+        AESearchViewController *searchView = [[AESearchViewController alloc] init];
+        AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
+        packView.locationController = _locationController;
+        AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
+        NSLog(@"good here 1");
+        
+        UIImage *homeImage = [UIImage imageNamed:@"pupular_home_default.png"] ;
+          UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
+          UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
+          UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
+          UIImage *moreImage = [UIImage imageNamed:@"pupular_more_default.png"];
+        [mapView.tabBarItem setImage:homeImage];
+        [searchView.tabBarItem setImage:searchImage];
+        [packView.tabBarItem setImage:packImage];
+        [moreView.tabBarItem setImage:moreImage];
+        [messageView.tabBarItem setImage:messageImage];
+
+
+        //    [mapView.tabBarItem setImage:mapImage];
+        //    [accountView.tabBarItem setImage:logOutImage];
+        //
+        //    UINavigationController *mapNavController = [[UINavigationController alloc] initWithRootViewController:mapView];
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        _tabBarController = tabBarController;
+        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];
+        tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
+        [self.window setRootViewController:tabBarController];
     }
+    NSLog(@"what");
     return YES;
 }
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    [self showAlarm:notification.alertBody];
+    NSDictionary *infoDict = notification.userInfo;
+    NSString *messageType = [infoDict valueForKey:@"message_type"];
     application.applicationIconBadgeNumber = application.applicationIconBadgeNumber += 1;
 }
 
@@ -66,13 +107,6 @@
 }
 
 
-- (void)showAlarm:(NSString *)text {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alarm"
-                                                        message:text delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -82,7 +116,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    _applicationFromBackground = TRUE;
+
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -90,6 +126,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
@@ -147,33 +184,68 @@
                                                             options:0
                                                               error:nil];
     
+    NSLog(@"new json delegate %@",newJSON);
+    
     if([newJSON objectForKey:@"messages"]){
         NSMutableArray *messages = [[NSMutableArray alloc] init];
         messages = [newJSON objectForKey:@"messages"];
         if (_all_messages){
-            
-            if([messages count] > [_all_messages count]){
-                [[UIApplication sharedApplication] cancelAllLocalNotifications];
-                NSArray *thisMessage = [messages firstObject];
+            NSMutableArray *messageBodies = [[NSMutableArray alloc] init];
+            for(int i = 0; i < [_all_messages count]; i++){
+                NSArray *thisMessage = [_all_messages objectAtIndex:i];
                 NSDictionary *thisMessageContent = [thisMessage objectAtIndex:0];
                 NSString *notificationText = [thisMessageContent objectForKey:@"body"];
-                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-                
-                // current time plus 10 secs
-                NSDate *now = [NSDate date];
-                NSDate *dateToFire = [now dateByAddingTimeInterval:5];
-                localNotification.fireDate = dateToFire;
-                localNotification.alertBody = notificationText;
-                localNotification.soundName = UILocalNotificationDefaultSoundName;
-                localNotification.applicationIconBadgeNumber += 1; // increment
-                
-                NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:@"Object 1", @"Key 1", @"Object 2", @"Key 2", nil];
-                localNotification.userInfo = infoDict;
-                
-                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                [messageBodies addObject:notificationText];
+            }
+            
+            for(int i = 0; i < [messages count]; i++){
+                NSArray *thisMessage = [messages objectAtIndex:i];
+                NSDictionary *thisMessageContent = [thisMessage objectAtIndex:0];
+                NSString *notificationText = [thisMessageContent objectForKey:@"body"];
+                NSString *messageType = [thisMessageContent objectForKey:@"message_type"];
+                if(![messageBodies containsObject:[NSString stringWithFormat:@"%@",notificationText]]){
+                    NSString *senderID = [thisMessageContent objectForKey:@"sender_id"];
+                    NSString *dogID = [userInfo valueForKey:@"dog_id"];
+                    if(([senderID intValue] != [dogID intValue]) && ![messageType isEqualToString:@"auto_message"]){
+                        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                        NSDate *now = [NSDate date];
+                        NSDate *dateToFire = [now dateByAddingTimeInterval:1];
+                        localNotification.fireDate = dateToFire;
+                        localNotification.alertBody = notificationText;
+                        localNotification.soundName = UILocalNotificationDefaultSoundName;
+                        NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:messageType, @"message_type", @"Object 2", @"Key 2", nil];
+                        localNotification.userInfo = infoDict;
+                    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+                    }
+                }
+            }
+            
+            
+            
+    }
+        _all_messages = [messages mutableCopy];
+        NSLog(@"all dem messages %@",_all_messages);
+        int badgeCount = 0;
+        _hasNotification = NO;
+        for(int i = 0; i < [_all_messages count]; i ++){
+            NSArray *thisMessage = [_all_messages objectAtIndex:i];
+            NSDictionary *messageDict = [thisMessage objectAtIndex:0];
+            int sender_id = [[messageDict objectForKey:@"sender_id"] intValue];
+            int dog_id = [[userInfo objectForKey:@"dog_id"] intValue];
+            if([[messageDict objectForKey:@"message_type" ] isEqualToString:@"message"]){
+                if (([[messageDict objectForKey:@"read"] boolValue] == NO) && (sender_id != dog_id)){
+                    NSLog(@"stupid");
+                    badgeCount += 1;
+                    _hasNotification = YES;
+                }
+            }
+            else if ([[messageDict objectForKey:@"read"] boolValue] == NO){
+                badgeCount += 1;
+                _hasNotification = YES;
             }
         }
-        _all_messages = messages;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = badgeCount;
+
         
     }
     
@@ -185,7 +257,7 @@
 
 - (void) startTimer
 {
-    self.messageTime = [NSTimer scheduledTimerWithTimeInterval:5
+    self.messageTime = [NSTimer scheduledTimerWithTimeInterval:1
                                                    target:self
                                                  selector:@selector(timerFired:)
                                                  userInfo:nil
@@ -199,11 +271,38 @@
 
 - (void) timerFired:(NSTimer*)theTimer
 {
+    [self loadUserInfo];
+    NSLog(@"good here");
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-    
+    if(_hasNotification){
+        UIImage *messageImage = [[UIImage imageNamed:@"pupular_message_notification.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] ;
+        
+        UITabBarItem * tabItem = [_tabBarController.tabBar.items objectAtIndex: 3];
+        tabItem.image = messageImage;
+
+         }
+    else{
+        UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
+
+        UITabBarItem * tabItem = [_tabBarController.tabBar.items objectAtIndex: 3];
+        tabItem.image = messageImage;
+            
+        }
+        
+        
 }
 
 
+
+- (void)locationUpdate:(CLLocation *)location {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/update_coordinates?lat=%f&long=%f&active=t&email=%@",location.coordinate.latitude, location.coordinate.longitude,[userInfo objectForKey:@"email"]]]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+}
+
+- (void)locationError:(NSError *)error {
+    
+}
 
 @end

@@ -30,7 +30,7 @@
     if (self) {
         // Custom initialization
 
-        
+
     }
     return self;
 }
@@ -38,10 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _navTitle.title = _dogHandle;
 
     self.imageView.clipsToBounds = YES;
-    self.imageView.layer.cornerRadius = 85;
+    self.imageView.layer.cornerRadius = 55;
     [self.activity startAnimating];
     self.activity.hidesWhenStopped = YES;
     
@@ -52,18 +51,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    if(self.isFriend){
-        [self.actionButton setTitle:@"Message" forState:UIControlStateNormal];
-        
-    }
-    else if(self.isMine){
-        NSLog(@"is mine is being jowned");
-        [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
-    }
-    else {
-        [self.actionButton setTitle:@"Request" forState:UIControlStateNormal];
-        
-    }
+
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/profile?dog_id=%@",_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     
@@ -80,9 +68,8 @@
 }
 
 -(IBAction)menu:(id)sender{
-    AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
-    menuView.locationController = _locationController;
-    [self presentViewController:menuView animated:YES completion:nil];
+
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 
@@ -97,31 +84,14 @@
 
 
 -(IBAction)actionButton:(id)sender{
-    NSLog(@"action text %@",[sender currentTitle]);
-    if([[sender currentTitle] isEqualToString:@"Edit Profile"])
-    {
+
         AEEditProfileViewController *editProfile = [[AEEditProfileViewController alloc] init];
-        editProfile.profile = profile;
+        editProfile.profile = _profile;
         editProfile.image = _profileImage;
         editProfile.dogID = _dogID;
         [self presentViewController:editProfile animated:NO completion:nil];
-    }
-    else if([[sender currentTitle] isEqualToString:@"Request"])
-    {
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
-        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-        NSLog(@"jowns");
-        AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
-        [self presentViewController:messagesView animated:NO completion:nil];
-        
-    }
-    
-    else if([[sender currentTitle] isEqualToString:@"Message"])
-    {
-        NSLog(@"up up and away");
-        
-    }
 }
+
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -145,30 +115,53 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
     if([newJSON objectForKey:@"profile"])
     {
-        profile = [newJSON objectForKey:@"profile"];
-        self.location.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"location"]];
-        self.personality.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"personality_type"]];
-        self.gender.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"gender"]];
-        self.age.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"age"]];
-        self.owners_name.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"humans_name"]];
-        self.breed.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"breed"]];
-        self.size.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"size"]];
-        self.spayed.text = [NSString stringWithFormat:@"%@",[profile valueForKey:@"fertility"]];
+        NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
 
-        NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/testImage.png"];
-        NSData *data = [NSData dataWithContentsOfURL:url];
+        _profile = [newJSON objectForKey:@"profile"];
+        if([NSNull null] != [_profile valueForKey:@"age"]){
+            NSLog(@"golden jowns %@",[_profile valueForKey:@"age"]);
+            _age.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"age"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"gender"]){
+            _gender.text = [_profile valueForKey:@"gender"];
+        }
+        if([NSNull null] != [_profile valueForKey:@"size"]){
+            _size.text = [_profile valueForKey:@"size"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"fertility"]){
+            _spayed.text = [_profile valueForKey:@"fertility"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
+            _personality.text = [_profile valueForKey:@"personality_type"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"humans_name"]){
+            _owners_name.text = [_profile valueForKey:@"humans_name"];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"location"]){
+            _location.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"location"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"breed"]){
+            _breed.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"breed"]];
+        }
+
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
+        NSData *data = [NSData dataWithContentsOfURL:imageURL];
         UIImage *image = [UIImage imageWithData:data];
         [imageView setImage:image];
         _profileImage = image;
+        
         
     }
     else if([newJSON objectForKey:@"profile_photo"]){
         NSLog(@"%@",[newJSON objectForKey:@"profile_photo"]);
         [self.imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
-                       placeholderImage:[UIImage imageNamed:@"git_icon_hover.png"]];
+                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
         
         [self.activity stopAnimating];
     }
