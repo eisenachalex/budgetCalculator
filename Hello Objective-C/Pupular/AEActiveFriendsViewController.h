@@ -18,6 +18,7 @@
 @property AECLController *locationController;
 @property NSMutableArray *activeFriendsArray;
 @property BOOL *hasNotification;
+@property IBOutlet UIActivityIndicatorView *spinner;
 @property NSTimer *myTime;
 @property IBOutlet UITableView *tableView;
 @property IBOutlet UISwitch *trackingSwitch;

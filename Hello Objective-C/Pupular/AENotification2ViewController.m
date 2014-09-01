@@ -131,8 +131,8 @@
         NSString *photoURL = [dogInfo objectForKey:@"photo"];
         AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         conversationView.locationController = _locationController;
-        conversationView.senderImage = _imageView.image;
-        conversationView.dogHandle = handleLabel.text;
+        conversationView.senderImage = _cellImage;
+        conversationView.dogHandle = _dogHandle;
         conversationView.dogID = _dogID;
         [self presentViewController:conversationView animated:NO completion:nil];
         

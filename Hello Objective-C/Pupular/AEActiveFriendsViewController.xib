@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AEActiveFriendsViewController">
             <connections>
                 <outlet property="searchDisplayController" destination="Ai5-yC-Tvr" id="16p-0Q-3t8"/>
+                <outlet property="spinner" destination="eD0-61-69h" id="tVh-nL-1k6"/>
                 <outlet property="tableView" destination="YXK-Uf-P6z" id="nGT-0I-pwa"/>
                 <outlet property="targetButton" destination="ffC-de-Lt9" id="dr9-UC-xp0"/>
                 <outlet property="targetItem" destination="Bpr-7O-G3t" id="TpB-Zb-TrZ"/>
@@ -62,6 +63,10 @@
                         <outlet property="delegate" destination="-1" id="aON-np-2Nf"/>
                     </connections>
                 </searchBar>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="eD0-61-69h">
+                    <rect key="frame" x="150" y="251" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

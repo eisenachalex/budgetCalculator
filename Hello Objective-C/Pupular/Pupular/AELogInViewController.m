@@ -10,7 +10,7 @@
 #import "AELogInViewController.h"
 #import "AEHomeMapViewController.h"
 #import "AEConvoViewController.h"
-#import "AEAboutGuestViewController.h"
+#import "AEAboutViewController.h"
 #import "AESignUpViewController.h"
 #import "AESearchViewController.h"
 #import "AEActiveFriendsViewController.h"
@@ -100,7 +100,7 @@
 }
 
 -(IBAction)about:(id)sender{
-    AEAboutGuestViewController *aboutViewController = [[AEAboutGuestViewController alloc] init];
+    AEAboutViewController *aboutViewController = [[AEAboutViewController alloc] init];
     [self presentViewController:aboutViewController animated:NO completion:nil];
     
 }

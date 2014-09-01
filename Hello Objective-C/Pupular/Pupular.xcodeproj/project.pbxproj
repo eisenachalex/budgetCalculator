@@ -11,8 +11,6 @@
 		EF1A3B1A1977048400174C83 /* AEProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1A3B181977048400174C83 /* AEProfileViewController.xib */; };
 		EF1BCC3C1979C991008D9EDC /* AEFriendProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1BCC3A1979C991008D9EDC /* AEFriendProfileViewController.m */; };
 		EF1BCC3D1979C991008D9EDC /* AEFriendProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1BCC3B1979C991008D9EDC /* AEFriendProfileViewController.xib */; };
-		EF1BCC411979CC56008D9EDC /* AEAboutGuestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1BCC3F1979CC56008D9EDC /* AEAboutGuestViewController.m */; };
-		EF1BCC421979CC56008D9EDC /* AEAboutGuestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1BCC401979CC56008D9EDC /* AEAboutGuestViewController.xib */; };
 		EF1CEC1C193786D00000CDC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1B193786D00000CDC5 /* Foundation.framework */; };
 		EF1CEC1E193786D00000CDC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1D193786D00000CDC5 /* CoreGraphics.framework */; };
 		EF1CEC20193786D00000CDC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1CEC1F193786D00000CDC5 /* UIKit.framework */; };
@@ -133,9 +131,6 @@
 		EF1BCC391979C991008D9EDC /* AEFriendProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEFriendProfileViewController.h; path = ../AEFriendProfileViewController.h; sourceTree = "<group>"; };
 		EF1BCC3A1979C991008D9EDC /* AEFriendProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEFriendProfileViewController.m; path = ../AEFriendProfileViewController.m; sourceTree = "<group>"; };
 		EF1BCC3B1979C991008D9EDC /* AEFriendProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEFriendProfileViewController.xib; path = ../AEFriendProfileViewController.xib; sourceTree = "<group>"; };
-		EF1BCC3E1979CC56008D9EDC /* AEAboutGuestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAboutGuestViewController.h; sourceTree = "<group>"; };
-		EF1BCC3F1979CC56008D9EDC /* AEAboutGuestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAboutGuestViewController.m; sourceTree = "<group>"; };
-		EF1BCC401979CC56008D9EDC /* AEAboutGuestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEAboutGuestViewController.xib; sourceTree = "<group>"; };
 		EF1CEC18193786D00000CDC5 /* Pupular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pupular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF1CEC1B193786D00000CDC5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EF1CEC1D193786D00000CDC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -399,9 +394,6 @@
 				EF1CEC671937B1380000CDC5 /* AEAboutViewController.h */,
 				EF1CEC681937B1380000CDC5 /* AEAboutViewController.m */,
 				EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */,
-				EF1BCC3E1979CC56008D9EDC /* AEAboutGuestViewController.h */,
-				EF1BCC3F1979CC56008D9EDC /* AEAboutGuestViewController.m */,
-				EF1BCC401979CC56008D9EDC /* AEAboutGuestViewController.xib */,
 				EFCDA90E19968CF500635A2C /* AEMessagesViewController.h */,
 				EFCDA90C19968C9E00635A2C /* AEMessagesViewController.m */,
 				EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */,
@@ -648,7 +640,6 @@
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
 				EFA3D88319AC524E007CF10A /* search_filler.png in Resources */,
 				EFC868DB19A9593C00E0937B /* pupular_track.png in Resources */,
-				EF1BCC421979CC56008D9EDC /* AEAboutGuestViewController.xib in Resources */,
 				EFB368DA1971DF8D0007FC1E /* AENotification2ViewController.xib in Resources */,
 				EF4C618819A7A1390012D696 /* pupular_more_default.png in Resources */,
 				EF5A20B919B23A3B00BD8F84 /* pupular_dog_avatar_thumb.png in Resources */,
@@ -729,7 +720,6 @@
 				EFA3D87F19ABEC32007CF10A /* CustomInfoWindow.m in Sources */,
 				EFC2FFD7195498D300904361 /* SDWebImageDownloader.m in Sources */,
 				EFC2FFDA195498D300904361 /* SDWebImagePrefetcher.m in Sources */,
-				EF1BCC411979CC56008D9EDC /* AEAboutGuestViewController.m in Sources */,
 				EF1CEC2C193786D00000CDC5 /* AEAppDelegate.m in Sources */,
 				EFC2FFD4195498D300904361 /* SDImageCache.m in Sources */,
 				EF4C615D19A638C50012D696 /* AESearchViewController.m in Sources */,

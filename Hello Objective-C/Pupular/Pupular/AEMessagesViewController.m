@@ -323,7 +323,7 @@
     }
     else {
         [dateFormat setDateFormat:@"h:mm a"];
-        NSString *dateString = [dateFormat stringFromDate:today];
+        NSString *dateString = [dateFormat stringFromDate:dateField];
         date.text = dateString;
 
     }
@@ -419,6 +419,7 @@
         notificationView.notificationMessage = messageText.text;
         notificationView.locationController = _locationController;
         notificationView.dogID = otherDog;
+        notificationView.cellImage = cell.imageView.image;
         notificationView.isFriend = YES;
             notificationView.dogHandle = dogHandle;
         [self presentViewController:notificationView animated:NO completion:nil];

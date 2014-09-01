@@ -24,6 +24,7 @@
 @property NSString *notificationType;
 @property NSString *notificationMessage;
 @property NSString *dogID;
+@property UIImage *cellImage;
 @property NSString *dogHandle;
 @property BOOL *isFriend;
 @property IBOutlet UILabel *notificationTitle;

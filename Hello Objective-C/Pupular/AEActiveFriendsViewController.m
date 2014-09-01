@@ -41,6 +41,7 @@
                                                                           action:@selector(tap)];
     
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [_spinner startAnimating];
     [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
     NSLog(@"user jowns %@",[userInfo objectForKey:@"image_url"]);
@@ -344,6 +345,7 @@
     {
         friendsArray = [newJSON objectForKey:@"friend_list"];
         friendsArray = [friendsArray mutableCopy];
+        [_spinner stopAnimating];   
         [self.tableView reloadData];
     }
     
