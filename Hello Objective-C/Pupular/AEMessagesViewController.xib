@@ -21,10 +21,11 @@
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="21"/>
                         <color key="textColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Messages" id="YSJ-xP-laF">
+                        <navigationItem title="messages" id="YSJ-xP-laF">
                             <barButtonItem key="leftBarButtonItem" systemItem="compose" id="rbb-ZQ-AEs">
                                 <color key="tintColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

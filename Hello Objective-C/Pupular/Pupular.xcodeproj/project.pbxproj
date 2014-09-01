@@ -41,6 +41,7 @@
 		EF1CEC8D1937B6580000CDC5 /* AEHomeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */; };
 		EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */; };
 		EF2B4B6C19A3EE5000376182 /* list24.png in Resources */ = {isa = PBXBuildFile; fileRef = EF2B4B6B19A3EE5000376182 /* list24.png */; };
+		EF4BEFDD19B42AC900190140 /* grass_navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4BEFDC19B42AC900190140 /* grass_navbar.png */; };
 		EF4C615D19A638C50012D696 /* AESearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF4C615B19A638C50012D696 /* AESearchViewController.m */; };
 		EF4C615E19A638C50012D696 /* AESearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF4C615C19A638C50012D696 /* AESearchViewController.xib */; };
 		EF4C616019A77D040012D696 /* track_star_signal_ON.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C615F19A77D040012D696 /* track_star_signal_ON.png */; };
@@ -48,11 +49,22 @@
 		EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C618F19A7A33F0012D696 /* pupular_search_default.png */; };
 		EF4C619819A7CF5D0012D696 /* pupular_pack_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */; };
 		EF4C619A19A7CF690012D696 /* pupular_pack_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619919A7CF690012D696 /* pupular_pack_active.png */; };
-		EF5A1E2C19624CEF009F193D /* AETargetMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5A1E2A19624CEF009F193D /* AETargetMapViewController.m */; };
-		EF5A1E2D19624CEF009F193D /* AETargetMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5A1E2B19624CEF009F193D /* AETargetMapViewController.xib */; };
+		EF5A20B119B101AF00BD8F84 /* navbar_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B019B101AF00BD8F84 /* navbar_grass.png */; };
+		EF5A20B719B239C100BD8F84 /* pupular_dog_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */; };
+		EF5A20B919B23A3B00BD8F84 /* pupular_dog_avatar_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B819B23A3A00BD8F84 /* pupular_dog_avatar_thumb.png */; };
 		EF5F1BEF1937CAE6002CDE3E /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */; };
 		EF7456DF19831A680056F429 /* git_icon_hover_the_second.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */; };
 		EF7456E119831B190056F429 /* filler_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7456E019831B190056F429 /* filler_icon.png */; };
+		EFA3D87519AA9788007CF10A /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */; };
+		EFA3D87719AA97CC007CF10A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */; };
+		EFA3D87919ABE68B007CF10A /* markerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D87819ABE68B007CF10A /* markerView.xib */; };
+		EFA3D87F19ABEC32007CF10A /* CustomInfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA3D87E19ABEC32007CF10A /* CustomInfoWindow.m */; };
+		EFA3D88119AC0E8A007CF10A /* pupular_message_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */; };
+		EFA3D88319AC524E007CF10A /* search_filler.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88219AC524E007CF10A /* search_filler.png */; };
+		EFA3D88719AC57F5007CF10A /* pupular_marker_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */; };
+		EFA3D88919AC5D65007CF10A /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88819AC5D65007CF10A /* grass.png */; };
+		EFA3D89119AD03C3007CF10A /* pupular_track_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D89019AD03C3007CF10A /* pupular_track_big.png */; };
+		EFA3D89519AD04D3007CF10A /* pupular_message_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D89419AD04D3007CF10A /* pupular_message_big.png */; };
 		EFA858811943713600065ED9 /* AEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8587F1943713600065ED9 /* AEMenuViewController.m */; };
 		EFA858821943713600065ED9 /* AEMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA858801943713600065ED9 /* AEMenuViewController.xib */; };
 		EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */; };
@@ -91,6 +103,8 @@
 		EFC868CF19A7D21D00E0937B /* pupular_home_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868CE19A7D21D00E0937B /* pupular_home_default.png */; };
 		EFC868D519A7D69800E0937B /* pupular_message_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868D419A7D69800E0937B /* pupular_message_default.png */; };
 		EFC868D719A7D75400E0937B /* pupular_message_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868D619A7D75400E0937B /* pupular_message_notification.png */; };
+		EFC868DB19A9593C00E0937B /* pupular_track.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868DA19A9593C00E0937B /* pupular_track.png */; };
+		EFC868DD19A95A5400E0937B /* pupular_track_home.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC868DC19A95A5400E0937B /* pupular_track_home.png */; };
 		EFC9F4651940C4520078045E /* AENewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4631940C4520078045E /* AENewMessageViewController.m */; };
 		EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4641940C4520078045E /* AENewMessageViewController.xib */; };
 		EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */; };
@@ -158,6 +172,7 @@
 		EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEHomeMapViewController.m; path = ../AEHomeMapViewController.m; sourceTree = "<group>"; };
 		EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEHomeMapViewController.xib; path = ../AEHomeMapViewController.xib; sourceTree = "<group>"; };
 		EF2B4B6B19A3EE5000376182 /* list24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list24.png; sourceTree = "<group>"; };
+		EF4BEFDC19B42AC900190140 /* grass_navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass_navbar.png; sourceTree = "<group>"; };
 		EF4C615A19A638C50012D696 /* AESearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AESearchViewController.h; path = ../AESearchViewController.h; sourceTree = "<group>"; };
 		EF4C615B19A638C50012D696 /* AESearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AESearchViewController.m; path = ../AESearchViewController.m; sourceTree = "<group>"; };
 		EF4C615C19A638C50012D696 /* AESearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AESearchViewController.xib; path = ../AESearchViewController.xib; sourceTree = "<group>"; };
@@ -166,12 +181,23 @@
 		EF4C618F19A7A33F0012D696 /* pupular_search_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_search_default.png; sourceTree = "<group>"; };
 		EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_default.png; sourceTree = "<group>"; };
 		EF4C619919A7CF690012D696 /* pupular_pack_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_active.png; sourceTree = "<group>"; };
-		EF5A1E2919624CEF009F193D /* AETargetMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AETargetMapViewController.h; path = ../AETargetMapViewController.h; sourceTree = "<group>"; };
-		EF5A1E2A19624CEF009F193D /* AETargetMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AETargetMapViewController.m; path = ../AETargetMapViewController.m; sourceTree = "<group>"; };
-		EF5A1E2B19624CEF009F193D /* AETargetMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AETargetMapViewController.xib; path = ../AETargetMapViewController.xib; sourceTree = "<group>"; };
+		EF5A20B019B101AF00BD8F84 /* navbar_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_grass.png; sourceTree = "<group>"; };
+		EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_dog_avatar.png; sourceTree = "<group>"; };
+		EF5A20B819B23A3A00BD8F84 /* pupular_dog_avatar_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_dog_avatar_thumb.png; sourceTree = "<group>"; };
 		EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = git_icon_hover_the_second.png; sourceTree = "<group>"; };
 		EF7456E019831B190056F429 /* filler_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filler_icon.png; sourceTree = "<group>"; };
+		EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewRelicAgent.framework; path = Pupular/NewRelicAgent.framework; sourceTree = "<group>"; };
+		EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		EFA3D87819ABE68B007CF10A /* markerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = markerView.xib; sourceTree = "<group>"; };
+		EFA3D87D19ABEC32007CF10A /* CustomInfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomInfoWindow.h; path = ../CustomInfoWindow.h; sourceTree = "<group>"; };
+		EFA3D87E19ABEC32007CF10A /* CustomInfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomInfoWindow.m; path = ../CustomInfoWindow.m; sourceTree = "<group>"; };
+		EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_active.png; sourceTree = "<group>"; };
+		EFA3D88219AC524E007CF10A /* search_filler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_filler.png; sourceTree = "<group>"; };
+		EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_marker_icon.png; sourceTree = "<group>"; };
+		EFA3D88819AC5D65007CF10A /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
+		EFA3D89019AD03C3007CF10A /* pupular_track_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_track_big.png; sourceTree = "<group>"; };
+		EFA3D89419AD04D3007CF10A /* pupular_message_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_big.png; sourceTree = "<group>"; };
 		EFA8587E1943713600065ED9 /* AEMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEMenuViewController.h; path = ../AEMenuViewController.h; sourceTree = "<group>"; };
 		EFA8587F1943713600065ED9 /* AEMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AEMenuViewController.m; path = ../AEMenuViewController.m; sourceTree = "<group>"; };
 		EFA858801943713600065ED9 /* AEMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMenuViewController.xib; path = ../AEMenuViewController.xib; sourceTree = "<group>"; };
@@ -233,6 +259,8 @@
 		EFC868CE19A7D21D00E0937B /* pupular_home_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_home_default.png; sourceTree = "<group>"; };
 		EFC868D419A7D69800E0937B /* pupular_message_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_default.png; sourceTree = "<group>"; };
 		EFC868D619A7D75400E0937B /* pupular_message_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_notification.png; sourceTree = "<group>"; };
+		EFC868DA19A9593C00E0937B /* pupular_track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_track.png; sourceTree = "<group>"; };
+		EFC868DC19A95A5400E0937B /* pupular_track_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_track_home.png; sourceTree = "<group>"; };
 		EFC9F4621940C4520078045E /* AENewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AENewMessageViewController.h; sourceTree = "<group>"; };
 		EFC9F4631940C4520078045E /* AENewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AENewMessageViewController.m; sourceTree = "<group>"; };
 		EFC9F4641940C4520078045E /* AENewMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AENewMessageViewController.xib; sourceTree = "<group>"; };
@@ -253,7 +281,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFA3D87719AA97CC007CF10A /* CoreTelephony.framework in Frameworks */,
 				EFFB3B10195DCB0D003D0A9C /* CoreText.framework in Frameworks */,
+				EFA3D87519AA9788007CF10A /* NewRelicAgent.framework in Frameworks */,
 				EFC2FFB11954979D00904361 /* MapKit.framework in Frameworks */,
 				EFC2FF051951FD1F00904361 /* Security.framework in Frameworks */,
 				EF1CEC55193788E50000CDC5 /* GLKit.framework in Frameworks */,
@@ -308,6 +338,8 @@
 		EF1CEC1A193786D00000CDC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */,
+				EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */,
 				EFFB3B0F195DCB0C003D0A9C /* CoreText.framework */,
 				EFFB3B0D195DCA8C003D0A9C /* libicucore.dylib */,
 				EFC2FFB01954979D00904361 /* MapKit.framework */,
@@ -338,9 +370,8 @@
 				EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */,
 				EFC2FF0C19537B2300904361 /* AEAdditionView.h */,
 				EFC2FF0D19537B2300904361 /* AEAdditionView.m */,
-				EF5A1E2919624CEF009F193D /* AETargetMapViewController.h */,
-				EF5A1E2A19624CEF009F193D /* AETargetMapViewController.m */,
-				EF5A1E2B19624CEF009F193D /* AETargetMapViewController.xib */,
+				EFA3D87D19ABEC32007CF10A /* CustomInfoWindow.h */,
+				EFA3D87E19ABEC32007CF10A /* CustomInfoWindow.m */,
 				EFA8589219439F8900065ED9 /* AEConvoViewController.h */,
 				EFA8589319439F8900065ED9 /* AEConvoViewController.m */,
 				EFA8589419439F8900065ED9 /* AEConvoViewController.xib */,
@@ -351,8 +382,8 @@
 				EFA8588919439CCE00065ED9 /* AEBuddiesViewController.m */,
 				EFD32F30195CA4F100700FEA /* AEBuddiesViewController.xib */,
 				EF1CEC8A1937B6580000CDC5 /* AEHomeMapViewController.h */,
-				EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */,
 				EF1CEC8C1937B6580000CDC5 /* AEHomeMapViewController.xib */,
+				EF1CEC8B1937B6580000CDC5 /* AEHomeMapViewController.m */,
 				EFA8587E1943713600065ED9 /* AEMenuViewController.h */,
 				EFA8587F1943713600065ED9 /* AEMenuViewController.m */,
 				EFA858801943713600065ED9 /* AEMenuViewController.xib */,
@@ -403,18 +434,31 @@
 			isa = PBXGroup;
 			children = (
 				EF1CEC23193786D00000CDC5 /* Pupular-Info.plist */,
+				EFA3D89419AD04D3007CF10A /* pupular_message_big.png */,
+				EFA3D88219AC524E007CF10A /* search_filler.png */,
+				EFA3D87819ABE68B007CF10A /* markerView.xib */,
 				EFC2FFE11954DA4500904361 /* git_icon_hover.png */,
+				EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */,
 				EF4C618F19A7A33F0012D696 /* pupular_search_default.png */,
+				EFA3D88819AC5D65007CF10A /* grass.png */,
 				EFC868CE19A7D21D00E0937B /* pupular_home_default.png */,
 				EF4C618719A7A1390012D696 /* pupular_more_default.png */,
+				EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */,
+				EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */,
+				EFA3D89019AD03C3007CF10A /* pupular_track_big.png */,
+				EFC868DA19A9593C00E0937B /* pupular_track.png */,
+				EFC868DC19A95A5400E0937B /* pupular_track_home.png */,
 				EF4C619919A7CF690012D696 /* pupular_pack_active.png */,
 				EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */,
+				EF5A20B819B23A3A00BD8F84 /* pupular_dog_avatar_thumb.png */,
 				EFC868D419A7D69800E0937B /* pupular_message_default.png */,
+				EF4BEFDC19B42AC900190140 /* grass_navbar.png */,
 				EFC2FF091953590A00904361 /* landing_iamge.png */,
 				EFC868D619A7D75400E0937B /* pupular_message_notification.png */,
 				EF1CEC24193786D00000CDC5 /* InfoPlist.strings */,
 				EF4C615F19A77D040012D696 /* track_star_signal_ON.png */,
 				EF2B4B6B19A3EE5000376182 /* list24.png */,
+				EF5A20B019B101AF00BD8F84 /* navbar_grass.png */,
 				EFBCBCEC19971939006EEA45 /* readIndicator.png */,
 				EF7456E019831B190056F429 /* filler_icon.png */,
 				EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */,
@@ -602,18 +646,27 @@
 				EF4C619819A7CF5D0012D696 /* pupular_pack_default.png in Resources */,
 				EFBB8F021937D2B10001EB6E /* GoogleMaps.bundle in Resources */,
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
+				EFA3D88319AC524E007CF10A /* search_filler.png in Resources */,
+				EFC868DB19A9593C00E0937B /* pupular_track.png in Resources */,
 				EF1BCC421979CC56008D9EDC /* AEAboutGuestViewController.xib in Resources */,
 				EFB368DA1971DF8D0007FC1E /* AENotification2ViewController.xib in Resources */,
 				EF4C618819A7A1390012D696 /* pupular_more_default.png in Resources */,
+				EF5A20B919B23A3B00BD8F84 /* pupular_dog_avatar_thumb.png in Resources */,
+				EFA3D88119AC0E8A007CF10A /* pupular_message_active.png in Resources */,
 				EFC2FF0A1953590A00904361 /* landing_iamge.png in Resources */,
-				EF5A1E2D19624CEF009F193D /* AETargetMapViewController.xib in Resources */,
+				EFA3D87919ABE68B007CF10A /* markerView.xib in Resources */,
 				EFA8589619439F8900065ED9 /* AEConvoViewController.xib in Resources */,
 				EF2B4B6C19A3EE5000376182 /* list24.png in Resources */,
+				EFC868DD19A95A5400E0937B /* pupular_track_home.png in Resources */,
 				EF4C615E19A638C50012D696 /* AESearchViewController.xib in Resources */,
 				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
+				EFA3D88919AC5D65007CF10A /* grass.png in Resources */,
 				EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */,
+				EFA3D89519AD04D3007CF10A /* pupular_message_big.png in Resources */,
+				EFA3D89119AD03C3007CF10A /* pupular_track_big.png in Resources */,
 				EFC868CF19A7D21D00E0937B /* pupular_home_default.png in Resources */,
 				EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */,
+				EF5A20B119B101AF00BD8F84 /* navbar_grass.png in Resources */,
 				EFC868D719A7D75400E0937B /* pupular_message_notification.png in Resources */,
 				EFB7A4AD197624810059CF44 /* list23.png in Resources */,
 				EF1CEC8E1937B6580000CDC5 /* AEHomeMapViewController.xib in Resources */,
@@ -621,10 +674,13 @@
 				EF1CEC26193786D00000CDC5 /* InfoPlist.strings in Resources */,
 				EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */,
 				EF4C616019A77D040012D696 /* track_star_signal_ON.png in Resources */,
+				EFA3D88719AC57F5007CF10A /* pupular_marker_icon.png in Resources */,
 				EFC868D519A7D69800E0937B /* pupular_message_default.png in Resources */,
+				EF4BEFDD19B42AC900190140 /* grass_navbar.png in Resources */,
 				EFD32F31195CA4F100700FEA /* AEBuddiesViewController.xib in Resources */,
 				EF1CEC2E193786D00000CDC5 /* Images.xcassets in Resources */,
 				EF7456DF19831A680056F429 /* git_icon_hover_the_second.png in Resources */,
+				EF5A20B719B239C100BD8F84 /* pupular_dog_avatar.png in Resources */,
 				EF4C619A19A7CF690012D696 /* pupular_pack_active.png in Resources */,
 				EF1CEC7A1937B19A0000CDC5 /* AESignUpViewController.xib in Resources */,
 				EFA8588719439CBB00065ED9 /* AEMessagesViewController.xib in Resources */,
@@ -670,8 +726,8 @@
 				EFC2FF0E19537B2300904361 /* AEAdditionView.m in Sources */,
 				EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */,
 				EFC2FFDF195498D300904361 /* UIImageView+HighlightedWebCache.m in Sources */,
+				EFA3D87F19ABEC32007CF10A /* CustomInfoWindow.m in Sources */,
 				EFC2FFD7195498D300904361 /* SDWebImageDownloader.m in Sources */,
-				EF5A1E2C19624CEF009F193D /* AETargetMapViewController.m in Sources */,
 				EFC2FFDA195498D300904361 /* SDWebImagePrefetcher.m in Sources */,
 				EF1BCC411979CC56008D9EDC /* AEAboutGuestViewController.m in Sources */,
 				EF1CEC2C193786D00000CDC5 /* AEAppDelegate.m in Sources */,

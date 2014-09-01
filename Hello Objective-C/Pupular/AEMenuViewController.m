@@ -97,8 +97,6 @@
     AEProfileViewController *profileView = [[AEProfileViewController alloc] init];
     profileView.dogID = [userInfo valueForKey:@"dog_id"];
     profileView.dogHandle = [userInfo valueForKey:@"dog_handle"];
-    profileView.locationController = _locationController;
-    profileView.isMine = YES;
     [self presentViewController:profileView animated:NO completion:nil];
 }
 
@@ -172,7 +170,7 @@
     else{
         NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -211,7 +209,7 @@
     AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
     profileView.dogID = dogID;
     profileView.view.translatesAutoresizingMaskIntoConstraints = YES;
-    profileView.isFriend = _isFriend;
+    profileView.isMine = YES;
     profileView.dogHandle = handle;
     [self presentViewController:profileView animated:NO completion:nil];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "AEEditProfileViewController.h"
-
+#import "UIImageView+WebCache.h"
 
 @interface AEEditProfileViewController ()
 
@@ -35,9 +35,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.imageView.clipsToBounds = YES;
+    self.imageView.layer.cornerRadius = 60;
+    [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [self.imageView.layer setBorderWidth: 3.0];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
+    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
+    NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
     self.zip.delegate = self;
     self.breed.delegate = self;
     self.owner.delegate = self;
@@ -99,7 +106,6 @@
 -(void)dismissKeyboard {
     NSLog(@"jowns");
     [_targetField resignFirstResponder];
-    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
 
 }
 
@@ -127,7 +133,6 @@
     if(![_targetField.text isEqualToString:@""]){
         [_targetField resignFirstResponder];
     }
-    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
 
 }
 
@@ -143,26 +148,26 @@
         NSLog(@"okay");
     }
     else if(textField.tag == 2){
-        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"",@"Yes", @"No", nil];
+        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"",@"spayed", @"neutered", @"unaltered", nil];
         [picker reloadAllComponents];
         textField.inputView = picker;
         
     }
     else if(textField.tag == 3){
-        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"", @"Male", @"Female", nil];
+        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"", @"male", @"female", nil];
         [picker reloadAllComponents];
         textField.inputView = picker;
 
     }
 
     else if(textField.tag == 4){
-        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"< 5 lbs", @"5-10 lbs", @"> 10 lbs", nil];
+        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"< 25 lbs", @"25-50 lbs", @"over 50 lbs", nil];
         [picker reloadAllComponents];
         textField.inputView = picker;
         
     }
     else if(textField.tag == 5){
-        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"Nice", @"Aggressive", @"Passive",@"Harmless", nil];
+        _fixedOptions = [[NSMutableArray alloc] initWithObjects:@"aggressive", @"playful and a little alpha", @"playful and a little shy",@"passive", nil];
         [picker reloadAllComponents];
         textField.inputView = picker;
         
@@ -183,7 +188,6 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
 
     
     return YES;
@@ -274,9 +278,30 @@
 }
 
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
+    _responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_responseData appendData:data];
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [_spinner stopAnimating];
-    [self dismissViewControllerAnimated:NO completion:nil];
+    NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
+                                                            options:0
+                                                              error:nil];
+   if([newJSON objectForKey:@"profile_photo"]){
+        [self.imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar.png"]];
+        
+    }
+   else{
+       [_spinner stopAnimating];
+       [self dismissViewControllerAnimated:NO completion:nil];
+   }
+
+    
 
 }
 

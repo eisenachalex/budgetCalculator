@@ -23,4 +23,9 @@
 @property bool applicationFromBackground;
 @property NSString *targetID;
 @property BOOL *mapHasTarget;
+
+
+-(void) stopTimer;
+-(void) startTimer;
 @end
+

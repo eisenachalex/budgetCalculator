@@ -21,6 +21,7 @@
 @property IBOutlet UIBarButtonItem *backButton;
 @property IBOutlet UITableView *tableView;
 @property IBOutlet UISearchBar *searchBar;
+@property NSString *dogHandle;
 @property NSString *foreign_dog_id;
 @property IBOutlet UISwitch *trackingSwitch;
 

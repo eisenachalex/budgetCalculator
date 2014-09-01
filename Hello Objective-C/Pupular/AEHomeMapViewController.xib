@@ -17,7 +17,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="WgB-nB-2yM">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view alpha="0.94999999999999996" contentMode="scaleToFill" id="ToG-VE-MmF">
@@ -29,10 +29,12 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <textAttributes key="titleTextAttributes">
+                        <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="26"/>
                         <color key="textColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Pupular" id="cCP-BP-zxw">
+                        <navigationItem title="pupular" id="cCP-BP-zxw">
                             <barButtonItem key="leftBarButtonItem" title="Target" id="CCK-9M-7y9">
                                 <color key="tintColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -51,10 +53,12 @@
                             </barButtonItem>
                         </navigationItem>
                     </items>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="24j-6R-nut"/>
+                    </connections>
                 </navigationBar>
             </subviews>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>

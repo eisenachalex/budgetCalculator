@@ -44,7 +44,8 @@
     [self loadUserInfo];
     [super viewDidLoad];
     NSLog(@"LOCATION CONTROLLER %@",_locationController);
-    
+    [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
+
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -194,19 +195,22 @@
     NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
     NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
         NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir Next" size:15]];
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
+    [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [cell.imageView.layer setBorderWidth: 1.0];
     return cell;
 }
 

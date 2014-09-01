@@ -49,6 +49,8 @@
     
 }
 
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [self loadUserInfo];
     self.searchBar.delegate = self;
@@ -130,12 +132,12 @@
     NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
     NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
         NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

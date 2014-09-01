@@ -1,5 +1,5 @@
 //
-//  AEProfileViewController.m
+//  AEProfileViewConxtroller.m
 //  Pupular
 //
 //  Created by Alex Eisenach on 5/29/14.
@@ -40,7 +40,9 @@
     [super viewDidLoad];
 
     self.imageView.clipsToBounds = YES;
-    self.imageView.layer.cornerRadius = 55;
+    self.imageView.layer.cornerRadius = 60;
+    [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [self.imageView.layer setBorderWidth: 3.0];
     [self.activity startAnimating];
     self.activity.hidesWhenStopped = YES;
     
@@ -87,7 +89,6 @@
 
         AEEditProfileViewController *editProfile = [[AEEditProfileViewController alloc] init];
         editProfile.profile = _profile;
-        editProfile.image = _profileImage;
         editProfile.dogID = _dogID;
         [self presentViewController:editProfile animated:NO completion:nil];
 }
@@ -118,50 +119,53 @@
     if([newJSON objectForKey:@"profile"])
     {
         NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
+        NSString *returnString = [[NSString alloc] init];
+        returnString = [NSString stringWithFormat:@"Hi, my name is %@!", _dogHandle];
 
         _profile = [newJSON objectForKey:@"profile"];
+        if(([NSNull null] != [_profile valueForKey:@"age"]) || ([NSNull null] != [_profile valueForKey:@"gender"]) || ([NSNull null] != [_profile valueForKey:@"breed"])){
+            returnString = [NSString stringWithFormat:@"%@. I'm a", returnString];
+        }
+        
+        
         if([NSNull null] != [_profile valueForKey:@"age"]){
-            NSLog(@"golden jowns %@",[_profile valueForKey:@"age"]);
-            _age.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"age"]];
+            returnString = [NSString stringWithFormat:@"%@ %@ year old",returnString,[_profile valueForKey:@"age"]];
         }
         if([NSNull null] != [_profile valueForKey:@"gender"]){
-            _gender.text = [_profile valueForKey:@"gender"];
+            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"gender"]];
         }
-        if([NSNull null] != [_profile valueForKey:@"size"]){
-            _size.text = [_profile valueForKey:@"size"];
-            
+        if([NSNull null] != [_profile valueForKey:@"breed"]){
+            NSLog(@"breed is not null");
+            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"breed"]];
         }
         if([NSNull null] != [_profile valueForKey:@"fertility"]){
-            _spayed.text = [_profile valueForKey:@"fertility"];
+            returnString = [NSString stringWithFormat:@"%@.  I'm %@",returnString,[_profile valueForKey:@"fertility"]];
             
         }
-        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
-            _personality.text = [_profile valueForKey:@"personality_type"];
+        if([NSNull null] != [_profile valueForKey:@"size"]){
+            returnString = [NSString stringWithFormat:@"%@ and %@",returnString, [_profile valueForKey:@"size"]];
             
+        }
+        
+        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
+            returnString = [NSString stringWithFormat:@"%@. My pup friends say that I'm %@",returnString, [_profile valueForKey:@"personality_type"]];
         }
         if([NSNull null] != [_profile valueForKey:@"humans_name"]){
-            _owners_name.text = [_profile valueForKey:@"humans_name"];
+            returnString = [NSString stringWithFormat:@"%@. My human best friend is %@",returnString, [_profile valueForKey:@"humans_name"]];
             
         }
         if([NSNull null] != [_profile valueForKey:@"location"]){
-            _location.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"location"]];
+            
         }
-        if([NSNull null] != [_profile valueForKey:@"breed"]){
-            _breed.text = [NSString stringWithFormat:@"%@",[_profile valueForKey:@"breed"]];
-        }
+        returnString = [NSString stringWithFormat:@"%@.",returnString];
+        _label.text = returnString;
 
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
-        NSData *data = [NSData dataWithContentsOfURL:imageURL];
-        UIImage *image = [UIImage imageWithData:data];
-        [imageView setImage:image];
-        _profileImage = image;
-        
         
     }
     else if([newJSON objectForKey:@"profile_photo"]){
         NSLog(@"%@",[newJSON objectForKey:@"profile_photo"]);
         [self.imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar.png"]];
         
         [self.activity stopAnimating];
     }

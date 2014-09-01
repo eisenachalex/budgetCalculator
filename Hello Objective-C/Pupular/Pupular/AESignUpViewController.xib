@@ -68,8 +68,8 @@
                         <outlet property="delegate" destination="-1" id="5NZ-iC-Mha"/>
                     </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0km-Fw-Gth">
-                    <rect key="frame" x="92" y="64" width="137" height="133"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pupular_dog_avatar.png" id="0km-Fw-Gth">
+                    <rect key="frame" x="92" y="61" width="130" height="130"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HtK-rd-xDJ">
@@ -134,4 +134,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="pupular_dog_avatar.png" width="130" height="130"/>
+    </resources>
 </document>

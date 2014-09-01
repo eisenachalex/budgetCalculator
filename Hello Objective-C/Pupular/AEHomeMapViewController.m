@@ -14,7 +14,8 @@
 #import "UIImageView+WebCache.h"
 #import "AEConvoViewController.h"
 #import "AEAppDelegate.h"
-
+#import "CustomInfoWindow.h"
+#import "AEFriendProfileViewController.h"
 
 @interface AEHomeMapViewController ()
 
@@ -60,6 +61,7 @@ GMSMarker *marker;
     face.imageView.layer.cornerRadius = 18;
     face.bounds = CGRectMake( 0, 0, 35, 35 );
     [face setImage:image forState:UIControlStateNormal];
+
     UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
     [_targetItem setLeftBarButtonItem:faceBtn];
     if([userInfo valueForKey:@"is_active"]){
@@ -81,6 +83,12 @@ GMSMarker *marker;
 }
 
 
+- (void) mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate{
+    if(_timerOff){
+        [self startTimer];
+    }
+}
+
 
 
 - (void)viewDidLoad {
@@ -88,12 +96,14 @@ GMSMarker *marker;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
                                                             longitude:151.2086
                                                                  zoom:12];
-    
+
     mapView_ = [GMSMapView mapWithFrame:CGRectMake(0, 0, 320, 460) camera:camera];
-    
+    mapView_.userInteractionEnabled = YES;
+
+
     // Listen to the myLocation property of GMSMapView.
-    
-    
+
+    mapView_.delegate = self;
     [self.mapViewContainer addSubview:mapView_];
    
 
@@ -123,7 +133,14 @@ GMSMarker *marker;
     }
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"okay");
+}
 
+-(void)handleSingleTap
+{
+    NSLog(@"jowns");
+}
 
 -(IBAction)trackingSwitch:(id)sender{
     if([sender isOn]){
@@ -143,6 +160,7 @@ GMSMarker *marker;
     }
     
 }
+
 
 - (IBAction)target:(id)sender{
     NSLog(@"twelve twelve carrots");
@@ -202,7 +220,7 @@ GMSMarker *marker;
                                                             options:0
                                                               error:nil];
     
-
+    NSLog(@"BOOM");
 
     if([newJSON objectForKey:@"active_friends_list"]){
         [mapView_ clear];
@@ -222,6 +240,9 @@ GMSMarker *marker;
             GMSMarker *marker = [GMSMarker markerWithPosition:position];
             marker.title = [activeFriend valueForKey:@"handle"];
             marker.map = mapView_;
+            marker.icon = [UIImage imageNamed:@"pupular_marker_icon.png"];
+            NSString *imageString = imageString = [activeFriend valueForKey:@"photo"];
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageString]];
             NSLog(@"target id %@",_targetID);
             if(_mapHasTarget){
             if([[NSString stringWithFormat:@"%@",activeFriendId] isEqualToString:[NSString stringWithFormat:@"%@",_targetID]]){
@@ -240,12 +261,67 @@ GMSMarker *marker;
 
 }
 
+
+- (void) mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
+    for(int i=0; i < [activeFriendsArray count]; i++){
+        NSDictionary *activeFriend = [activeFriendsArray objectAtIndex:i];
+        NSString *thisHandle = [activeFriend valueForKey:@"handle"];
+        NSString *dogID = [[NSString alloc] init];
+        NSString *markerHandle = marker.title;
+        if([thisHandle isEqualToString:markerHandle]){
+            dogID = [activeFriend valueForKey:@"id"];
+            profileView.dogID = dogID;
+
+        }
+    }
+            
+    profileView.isFriend = YES;
+    profileView.dogHandle = [NSString stringWithFormat:@"%@",marker.title];
+    profileView.imageView.image = _profileImage;
+    [self presentViewController:profileView animated:YES completion:nil];
+}
+
+
+
+
 -(void)retrieveActiveFriends{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_active_friends?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_active_friends?dog_id=%@&small_photo=yes",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
 }
 
+- (UIView *)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+    CustomInfoWindow *infoWindow =  [[[NSBundle mainBundle] loadNibNamed:@"markerView" owner:self options:nil] objectAtIndex:0];
+   infoWindow.label.text = marker.title;
+    infoWindow.image.clipsToBounds = YES;
+    infoWindow.layer.cornerRadius = 20;
+;
+    infoWindow.image.layer.cornerRadius = 18;
+    NSString *targetHandle = infoWindow.label.text;
+    for(int i=0; i < [activeFriendsArray count]; i++){
+        NSDictionary *activeFriend = [activeFriendsArray objectAtIndex:i];
+        NSString *thisHandle = [activeFriend valueForKey:@"handle"];
+        if([thisHandle isEqualToString:targetHandle]){
+            NSString *photoURL = [activeFriend valueForKey:@"photo"];
+            NSLog(@"here it is %@",photoURL);
+            
+            if([photoURL isEqualToString:@"none"]){
+                [infoWindow.image setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
+            }
+            else{
+                [infoWindow.image setImageWithURL:[NSURL URLWithString:photoURL]
+                               placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
+            }
+            _profileImage = infoWindow.image.image;
+        }
+
+    }
+    NSLog(@"whoo");
+    [self stopTimer];
+//    infoWindow.placeImage.transform = CGAffineTransformMakeRotation(-.08);
+    return infoWindow;
+}
 
 
 - (void)loadUserInfo {
@@ -268,22 +344,27 @@ GMSMarker *marker;
 
 - (void) startTimer
 {
-    self.myTime = [NSTimer scheduledTimerWithTimeInterval:1
+    self.myTime = [NSTimer scheduledTimerWithTimeInterval:5
                                                    target:self
                                                  selector:@selector(timerFired:)
                                                  userInfo:nil
                                                   repeats:YES];
+    _timerOff = NO;
+}
+
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer{
+    NSLog(@"eyyy");
 }
 
 - (void) stopTimer
 {
     [self.myTime invalidate];
+    _timerOff = YES;
 }
 
 - (void) timerFired:(NSTimer*)theTimer
 {
-//    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    _hasNotification = appDelegate.hasNotification;
+
     [self retrieveActiveFriends];
     
     

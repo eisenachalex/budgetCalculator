@@ -11,8 +11,8 @@
 #import "AEConvoViewController.h"
 #import "AEMenuViewController.h"
 #import "UIImageView+WebCache.h"
-#import "AETargetMapViewController.h"
 #import "AEAppDelegate.h"
+#import "AEFriendProfileViewController.h"
 #import "AEMessagesViewController.h"
 @interface AEActiveFriendsViewController ()
 
@@ -37,8 +37,11 @@
 {
     [super viewDidLoad];
     [self loadUserInfo];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                          action:@selector(tap)];
     
-
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[userInfo objectForKey:@"image_url"]]];
     NSLog(@"user jowns %@",[userInfo objectForKey:@"image_url"]);
     NSLog(@"we got that imageurl %@",imageURL);
@@ -56,7 +59,54 @@
     [face setImage:image forState:UIControlStateNormal];
     UIBarButtonItem *faceBtn = [[UIBarButtonItem alloc] initWithCustomView:face];
     [_targetItem setLeftBarButtonItem:faceBtn];
+
     // Do any additional setup after loading the view from its nib.
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"OKKKK");
+    NSString *dogID = [[NSString alloc] init];
+    NSString *handle = [[NSString alloc] init];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    for (int i = 0; i < friendsArray.count; i++){
+        NSDictionary *userDict = [friendsArray objectAtIndex:i];
+        if([[userDict valueForKey:@"handle"] isEqualToString:cell. text]){
+            
+            dogID = [userDict valueForKey:@"id"];
+            handle = [userDict objectForKey:@"handle"];
+            NSLog(@"HANDLE IT SON %@",handle);
+            NSString *stringValue = [NSString stringWithFormat:@"%@",[userDict valueForKey:@"is_friend"]];
+      
+                _isFriend = YES;
+
+            
+        }
+    }
+    NSLog(@"okay %@",dogID);
+    AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
+    profileView.dogID = dogID;
+    profileView.isFriend = _isFriend;
+    profileView.dogHandle = [NSString stringWithFormat:@"%@",handle];
+    [self presentViewController:profileView animated:NO completion:nil];
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *friendship_id = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"friend_id"];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_friendship?friendship_id=%@",friendship_id]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        [friendsArray removeObjectAtIndex:[indexPath row]];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +118,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [self stopTimer];
+}
+
+-(void)tap {
+    NSLog(@"jowns");
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -82,6 +136,7 @@
         }
     }
 }
+
 
 
 -(IBAction)messages:(id)sender{
@@ -173,24 +228,25 @@
     else{
         friendDict = [friendsArray objectAtIndex:indexPath.row];
     }
-    cell.text = [friendDict objectForKey:@"handle"];
+    cell.textLabel.text = [friendDict objectForKey:@"handle"];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir Next" size:15]];
     NSString *photoURL = [friendDict objectForKey:@"photo"];
     NSLog(@"PHOTO URLLLL %@",photoURL);
     NSLog(@"DOG HANDLE %@", cell.text);
     if([photoURL isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png.png"]];
     }
     else{
         [cell.imageView setImageWithURL:[NSURL URLWithString:photoURL]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     
     //messaeg button
     
     UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    messageButton.frame = CGRectMake(150.0, 30, 30.0, 30.0);
-    messageButton.backgroundColor = [UIColor grayColor];
-    [messageButton setTitle:@"M" forState:UIControlStateNormal];
+        [messageButton setImage:[UIImage imageNamed:@"pupular_message_default.png"] forState:UIControlStateNormal];
+    messageButton.frame = CGRectMake(210.0, 0, 60.0, 90.0);
+    messageButton.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
     [messageButton addTarget:self action:@selector(messageButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     messageButton.tag = indexPath.row;
     [cell.contentView addSubview:messageButton];
@@ -198,9 +254,10 @@
     //target button
     
     UIButton *targetButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    targetButton.frame = CGRectMake(200.0, 30, 30.0, 30.0);
-    targetButton.backgroundColor = [UIColor grayColor];
-    [targetButton setTitle:@"T" forState:UIControlStateNormal];
+    [targetButton setImage:[UIImage imageNamed:@"pupular_track.png"] forState:UIControlStateNormal];
+    targetButton.frame = CGRectMake(270.0, 0, 60.0, 90.0);
+    targetButton.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
+
     [targetButton addTarget:self action:@selector(targetButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     targetButton.tag = indexPath.row;
     if([[friendDict valueForKey:@"is_active"] boolValue] == YES){
@@ -282,7 +339,7 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    NSLog(@"JSON %@",[newJSON objectForKey:@"friend_list"]);
+    NSLog(@"all friends%@",[newJSON objectForKey:@"friend_list"]);
     if([newJSON objectForKey:@"friend_list"])
     {
         friendsArray = [newJSON objectForKey:@"friend_list"];
@@ -340,7 +397,7 @@
 
 - (void) startTimer
 {
-    self.myTime = [NSTimer scheduledTimerWithTimeInterval:1
+    self.myTime = [NSTimer scheduledTimerWithTimeInterval:5
                                                    target:self
                                                  selector:@selector(timerFired:)
                                                  userInfo:nil

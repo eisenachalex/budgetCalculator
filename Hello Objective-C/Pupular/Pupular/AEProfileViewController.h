@@ -23,6 +23,7 @@
 @property NSString *dogHandle;
 @property UIImage *profileImage;
 @property IBOutlet UINavigationItem *navBar;
+@property IBOutlet UILabel *label;
 @property IBOutlet UILabel *location;
 @property IBOutlet UILabel *age;
 @property IBOutlet UILabel *personality;

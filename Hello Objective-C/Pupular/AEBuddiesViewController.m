@@ -48,6 +48,7 @@
     if(foreign_dog_id){
         NSLog(@"foreign jowns");
         _navBar.topItem.rightBarButtonItem = nil;
+        _navBar.topItem.title = [NSString stringWithFormat:@"%@'s Pack",_dogHandle];
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",foreign_dog_id]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         // Do any adfditional setup after loading the view from its nib.
@@ -165,7 +166,7 @@
     }
     NSString *user = nil;
     NSString *imageString = nil;
-    [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+    [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
         imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
@@ -185,12 +186,12 @@
     cell.textLabel.textColor = [UIColor darkGrayColor];
     NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
         NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -198,7 +199,8 @@
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
-
+    [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [cell.imageView.layer setBorderWidth: 1.0];
     return cell;
 }
 

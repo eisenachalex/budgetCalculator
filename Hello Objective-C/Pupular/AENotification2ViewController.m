@@ -10,7 +10,6 @@
 
 #import "AENotification2ViewController.h"
 #import "AEMenuViewController.h"
-#import "AETargetMapViewController.h"
 #import "AEAboutViewController.h"
 #import "UIImageView+WebCache.h"
 #import "AEBuddiesViewController.h"
@@ -39,6 +38,8 @@
 {
     [super viewDidLoad];
     [self loadUserInfo];
+    _navBar.topItem.title = _notificationType;
+
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
@@ -50,7 +51,9 @@
     NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
     NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
     self.imageView.clipsToBounds = YES;
-    self.imageView.layer.cornerRadius = 86.37;
+    self.imageView.layer.cornerRadius = 80;
+    [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [self.imageView.layer setBorderWidth: 3.0];
     self.imageView.userInteractionEnabled = YES;
 
     // Do any additional setup after loading the view from its nib.
@@ -61,13 +64,14 @@
 
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"WE GOT THE JOWNS");
+    NSLog(@"%@",_dogHandle);
     CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
     profileView.dogID = _dogID;
     profileView.view.translatesAutoresizingMaskIntoConstraints = YES;
     profileView.isFriend = _isFriend;
-    profileView.dogHandle = _dogHandle;
-    profileView.isMine = NO;
+    profileView.dogHandle = [NSString stringWithFormat:@"%@",_dogHandle];
     [self presentViewController:profileView animated:NO completion:nil];
 }
 
@@ -81,17 +85,20 @@
         [self.notificationTitle setText:self.notificationMessage];
     }
     
-    if([self.notificationType isEqualToString:@"Auto Message"]){
+    if([self.notificationType isEqualToString:@"Alert"]){
         [self.actionButton1 setTitle:@"Message" forState:UIControlStateNormal];
-        [self.actionButton2 setTitle:@"Pack" forState:UIControlStateNormal];
+        [self.actionButton1 setImage:[UIImage imageNamed:@"pupular_message_active.png"] forState:UIControlStateNormal];
+        [self.actionButton2 setImage:[UIImage imageNamed:@"pupular_pack_active.png"] forState:UIControlStateNormal];
         [self.notificationTitle setText:self.notificationMessage];
+        [self.actionButton2 setTitle:@"Pack" forState:UIControlStateNormal];
     }
     
     
     if([self.notificationType isEqualToString:@"Walk Alert"]){
         [self.actionButton1 setTitle:@"Message" forState:UIControlStateNormal];
         [self.actionButton2 setTitle:@"Track" forState:UIControlStateNormal];
-        
+        [self.actionButton1 setImage:[UIImage imageNamed:@"pupular_message_active.png"] forState:UIControlStateNormal];
+        [self.actionButton2 setImage:[UIImage imageNamed:@"pupular_track.png"] forState:UIControlStateNormal];
         [self.notificationTitle setText:self.notificationMessage];
     }
 }
@@ -124,7 +131,7 @@
         NSString *photoURL = [dogInfo objectForKey:@"photo"];
         AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         conversationView.locationController = _locationController;
-        conversationView.senderImage = _senderThumb;
+        conversationView.senderImage = _imageView.image;
         conversationView.dogHandle = handleLabel.text;
         conversationView.dogID = _dogID;
         [self presentViewController:conversationView animated:NO completion:nil];
@@ -204,7 +211,7 @@
     {
         NSLog(@"firing %@",[newJSON objectForKey:@"profile_photo"]);
         [_imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
-                  placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                  placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
         
     }
     

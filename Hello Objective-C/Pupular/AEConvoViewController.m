@@ -11,7 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "AEMessagesViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "AEAppDelegate.h"
 
 
 @interface AEConvoViewController ()
@@ -25,20 +25,34 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.senderImage = [UIImage imageNamed:@"filler_icon.png"];
         messagesArray = [[NSMutableArray alloc]init];
-
+        senderImage = [UIImage imageNamed:@"pupular_dog_avatar_thumb.png"];
+        _firstRequest = YES;
     }
     return self;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        // iOS 7
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+    }
+    else {
+        // iOS 6
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
+
     [self loadUserInfo];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 350, 150)];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 20, 125, 125)];
     imageView.tag = 13;
+    self.navigationController.navigationBar.topItem.title = @"BOOM";
     imageView.clipsToBounds = YES;
     imageView.layer.cornerRadius = 60;
     NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
@@ -59,6 +73,7 @@
     _senderImageView.image = senderImage;
 
 
+
 }
 
 
@@ -71,6 +86,8 @@
     _firstRequest = YES;
     navTitle.title = _dogHandle;
     [self startTimer];
+    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate stopTimer];
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(keyboardWillShow)
 //                                                 name:UIKeyboardWillShowNotification
@@ -85,7 +102,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self stopTimer];
     [super viewWillDisappear:animated];
+    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate startTimer];
 //    [self stopTimer];
 //    // unregister for keyboard notifications while not visible.
 //    [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -112,9 +132,9 @@
 {
     float y = [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.toolBar.frame.size.height;
     float tableY = [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.tableView.frame.size.height;
-    [self.toolBar setFrame:CGRectMake(0, y-195, self.toolBar.bounds.size.width, self.toolBar.bounds.size.height)];
-    [self.tableView setFrame:CGRectMake(0, tableY-220, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
-    self.tableView.userInteractionEnabled = NO;
+    [self.toolBar setFrame:CGRectMake(0, y-215, self.toolBar.bounds.size.width, self.toolBar.bounds.size.height)];
+    [self.tableView setFrame:CGRectMake(0, tableY-300, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+//    self.tableView.userInteractionEnabled = NO;
 
     _keyBoardVisible = YES;
 
@@ -123,41 +143,36 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 60;
 }
 
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-   // [toolBar setFrame:CGRectMake(0,0,320,460)]; //here taken -20 for example i.e. your view will be scrolled to -20. change its value according to your requirement.
 
-    //[self.view bringSubviewToFront:tableView];
-//    [textField resignFirstResponder];
-   // [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-    
-    
-    
+    NSLog(@"JOWNNN");
     return NO;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)disablesAutomaticKeyboardDismissal {
+    return NO;
+}
+
 
 
 - (IBAction)cancel:(id)sender {
-    if(_backToMenu){
-        NSLog(@"get it");
-        AEMessagesViewController *messagesView = [[AEMessagesViewController alloc] init];
-        messagesView.locationController = _locationController;
-        [self presentViewController:messagesView animated:NO completion:nil];
-    }
-    else{
-        [self dismissViewControllerAnimated:NO completion:nil];
 
-    }
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+
+    [self dismissViewControllerAnimated:NO completion:nil];
+
+
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
@@ -207,8 +222,13 @@
         
         }
         [self.messageResponse setText:@""];
-        NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messagesArray count]-1 inSection: 1-1];
-        [tableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+        if([messagesArray count] > 0){
+            if(_firstRequest){
+                NSIndexPath* ipath = [NSIndexPath indexPathForRow: [messagesArray count]-1 inSection: 1-1];
+                [self.tableView scrollToRowAtIndexPath: ipath atScrollPosition: UITableViewScrollPositionTop animated: YES];
+                _firstRequest = NO;
+            }
+        }
       //  [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
     }
     if([newJSON objectForKey:@"message"]){
@@ -218,8 +238,11 @@
     
     if([newJSON objectForKey:@"profile_photo"]){
         UIImageView *myImageView = (UIImageView *)[self.tableView.tableHeaderView viewWithTag:13];
+        [myImageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+        [myImageView.layer setBorderWidth: 3.0];
         [myImageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_avatar_thumb.png"]];
+        _thumbImage = myImageView.image;
     }
     
 
@@ -266,7 +289,6 @@
     [cell.textLabel setFont:[UIFont fontWithName:@"Arial" size:12]];
     cell.textLabel.lineBreakMode = NSLineBreakByCharWrapping;
     cell.textLabel.numberOfLines = 0;
-
     NSString *message_id = [message valueForKey:@"sender_id"];
     NSLog(@"message id %@",message_id);
     NSLog(@"and dog... id %@", [userInfo valueForKey:@"dog_id"]);
@@ -277,10 +299,12 @@
     }
     else {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.imageView.image = self.senderImage;
+        cell.imageView.image = senderImage;
     }
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
+    [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [cell.imageView.layer setBorderWidth: 1.0];
     return cell;
     
 }

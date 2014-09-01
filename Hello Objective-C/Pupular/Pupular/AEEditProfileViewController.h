@@ -10,6 +10,7 @@
 
 @interface AEEditProfileViewController : UIViewController <UITextFieldDelegate,NSURLConnectionDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>{
     NSString *base64string;
+    NSMutableData *_responseData;
 
 }
 @property NSString *dogID;

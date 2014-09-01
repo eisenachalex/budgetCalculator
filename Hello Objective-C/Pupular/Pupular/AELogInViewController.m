@@ -16,6 +16,7 @@
 #import "AEActiveFriendsViewController.h"
 #import "AEMessagesViewController.h"
 #import "AEMenuViewController.h"
+
 #import "AEAppDelegate.h"
 @interface AELogInViewController ()
 
@@ -144,13 +145,16 @@
         mapView.view.tag = 23;
         AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
         messageView.view.tag = 12;
+        messageView.locationController = appDelegate.locationController;
+
         AESearchViewController *searchView = [[AESearchViewController alloc] init];
+        searchView.locationController = appDelegate.locationController;
         AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
         packView.locationController = appDelegate.locationController;
         AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
         NSLog(@"good here 1");
         
-        UIImage *homeImage = [UIImage imageNamed:@"pupular_home_default.png"] ;
+        UIImage *homeImage = [UIImage imageNamed:@"pupular_track_home.png"] ;
         UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
         UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
         UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
@@ -168,8 +172,10 @@
         //    UINavigationController *mapNavController = [[UINavigationController alloc]
         UITabBarController *tabBarController = [[UITabBarController alloc] init];
         tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
-        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];        [self presentViewController:tabBarController animated:NO completion:nil];
-        
+        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];
+        AEAppDelegate *delegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [delegate.window setRootViewController:tabBarController];[self presentViewController:tabBarController animated:NO completion:nil];
+
     }
 }
 

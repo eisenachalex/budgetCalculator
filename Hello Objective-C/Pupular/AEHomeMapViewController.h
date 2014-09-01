@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AECLController.h"
-@interface AEHomeMapViewController : UIViewController<AECLControllerDelegate,NSURLConnectionDataDelegate>{
+#import <GoogleMaps/GoogleMaps.h>
+@interface AEHomeMapViewController : UIViewController<AECLControllerDelegate,GMSMapViewDelegate,NSURLConnectionDataDelegate,UIGestureRecognizerDelegate>{
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
     NSMutableArray *activeFriendsArray;
@@ -23,6 +24,9 @@
 @property IBOutlet UISwitch *trackingSwitch;
 @property IBOutlet UIBarButtonItem *targetButton;
 @property NSString *targetID;
+@property UITapGestureRecognizer *theTapRecognizer;
+@property BOOL *timerOff;
+@property UIImage *profileImage;
 @property BOOL *mapHasTarget;
 @property IBOutlet UINavigationItem *targetItem;
 @end

@@ -301,9 +301,9 @@
     [cellSubView addSubview:message];
     [date setFont:[UIFont fontWithName:@"Arial-ItalicMT" size:10]];
     date.textColor = [UIColor grayColor];
-    [sender_tag setFont:[UIFont fontWithName:@"Arial" size:10]];
+    [sender_tag setFont:[UIFont fontWithName:@"Avenir Next" size:10]];
     sender_tag.textColor = [UIColor grayColor];
-    [message setFont:[UIFont fontWithName:@"Arial" size:13]];
+    [message setFont:[UIFont fontWithName:@"Avenir Next" size:13]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     // Always use this locale when parsing fixed format date strings
@@ -346,18 +346,19 @@
 
     }
     if([imageURL isEqualToString:@"none"]){
-        [cell.imageView setImage:[UIImage imageNamed:@"filler_icon.png"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageURL]]
-                       placeholderImage:[UIImage imageNamed:@"filler_icon.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
 
     cell.imageView.clipsToBounds = YES;
     cell.imageView.backgroundColor = [UIColor grayColor];
     cell.imageView.layer.cornerRadius = 25;
- 
 
+    [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [cell.imageView.layer setBorderWidth: 1.0];
     [cell.contentView addSubview:cellSubView];
     return cell;
 }
@@ -406,7 +407,7 @@
     notificationView.locationController = _locationController;
     notificationView.dogID = otherDog;
     notificationView.isFriend = NO;
-    notificationView.dogHandle = dogHandle;
+        notificationView.dogHandle = [NSString stringWithFormat:@"%@",dogHandle];
     
     [self presentViewController:notificationView animated:NO completion:nil];
     }
@@ -414,7 +415,7 @@
         
         AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
         
-        notificationView.notificationType = @"Auto Message";
+        notificationView.notificationType = @"Alert";
         notificationView.notificationMessage = messageText.text;
         notificationView.locationController = _locationController;
         notificationView.dogID = otherDog;

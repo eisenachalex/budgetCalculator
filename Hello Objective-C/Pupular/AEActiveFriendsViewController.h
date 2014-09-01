@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class AECLController;
 
-@interface AEActiveFriendsViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>  {
+@interface AEActiveFriendsViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIGestureRecognizerDelegate>  {
     NSMutableDictionary *userInfo;
     NSMutableData *_responseData;
     NSMutableArray *friendsArray;
@@ -24,5 +24,6 @@
 @property IBOutlet UIBarButtonItem *targetButton;
 @property IBOutlet UINavigationItem *targetItem;
 @property IBOutlet UISearchBar *searchBar;
+@property BOOL *isFriend;
 
 @end

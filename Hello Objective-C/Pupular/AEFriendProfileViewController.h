@@ -23,6 +23,7 @@
 @property NSString *dogHandle;
 @property IBOutlet UINavigationItem *navBar;
 @property IBOutlet UILabel *location;
+@property UITableViewCell *tableViewCell;
 @property IBOutlet UILabel *age;
 @property IBOutlet UILabel *personality;
 @property IBOutlet UILabel *gender;
@@ -31,6 +32,8 @@
 @property IBOutlet UILabel *size;
 @property IBOutlet UILabel *spayed;
 @property IBOutlet UIButton *actionButton;
+@property IBOutlet UIBarButtonItem *editButton;
+@property IBOutlet UILabel *label;
 @property IBOutlet UIButton *packButton;
 @property IBOutlet UIActivityIndicatorView *activity;
 @property IBOutlet UIImageView *imageView;

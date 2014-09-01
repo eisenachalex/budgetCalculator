@@ -48,6 +48,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.imageView.clipsToBounds = YES;
+    self.imageView.layer.cornerRadius = 60;
+    [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
+    [self.imageView.layer setBorderWidth: 3.0];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -65,7 +69,6 @@
                                                     otherButtonTitles: nil];
         
         [myAlertView show];
-        self.imageView.image = [UIImage imageNamed:@"landing_iamge.png"];
         self.password.delegate = self;
         self.passwordConfirm.delegate = self;
         self.handle.delegate = self;
@@ -179,13 +182,15 @@
         mapView.view.tag = 23;
         AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
         messageView.view.tag = 12;
+        messageView.locationController = appDelegate.locationController;
         AESearchViewController *searchView = [[AESearchViewController alloc] init];
+        searchView.locationController = appDelegate.locationController;
         AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
         packView.locationController = appDelegate.locationController;
         AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
         NSLog(@"good here 1");
         
-        UIImage *homeImage = [UIImage imageNamed:@"pupular_home_default.png"] ;
+        UIImage *homeImage = [UIImage imageNamed:@"pupular_track_home.png"] ;
         UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
         UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
         UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];

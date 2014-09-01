@@ -17,6 +17,7 @@
 }
 @property IBOutlet UIImageView *imageView;
 @property UIImage *senderThumb;
+@property IBOutlet UINavigationBar *navBar;
 @property IBOutlet UIButton *actionButton1;
 @property IBOutlet UIButton *actionButton2;
 @property AECLController *locationController;
