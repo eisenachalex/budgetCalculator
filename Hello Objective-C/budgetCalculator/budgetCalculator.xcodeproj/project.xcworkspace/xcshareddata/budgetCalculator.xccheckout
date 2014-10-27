@@ -10,31 +10,31 @@
 	<string>budgetCalculator</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C3733667-C789-4E1B-8CDD-77BF054C9F47</key>
+		<key>199EF87D63F4D7FCA0E5258A2ED8B61ACC0245C5</key>
 		<string>https://github.com/eisenachalex/budgetCalculator.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Hello Objective-C/budgetCalculator/budgetCalculator.xcodeproj/project.xcworkspace</string>
+	<string>Hello Objective-C/budgetCalculator/budgetCalculator.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C3733667-C789-4E1B-8CDD-77BF054C9F47</key>
+		<key>199EF87D63F4D7FCA0E5258A2ED8B61ACC0245C5</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/eisenachalex/budgetCalculator.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C3733667-C789-4E1B-8CDD-77BF054C9F47</string>
+	<string>199EF87D63F4D7FCA0E5258A2ED8B61ACC0245C5</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C3733667-C789-4E1B-8CDD-77BF054C9F47</string>
+			<string>199EF87D63F4D7FCA0E5258A2ED8B61ACC0245C5</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Hello Objective-C</string>
+			<string>Hello%20Objective-C</string>
 		</dict>
 	</array>
 </dict>

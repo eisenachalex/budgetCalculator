@@ -39,44 +39,120 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _navTitle.title = _dogHandle;
-    NSLog(@"nav title duh %@",_dogHandle);
-    NSLog(@"dog id %@",_dogID);
     self.imageView.clipsToBounds = YES;
     self.imageView.layer.cornerRadius = 60;
     [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
     [self.imageView.layer setBorderWidth: 3.0];
     [self.activity startAnimating];
     self.activity.hidesWhenStopped = YES;
-
     ;
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    
     [self loadUserInfo];
+    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+    _allDogs = appDelegate.allDogs;
+    NSString *dogID = _dogID;
+    _dog = [_allDogs objectForKey:[NSString stringWithFormat:@"%@",dogID]];
+    _navTitle.title = [_dog valueForKey:@"handle"];
+    [self buildProfile];
+    [self isFriend:appDelegate.friendList];
     if(self.isFriend){
-        NSLog(@"friend trew");
-        [self.actionButton setTitle:@"Message" forState:UIControlStateNormal];
-        
+        [self.actionButton setBackgroundImage:[UIImage imageNamed:@"pupular_message_button.png"] forState:normal];
+        _buttonStatus = @"Message";
     }
-    else if(self.isMine){
-        NSLog(@"mine trew");
-        [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
-    } 
+
     else {
-        NSLog(@"request trew");
-        [self.actionButton setTitle:@"Request" forState:UIControlStateNormal];
+        [self.actionButton setBackgroundImage:[UIImage imageNamed:@"pupular_add_button.png"] forState:normal];
+        _buttonStatus = @"Request";
+    }
+    
+}
+
+-(void)buildProfile{
+    NSString *returnString = [[NSString alloc] init];
+    returnString = [NSString stringWithFormat:@"Hi, my name is %@!", [_dog valueForKey:@"handle"]];
+    NSDictionary *dog = [_dog valueForKey:@"profile"];
+    if((([NSNull null] != [dog objectForKey:@"age"]) && (![[dog objectForKey:@"age"] isEqualToNumber:[NSNumber numberWithInt:0]])) || (([NSNull null] != [dog objectForKey:@"gender"]) && (![[dog valueForKey:@"gender"] isEqualToString:@""]) && (![[dog valueForKey:@"gender"] isEqualToString:@"(null)"])) || (([NSNull null] != [dog objectForKey:@"breed"]) && (![[dog valueForKey:@"breed"] isEqualToString:@"(null)"]) && (![[dog valueForKey:@"breed"] isEqualToString:@""]))){
+        returnString = [NSString stringWithFormat:@"%@ I'm a", returnString];
+    }
+    
+    
+    if(([NSNull null] != [dog objectForKey:@"age"]) && (![[dog objectForKey:@"age"] isEqualToNumber:[NSNumber numberWithInt:0]]) ){
+        returnString = [NSString stringWithFormat:@"%@ %@ year old",returnString,[dog valueForKey:@"age"]];
+      
+    }
+    if([NSNull null] != [dog objectForKey:@"gender"]){
+        if(![[dog valueForKey:@"gender"] isEqualToString:@""]){
+
+        returnString = [NSString stringWithFormat:@"%@ %@",returnString, [dog valueForKey:@"gender"]];
+        }
+    }
+    if([NSNull null] != [dog objectForKey:@"breed"]){
+        if(![[dog valueForKey:@"breed"] isEqualToString:@"(null)"]){
+        returnString = [NSString stringWithFormat:@"%@ %@",returnString, [dog valueForKey:@"breed"]];
+        }
+    }
+    if(![returnString hasSuffix:@"!"]){
+        returnString = [NSString stringWithFormat:@"%@.",returnString];
+    }
+    if([NSNull null] != [dog objectForKey:@"fertility"]){
+        if(![[dog valueForKey:@"fertility"] isEqualToString:@""]){
+        returnString = [NSString stringWithFormat:@"%@  I'm %@",returnString,[dog valueForKey:@"fertility"]];
+        }
+    }
+    if([NSNull null] != [dog objectForKey:@"size"]){
+        if(![[dog valueForKey:@"size"] isEqualToString:@""]){
+
+        returnString = [NSString stringWithFormat:@"%@ and %@",returnString, [dog valueForKey:@"size"]];
+        }
+    }
+    
+    if([NSNull null] != [dog objectForKey:@"personality_type"]){
+        if(![[dog valueForKey:@"personality_type"] isEqualToString:@""]){
+            if([returnString hasSuffix:@"."]){
+        returnString = [NSString stringWithFormat:@"%@ My pup friends say that I'm %@",returnString, [dog valueForKey:@"personality_type"]];           }
+            else{
+        returnString = [NSString stringWithFormat:@"%@. My pup friends say that I'm %@",returnString, [dog valueForKey:@"personality_type"]];
+        }
+        }
         
     }
-    NSString *title = [NSString stringWithFormat:@"%@'s Pack",_dogHandle];
-    [_packButton setTitle:title forState:UIControlStateNormal];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/profile?dog_id=%@",_dogID]]];
-    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     
-    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
-    NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
+    
+    if([NSNull null] != [dog objectForKey:@"humans_name"]){
+        if(![[dog valueForKey:@"humans_name"] isEqualToString:@""]){
+            
+            if([returnString hasSuffix:@"."]){
+       returnString = [NSString stringWithFormat:@"%@ My human best friend is %@",returnString, [dog objectForKey:@"humans_name"]];            }
+            else{
+       returnString = [NSString stringWithFormat:@"%@. My human best friend is %@",returnString, [dog objectForKey:@"humans_name"]];            }
+ 
+        }
+    }
+    if([NSNull null] != [dog objectForKey:@"location"]){
+        
+    }
+    NSString *imageURL = [_dog valueForKey:@"photo_list"][0];
+    [self.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageURL]]
+                   placeholderImage:[UIImage imageNamed:@"pupulardog_avatar_thumb.png"]];
+    if([returnString hasSuffix:@"."] || [returnString hasSuffix:@"!"]){
+        returnString = [NSString stringWithFormat:@"%@",returnString];
+    }
+    else{
+        returnString = [NSString stringWithFormat:@"%@.",returnString];
+    }
+    _label.text = returnString;
+}
+
+-(void)isFriend:(NSArray *)friendList{
+    for (NSString *string in friendList)
+    {
+        NSString *dogID = _dogID;
+        if([string intValue] == [dogID intValue]){
+            self.isFriend = YES;
+    }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -93,9 +169,8 @@
 
 - (IBAction)buddies:(id)sender {
     AEBuddiesViewController *buddiesView = [[AEBuddiesViewController alloc] init];
-    buddiesView.foreign_dog_id = _dogID;
     buddiesView.locationController = _locationController;
-    buddiesView.dogHandle = _dogHandle;
+    buddiesView.dogID = [_dog valueForKey:@"id"];
     [self presentViewController:buddiesView animated:NO completion:nil];
 }
 
@@ -113,26 +188,23 @@
     if([[sender currentTitle] isEqualToString:@"Edit Profile"])
     {
     }
-    else if([[sender currentTitle] isEqualToString:@"Request"])
+    else if([_buttonStatus isEqualToString:@"Request"])
     {
-        NSLog(@"TREWerr");
-        NSLog(@"DOG ID %@",[userInfo valueForKey:@"dog_id"]);
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate.tabBarController setSelectedIndex:3];
-
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }
     
-    else if([[sender currentTitle] isEqualToString:@"Message"])
+    else if([_buttonStatus isEqualToString:@"Message"])
     {
         AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         UITableViewCell *tableViewCell = [[UITableViewCell alloc] init];
         tableViewCell.imageView.image= imageView.image;
-        conversationView.senderImage = tableViewCell.imageView.image;
-        conversationView.dogHandle = _dogHandle;
+        conversationView.senderImage = self.convoImage;
+        conversationView.dogHandle = [_dog valueForKey:@"handle"];
         conversationView.dogID = _dogID;
         [self presentViewController:conversationView animated:NO completion:nil];
     }
@@ -160,65 +232,6 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    if([newJSON objectForKey:@"profile"])
-    {
-//        Hi, my name is BobbieMcgee88! I'm a 4  year
-//        old female Mutt. I'm spayed and 25-50lbs. My pup
-//        friends say that I'm playful and a little alpha. My
-//        human best friend is Harry Boileau.
-
-        NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
-        NSString *returnString = [[NSString alloc] init];
-        returnString = [NSString stringWithFormat:@"Hi, my name is %@!", _dogHandle];
-        _profile = [newJSON objectForKey:@"profile"];
-        
-        if(([NSNull null] != [_profile valueForKey:@"age"]) || ([NSNull null] != [_profile valueForKey:@"gender"]) || ([NSNull null] != [_profile valueForKey:@"breed"])){
-            returnString = [NSString stringWithFormat:@"%@. I'm a", returnString];
-        }
-        
-        
-        if([NSNull null] != [_profile valueForKey:@"age"]){
-            returnString = [NSString stringWithFormat:@"%@ %@ year old",returnString,[_profile valueForKey:@"age"]];
-        }
-        if([NSNull null] != [_profile valueForKey:@"gender"]){
-            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"gender"]];
-        }
-        if([NSNull null] != [_profile valueForKey:@"breed"]){
-            NSLog(@"breed is not null");
-            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"breed"]];
-        }
-        if([NSNull null] != [_profile valueForKey:@"fertility"]){
-            returnString = [NSString stringWithFormat:@"%@.  I'm %@",returnString,[_profile valueForKey:@"fertility"]];
-            
-        }
-        if([NSNull null] != [_profile valueForKey:@"size"]){
-                        returnString = [NSString stringWithFormat:@"%@ and %@",returnString, [_profile valueForKey:@"size"]];
-            
-        }
-
-        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
-            returnString = [NSString stringWithFormat:@"%@. My pup friends say that I'm %@",returnString, [_profile valueForKey:@"personality_type"]];
-        }
-        if([NSNull null] != [_profile valueForKey:@"humans_name"]){
-                     returnString = [NSString stringWithFormat:@"%@. My human best friend is %@",returnString, [_profile valueForKey:@"humans_name"]];
-            
-        }
-        if([NSNull null] != [_profile valueForKey:@"location"]){
-
-        }
-        returnString = [NSString stringWithFormat:@"%@.",returnString];
-        _label.text = returnString;
-        
-    }
-    else if([newJSON objectForKey:@"profile_photo"]){
-        NSLog(@"%@ jownnn",[newJSON objectForKey:@"profile_photo"]);
-        [imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
-                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar.png"]];
-        
-        [self.activity stopAnimating];
-    }
-    
-    
 }
 
 - (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {

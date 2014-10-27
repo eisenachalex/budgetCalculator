@@ -17,6 +17,7 @@
     self = [super init];
     if (self != nil) {
         self.locationManager = [[CLLocationManager alloc] init];
+        [self.locationManager requestAlwaysAuthorization];
         self.locationManager.delegate = self; // send loc updates to myself
     }
     return self;

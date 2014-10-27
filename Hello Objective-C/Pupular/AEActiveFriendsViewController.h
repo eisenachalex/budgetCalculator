@@ -7,14 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol SwitchDelegate <NSObject>
+@required
+- (void)switched;
+@end
 @class AECLController;
 
 @interface AEActiveFriendsViewController : UIViewController <NSURLConnectionDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate, UIGestureRecognizerDelegate>  {
     NSMutableDictionary *userInfo;
     NSMutableData *_responseData;
     NSMutableArray *friendsArray;
-    NSArray *searchResults;
+    NSMutableArray *usersArray;
+
+    NSMutableArray *searchResults;
+    id <SwitchDelegate> _delegate;
+
 }
+@property (nonatomic, strong) id delegate;
+@property NSDictionary *allDogs;
+@property NSString *imageURL;
 @property AECLController *locationController;
 @property NSMutableArray *activeFriendsArray;
 @property BOOL *hasNotification;

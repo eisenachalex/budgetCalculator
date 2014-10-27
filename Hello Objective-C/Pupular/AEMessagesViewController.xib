@@ -14,10 +14,10 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F61-wa-afm">
+                <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F61-wa-afm">
                     <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <textAttributes key="titleTextAttributes">
@@ -45,9 +45,10 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="u36-6o-bgn">
-                    <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="u36-6o-bgn">
+                    <rect key="frame" x="0.0" y="60" width="320" height="375"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="3ko-NE-TIX"/>
                         <outlet property="delegate" destination="-1" id="caf-t8-09q"/>
@@ -59,8 +60,13 @@
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="u36-6o-bgn" firstAttribute="top" secondItem="F61-wa-afm" secondAttribute="bottom" id="SUc-fP-Wx1"/>
+                <constraint firstAttribute="trailing" secondItem="u36-6o-bgn" secondAttribute="trailing" id="UZG-yx-Ohx"/>
+                <constraint firstAttribute="bottom" secondItem="u36-6o-bgn" secondAttribute="bottom" constant="45" id="eIB-IJ-op2"/>
+                <constraint firstItem="u36-6o-bgn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="h2q-4s-nAK"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>

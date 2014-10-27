@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "AECLController.h"
 
+@protocol LoginDelegate <NSObject>
+@required
+- (void)loginComplete;
+@end
+
 @interface AELogInViewController : UIViewController <UITextFieldDelegate,UIScrollViewDelegate>{
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
+    id <LoginDelegate> _delegate;
 }
+@property (nonatomic,strong) id delegate;
 @property IBOutlet UIActivityIndicatorView *spinner;
 @property IBOutlet UITextField *email;
 @property IBOutlet UITextField *password;

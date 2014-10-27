@@ -41,7 +41,6 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSLog(@"%@",NSStringFromCGRect(textField.frame));
     [scrollView setContentOffset:CGPointMake(0,textField.center.y-100)animated:YES];
 }
 
@@ -82,7 +81,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     // scrollview won't scroll unless content size explicitly set
     //
-    
+    [self loadUserInfo];
+
     [scrollView addSubview:contentView];//if the contentView is not already inside your scrollview in your xib/StoryBoard doc
     
     scrollView.contentSize = contentView.frame.size; //set
@@ -140,79 +140,51 @@
     
 }
 
+-(IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     
     _responseData = [[NSMutableData alloc] init];
-    NSLog(@"response received");
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_responseData appendData:data];
-    NSLog(@"data received");
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [spinner stopAnimating];
-    NSLog(@"Succeeded! Received %d bytes of data", [_responseData length]);
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
     NSString *login_response = [newJSON objectForKey:@"login_status"];
-    NSLog(@"jsonnnn %@",newJSON);
     //if([login_response  isEqual: @"failed"]){
        // self.loginError.hidden = FALSE;
    
    // }
     if([login_response isEqualToString: @"success"]){
-        NSLog(@"cuz we own");
         NSString *email= [newJSON objectForKey:@"email"];
         NSString *dog_id = [newJSON objectForKey:@"dog_id"];
         NSString *dog_handle = [newJSON objectForKey:@"dog_handle"];
         NSString *image_url = [newJSON objectForKey:@"dog_url"];
-
+        NSMutableArray *read_messages = [[NSMutableArray alloc] init];
         [userInfo setValue:email forKey:@"email"];
         [userInfo setValue:dog_id forKey:@"dog_id"];
+        [userInfo setValue:@"false" forKey:@"is_active"];
         [userInfo setValue:dog_handle forKey:@"dog_handle"];
         [userInfo setValue:image_url forKey:@"image_url"];
-        //[userInfo replaceObjectAtIndex:1 withObject:retrievedPhone];
+        [userInfo setValue:read_messages forKey:@"read_messages"];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
-       AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-        AEHomeMapViewController *mapView = [[AEHomeMapViewController alloc] init];
-        mapView.locationController = appDelegate.locationController;
-        mapView.view.tag = 23;
-        AEMessagesViewController *messageView = [[AEMessagesViewController alloc] init];
-        messageView.view.tag = 12;
-        messageView.locationController = appDelegate.locationController;
-        AESearchViewController *searchView = [[AESearchViewController alloc] init];
-        searchView.locationController = appDelegate.locationController;
-        AEActiveFriendsViewController *packView = [[AEActiveFriendsViewController alloc] init];
-        packView.locationController = appDelegate.locationController;
-        AEMenuViewController *moreView = [[AEMenuViewController alloc] init];
-        NSLog(@"good here 1");
-        
-        UIImage *homeImage = [UIImage imageNamed:@"pupular_track_home.png"] ;
-        UIImage *packImage = [UIImage imageNamed:@"pupular_pack_default.png"];
-        UIImage *searchImage = [UIImage imageNamed:@"pupular_search_default.png"];
-        UIImage *messageImage = [UIImage imageNamed:@"pupular_message_default.png"];
-        UIImage *moreImage = [UIImage imageNamed:@"pupular_more_default.png"];
-        [mapView.tabBarItem setImage:homeImage];
-        [searchView.tabBarItem setImage:searchImage];
-        [packView.tabBarItem setImage:packImage];
-        [moreView.tabBarItem setImage:moreImage];
-        [messageView.tabBarItem setImage:messageImage];
-        
-        
-        //    [mapView.tabBarItem setImage:mapImage];
-        //    [accountView.tabBarItem setImage:logOutImage];
-        //
-        //    UINavigationController *mapNavController = [[UINavigationController alloc]
-        UITabBarController *tabBarController = [[UITabBarController alloc] init];
-        tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.1 alpha:1];
-
-        [tabBarController setViewControllers:@[mapView,packView,searchView,messageView,moreView]];        [self presentViewController:tabBarController animated:NO completion:nil];
-        
-        
-    }
+        AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate startTimer];
+        [appDelegate getAllDogs];
+        [appDelegate.tabBarController setSelectedIndex:0];
+        [self dismissViewControllerAnimated:NO completion:nil];
+        [self.delegate dismissMe];
+     }
+    
+    
     if([login_response isEqualToString: @"failure"]){
         _statusLabel.textColor = [UIColor redColor];
         NSString *email= [newJSON objectForKey:@"email"];
@@ -222,15 +194,10 @@
         _statusLabel.hidden = NO;
         [_submitButton setTitle:@"Complete" forState:UIControlStateNormal];
     }
-
-    
-
 }
 
 -(IBAction)submit:(id)sender {
-    NSLog(@"yoyoyo its thats base %@",base64string);
     if([base64string isEqualToString:@"none"]){
-        NSLog(@"trigger central");
         UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                               message:@"You Must Choose A Photo!"
                                                              delegate:nil
@@ -250,7 +217,7 @@
     NSString *passwordConfirm = self.passwordConfirm.text;
     NSString *handle = self.handle.text;
     NSString *zip = self.zip.text;
-    NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/sign_up"];
+    NSURL *url = [NSURL URLWithString:@"http://dry-shelf-9195.herokuapp.com/sign_up"];
     NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",base64string,@"photo",nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -262,9 +229,7 @@
     [request setHTTPBody:requestBodyData];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
                                                                   delegate:self];
-    
 
-    
     }
 
 }
@@ -278,13 +243,11 @@
         userInfo = [[NSMutableDictionary alloc] init];
         [userInfo setValue:@"empty" forKey:@"email"];
     }
-    NSLog(@"here is the user info %@", userInfo);
 }
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
-    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
 
@@ -312,9 +275,9 @@
     return 6;
 }
 
-- (IBAction)cancel:(id)sender {
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
+
+
+
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row   forComponent:(NSInteger)component
 {

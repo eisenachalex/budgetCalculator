@@ -9,14 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "AECLController.h"
 #import <GoogleMaps/GoogleMaps.h>
+
+@protocol SwitchDelegate <NSObject>
+@required
+- (void)switched;
+@end
 @interface AEHomeMapViewController : UIViewController<AECLControllerDelegate,GMSMapViewDelegate,NSURLConnectionDataDelegate,UIGestureRecognizerDelegate>{
     NSMutableData *_responseData;
     NSMutableDictionary *userInfo;
     NSMutableArray *activeFriendsArray;
     BOOL firstLocationUpdate_;
+    id <SwitchDelegate> _delegate;
 
 }
+@property (nonatomic, strong) id delegate;
 @property NSTimer *myTime;
+@property NSString *imageURL;
 @property BOOL *hasNotification;
 @property IBOutlet UINavigationBar *navBar;
 @property AECLController *locationController;

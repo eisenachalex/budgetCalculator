@@ -13,7 +13,7 @@
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DogHandle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ct-YR-RJh">
                     <rect key="frame" x="49" y="14" width="86" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                     <color key="textColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -21,7 +21,7 @@
                     <rect key="frame" x="6" y="7" width="35" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="pupular_message_active.png" translatesAutoresizingMaskIntoConstraints="NO" id="asU-UU-LK6">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="pupular_message_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="asU-UU-LK6">
                     <rect key="frame" x="163" y="9" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,6 +37,6 @@
         </view>
     </objects>
     <resources>
-        <image name="pupular_message_active.png" width="30" height="30"/>
+        <image name="pupular_message_default.png" width="30" height="30"/>
     </resources>
 </document>
