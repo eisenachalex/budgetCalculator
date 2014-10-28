@@ -67,6 +67,8 @@
 		EF931B1019F04BE30041ED1A /* AEToolBarTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */; };
 		EF931B1119F04BE30041ED1A /* AEToolBarTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */; };
 		EF9EF25819B7AEC30014C3BE /* pupular_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9EF25719B7AEC30014C3BE /* pupular_badge.png */; };
+		EF9F9C8E1A00102B00E34786 /* AEMessageViewFiller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */; };
+		EF9F9C901A00352B00E34786 /* AEPackViewFiller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */; };
 		EFA3D87519AA9788007CF10A /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */; };
 		EFA3D87719AA97CC007CF10A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */; };
 		EFA3D87919ABE68B007CF10A /* markerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D87819ABE68B007CF10A /* markerView.xib */; };
@@ -209,6 +211,8 @@
 		EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEToolBarTestViewController.m; sourceTree = "<group>"; };
 		EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEToolBarTestViewController.xib; sourceTree = "<group>"; };
 		EF9EF25719B7AEC30014C3BE /* pupular_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_badge.png; sourceTree = "<group>"; };
+		EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMessageViewFiller.xib; path = ../AEMessageViewFiller.xib; sourceTree = "<group>"; };
+		EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEPackViewFiller.xib; sourceTree = "<group>"; };
 		EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewRelicAgent.framework; path = Pupular/NewRelicAgent.framework; sourceTree = "<group>"; };
 		EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		EFA3D87819ABE68B007CF10A /* markerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = markerView.xib; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 			children = (
 				EF1CEC2A193786D00000CDC5 /* AEAppDelegate.h */,
 				EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */,
+				EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */,
 				EFCAC8AF19C243A20051EEF1 /* AETabBarViewController.h */,
 				EFCAC8B019C243A20051EEF1 /* AETabBarViewController.m */,
 				EFC2FF0C19537B2300904361 /* AEAdditionView.h */,
@@ -424,6 +429,7 @@
 				EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */,
 				EFCDA90E19968CF500635A2C /* AEMessagesViewController.h */,
 				EFCDA90C19968C9E00635A2C /* AEMessagesViewController.m */,
+				EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */,
 				EF931B0D19F04BE30041ED1A /* AEToolBarTestViewController.h */,
 				EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */,
 				EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */,
@@ -682,6 +688,7 @@
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
 				EFA3D88319AC524E007CF10A /* search_filler.png in Resources */,
 				EF0B8EB819BACE7900FCA587 /* pupular_message_default.png in Resources */,
+				EF9F9C8E1A00102B00E34786 /* AEMessageViewFiller.xib in Resources */,
 				EF0B8EB019BAA3B800FCA587 /* pupular_accept_button.png in Resources */,
 				EF0B8EAC19BA9FC900FCA587 /* pupular_track_button.png in Resources */,
 				EF0B8EAA19BA9EB500FCA587 /* pupular_message_button.png in Resources */,
@@ -700,6 +707,7 @@
 				EF0B8EAE19BAA22800FCA587 /* pupular_pack_button.png in Resources */,
 				EF931B1119F04BE30041ED1A /* AEToolBarTestViewController.xib in Resources */,
 				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
+				EF9F9C901A00352B00E34786 /* AEPackViewFiller.xib in Resources */,
 				EF0B8EB219BAA47200FCA587 /* pupular_decline_button.png in Resources */,
 				EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */,
 				EFA3D89519AD04D3007CF10A /* pupular_message_big.png in Resources */,

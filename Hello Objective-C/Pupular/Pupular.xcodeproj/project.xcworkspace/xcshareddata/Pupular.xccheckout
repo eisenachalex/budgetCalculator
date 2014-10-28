@@ -93,7 +93,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4FD0509BC603E9D88FDD822C2C3432751298131D</string>
+			<string>22A6F4DC-ECB4-47AF-86A3-32B577ECD09D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>custom_tech_front</string>
 		</dict>
@@ -101,7 +101,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>22A6F4DC-ECB4-47AF-86A3-32B577ECD09D</string>
+			<string>4FD0509BC603E9D88FDD822C2C3432751298131D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>custom_tech_front</string>
 		</dict>
@@ -125,7 +125,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
+			<string>3E2152F5-FB30-46A0-8826-D2A6CB931716</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SDWebImage.framework</string>
 		</dict>
@@ -133,7 +133,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3E2152F5-FB30-46A0-8826-D2A6CB931716</string>
+			<string>E28E36D423EC87798E52E2BF482E9F7A1E6479D6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>SDWebImage.framework</string>
 		</dict>

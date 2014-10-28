@@ -22,6 +22,7 @@
 }
 @property NSDictionary *allDogs;
 @property NSDictionary *dog;
+@property UIView *fillerView;
 @property (nonatomic, strong) id delegate;
 @property AECLController *locationController;
 @property IBOutlet UITableView *tableView;

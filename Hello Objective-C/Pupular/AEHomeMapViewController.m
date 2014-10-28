@@ -31,7 +31,6 @@ GMSMarker *marker;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Home";
-        NSLog(@"recent theory");
     }
     return self;
 }

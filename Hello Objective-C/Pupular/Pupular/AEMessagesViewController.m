@@ -29,6 +29,7 @@
     if (self) {
         messagesArray = [[NSMutableArray alloc] init];
         self.title = @"Messages";
+        _fillerView = nil;
     }
     return self;
 }
@@ -110,6 +111,21 @@
     AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
     if(appDelegate.allMessages){
         messagesArray = appDelegate.allMessages;
+    }
+    if(messagesArray.count == 0){
+        self.tableView.hidden = YES;
+        if(_fillerView == nil){
+            UIView *messageFiller = [[[[NSBundle mainBundle] loadNibNamed:@"AEMessageViewFiller" owner:self options:nil] objectAtIndex:0] initWithFrame:CGRectMake(200, 400, 2, 3)];
+            UIView *frameSauce = [[UIView alloc] initWithFrame:CGRectMake(0,80,200,300)];
+            [frameSauce addSubview:messageFiller];
+            _fillerView = frameSauce;
+            [self.view addSubview:frameSauce];
+        }
+   }
+    else{
+        self.tableView.hidden = NO;
+        [_fillerView removeFromSuperview];
+        _fillerView = nil;
     }
     if(![self.tableView isEditing]){
     [self.tableView reloadData];
@@ -399,7 +415,6 @@
     }
     else if([messageType isEqualToString:@"walk_alert"]){
         AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
-        
         notificationView.notificationType = @"Wag Alert";
         notificationView.notificationMessage = messageText.text;
         notificationView.locationController = _locationController;

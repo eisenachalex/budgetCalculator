@@ -29,6 +29,7 @@
         friendsArray = [[NSMutableArray alloc] init];
         self.title = @"Pack";
         tableView.frame = self.view.frame;
+        _fillerView = nil;
     }
     return self;
 }
@@ -357,6 +358,22 @@
     if([newJSON objectForKey:@"friends"])
     {
         friendsArray = [newJSON objectForKey:@"friends"];
+        if(friendsArray.count == 0){
+            self.tableView.hidden = YES;
+            if(_fillerView == nil){
+                UIView *messageFiller = [[[[NSBundle mainBundle] loadNibNamed:@"AEPackViewFiller" owner:self options:nil] objectAtIndex:0] initWithFrame:CGRectMake(200, 400, 2, 3)];
+                UIView *frameSauce = [[UIView alloc] initWithFrame:CGRectMake(0,110,200,300)];
+                [frameSauce addSubview:messageFiller];
+                _fillerView = frameSauce;
+                [self.view addSubview:frameSauce];
+            }
+        }
+        else{
+            self.tableView.hidden = NO;
+            [_fillerView removeFromSuperview];
+            _fillerView = nil;
+        }
+
         activeFriendsArray = [newJSON objectForKey:@"active"];
         friendsArray = [friendsArray mutableCopy];
         [self buildUsersArray];
@@ -408,6 +425,7 @@
 {
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+
 }
 
 @end

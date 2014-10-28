@@ -25,6 +25,7 @@
 }
 @property (nonatomic, strong) id delegate;
 @property NSDictionary *allDogs;
+@property UIView *fillerView;
 @property NSString *imageURL;
 @property AECLController *locationController;
 @property NSMutableArray *activeFriendsArray;
