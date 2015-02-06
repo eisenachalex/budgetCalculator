@@ -47,7 +47,7 @@
         [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     _navBar.topItem.rightBarButtonItem = nil;
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_list?dog_id=%@",_dogID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
@@ -209,7 +209,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *friendship_id = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"friend_id"];
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/delete_friendship?friendship_id=%@",friendship_id]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_friendship?friendship_id=%@",friendship_id]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [friendsArray removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];

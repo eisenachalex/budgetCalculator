@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AEConvoViewController">
@@ -10,7 +10,6 @@
                 <outlet property="messageResponse" destination="iNg-NV-1dl" id="ckg-fh-IuB"/>
                 <outlet property="navTitle" destination="ZiZ-jd-wrB" id="GuF-KP-ek6"/>
                 <outlet property="sendMessageButton" destination="9S4-K4-Bdq" id="vSy-f8-W7v"/>
-                <outlet property="spinner" destination="dLa-hy-j0p" id="eI1-oK-AP5"/>
                 <outlet property="tableView" destination="PwG-V4-q1F" id="hXJ-hL-cX3"/>
                 <outlet property="toolBar" destination="ZG1-hW-noV" id="XWj-wY-v3E"/>
                 <outlet property="view" destination="95E-SV-tqD" id="vNj-vh-gzS"/>
@@ -21,20 +20,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PwG-V4-q1F">
-                    <rect key="frame" x="0.0" y="44" width="320" height="227"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PwG-V4-q1F">
+                    <rect key="frame" x="0.0" y="63" width="320" height="245"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="DJY-YY-chj"/>
                         <outlet property="delegate" destination="-1" id="Sjh-xq-fVa"/>
                     </connections>
                 </tableView>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dLa-hy-j0p">
-                    <rect key="frame" x="280" y="203" width="20" height="20"/>
-                    <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                </activityIndicatorView>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-nF-SVn">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-nF-SVn">
+                    <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="tintColor" red="0.098039215690000001" green="0.49803921569999998" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     <textAttributes key="titleTextAttributes">
@@ -51,8 +46,8 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG1-hW-noV">
-                    <rect key="frame" x="0.0" y="271" width="320" height="44"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZG1-hW-noV">
+                    <rect key="frame" x="0.0" y="308" width="320" height="44"/>
                     <items>
                         <barButtonItem style="plain" id="X9l-EN-F6f">
                             <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="iNg-NV-1dl">
@@ -88,19 +83,10 @@
                 </toolbar>
             </subviews>
             <constraints>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="trailing" secondItem="VsM-nF-SVn" secondAttribute="trailing" id="1t5-1f-MVh"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="leading" secondItem="VsM-nF-SVn" secondAttribute="leading" id="5O5-w8-0t1"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="leading" secondItem="95E-SV-tqD" secondAttribute="leading" id="Dcu-y1-swF"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="leading" secondItem="PwG-V4-q1F" secondAttribute="leading" id="DfU-ab-bvK"/>
-                <constraint firstItem="VsM-nF-SVn" firstAttribute="top" secondItem="95E-SV-tqD" secondAttribute="top" id="S8y-lT-7Va"/>
-                <constraint firstAttribute="trailing" secondItem="ZG1-hW-noV" secondAttribute="trailing" id="a62-wy-2Gb"/>
-                <constraint firstAttribute="bottom" secondItem="ZG1-hW-noV" secondAttribute="bottom" constant="215" id="faF-hE-t95"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="trailing" secondItem="PwG-V4-q1F" secondAttribute="trailing" id="h9H-ts-gUV"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="top" secondItem="PwG-V4-q1F" secondAttribute="bottom" id="k3T-T9-II2"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="top" secondItem="PwG-V4-q1F" secondAttribute="bottom" id="mRo-qS-9eU"/>
-                <constraint firstItem="ZG1-hW-noV" firstAttribute="top" secondItem="PwG-V4-q1F" secondAttribute="bottom" id="u7L-dj-yO7"/>
-                <constraint firstItem="VsM-nF-SVn" firstAttribute="bottom" secondItem="PwG-V4-q1F" secondAttribute="top" id="uHt-wf-3Q1"/>
+                <constraint firstItem="VsM-nF-SVn" firstAttribute="top" secondItem="95E-SV-tqD" secondAttribute="top" constant="19" id="fPM-dG-aAn"/>
+                <constraint firstItem="PwG-V4-q1F" firstAttribute="top" secondItem="VsM-nF-SVn" secondAttribute="bottom" id="wtu-rf-tNf"/>
             </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="152" y="174"/>
         </view>

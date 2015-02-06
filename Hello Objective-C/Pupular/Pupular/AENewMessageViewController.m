@@ -61,7 +61,7 @@
     [self buildUsersArray];
     self.searchBar.delegate = self;
     self.message.delegate = self;
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
@@ -82,6 +82,7 @@
 }
 
 - (IBAction)cancel:(id)sender {
+    [self.delegate startTimer];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -95,7 +96,7 @@
 }
 -(IBAction)sendMessage:(id)sender{
     //FIX RECEIVER ID FOR NEW MESSAGE
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],receiver_id,[self.message.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],receiver_id,[self.message.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
     conversationView.backToMenu = YES;

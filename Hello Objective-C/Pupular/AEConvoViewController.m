@@ -33,10 +33,6 @@
     return self;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 
 -(void)textFieldDidChange:(id)sender{
     _keyBoardVisible = YES;
@@ -62,23 +58,22 @@
     imageView.tag = 13;
     imageView.clipsToBounds = YES;
     imageView.layer.cornerRadius = 60;
-    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
+    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
     NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
     [headerView addSubview:imageView];
     self.tableView.tableHeaderView = headerView;
     float y = [UIScreen mainScreen].bounds.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.toolBar.frame.size.height;
-    [self.toolBar setFrame:CGRectMake(0, y+10, self.toolBar.bounds.size.width, self.toolBar.bounds.size.height)];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+    [self.toolBar setFrame:CGRectMake(0, y, self.toolBar.bounds.size.width, self.toolBar.bounds.size.height)];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     self.messageResponse.delegate = self;
     _senderImageView.clipsToBounds = YES;
-    _senderImageView.layer.cornerRadius = 30;
+    _senderImageView.layer.cornerRadius = 150;
     _senderImageView.image = senderImage;
 }
 
 -(void)viewWillAppear:(BOOL)animated  {
     [super viewWillAppear:animated];
-    NSLog(@"user id %@",[userInfo valueForKey:@"dog_id"]);
     _firstRequest = YES;
     _keyBoardVisible = NO;
     navTitle.title = _dogHandle;
@@ -92,8 +87,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"disappear jowns");
     [self stopTimer];
+    [self.delegate startTimer];
     [super viewWillDisappear:animated];
     AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate startTimer];
@@ -138,7 +133,7 @@
 -(IBAction)sendMessage:(id)sender{
     _keyBoardVisible = NO;
     _sendMessageButton.userInteractionEnabled = NO;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],_dogID,[self.messageResponse.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/new_message?sender_id=%@&receiver_id=%@&message_type=message&body=%@",[userInfo valueForKey:@"dog_id"],_dogID,[self.messageResponse.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 
 }
@@ -178,7 +173,7 @@
 
     }
     if([newJSON objectForKey:@"message"]){
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/conversation?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         _sendMessageButton.userInteractionEnabled = YES;
     }
@@ -265,7 +260,7 @@
     
     [self loadUserInfo];
     if(!_keyBoardVisible){
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     }
 }

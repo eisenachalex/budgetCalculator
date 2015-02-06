@@ -129,7 +129,7 @@
     [self loadUserInfo];
     [userInfo setValue:@"false" forKey:@"is_active"];
     [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
@@ -245,18 +245,18 @@
 }
 
 -(void)getAllDogs{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/all_dogs"]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs"]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
 -(void)getAllMessages{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
 
 -(void)getFriendList{
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
@@ -277,7 +277,7 @@
 }
 
 - (void)locationUpdate:(CLLocation *)location {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/update_coordinates?lat=%f&long=%f&email=%@",location.coordinate.latitude, location.coordinate.longitude,[userInfo objectForKey:@"email"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/update_coordinates?lat=%f&long=%f&email=%@",location.coordinate.latitude, location.coordinate.longitude,[userInfo objectForKey:@"email"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 

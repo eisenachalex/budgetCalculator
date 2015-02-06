@@ -234,7 +234,7 @@
     NSString *spayed =  self.spayed.text;
     NSString *size = self.size.text;
     NSString *personality =  self.personality.text;
-    NSURL *url = [NSURL URLWithString:@"http://dry-shelf-9195.herokuapp.com/edit_profile"];
+    NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/edit_profile"];
     NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:owner,@"owner",zip,@"zip",size,@"size",age,@"age",breed,@"breed",gender,@"gender",spayed,@"spayed",personality,@"personality",base64string ?: @"none",@"photo",_dogID,@"dog_id",nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

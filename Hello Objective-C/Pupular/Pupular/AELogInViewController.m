@@ -88,7 +88,7 @@
     [spinner startAnimating];
     NSString *email = self.email.text;
     NSString *password = self.password.text;
-    NSURL *url = [NSURL URLWithString:@"http://dry-shelf-9195.herokuapp.com/login"];
+    NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/login"];
     NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

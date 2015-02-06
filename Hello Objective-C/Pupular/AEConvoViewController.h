@@ -15,6 +15,7 @@
     NSMutableArray *messagesArray;
 }
 @property BOOL *backToMenu;
+@property (nonatomic,strong) id delegate;
 @property AECLController *locationController;
 @property UIImage *senderImage;
 @property NSDictionary *allDogs;

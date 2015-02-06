@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AESearchViewController">
             <connections>
+                <outlet property="orLabel" destination="hCm-Wx-aN0" id="afO-SR-FCu"/>
                 <outlet property="searchDisplayController" destination="GKh-YZ-rVw" id="wP1-4f-IZ1"/>
                 <outlet property="spinner" destination="HZw-sY-T9x" id="loS-1T-Ls6"/>
+                <outlet property="tinderButton" destination="mf4-5T-1Bw" id="LDX-X3-Ebt"/>
                 <outlet property="trackingSwitch" destination="Thz-Qk-UTW" id="hv9-cL-EuL"/>
                 <outlet property="view" destination="19G-UI-mgu" id="8jY-3t-Z0Y"/>
             </connections>
@@ -69,12 +71,6 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-or-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCm-Wx-aN0">
-                    <rect key="frame" x="146" y="340" width="28" height="24"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="search_filler.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZAJ-Y5-10I">
                     <rect key="frame" x="110" y="166" width="100" height="100"/>
                 </imageView>
@@ -86,9 +82,19 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="tinderForDogs:" destination="-1" eventType="touchUpInside" id="njB-HE-sth"/>
+                    </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-or-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCm-Wx-aN0">
+                    <rect key="frame" x="54" y="338" width="212" height="24"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.56999999999999995" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="76" y="154"/>
         </view>
     </objects>
     <resources>

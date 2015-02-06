@@ -24,7 +24,12 @@
 @property (nonatomic, strong) id delegate;
 @property AECLController *locationController;
 @property BOOL *isFriend;
-@property NSDictionary *allDogs;
+@property NSMutableDictionary *allDogs;
+@property IBOutlet UIButton *tinderButton;
+@property IBOutlet UILabel *orLabel;
+@property NSString *nextDog;
+@property NSMutableArray *remainingIDs;
+@property NSMutableDictionary *revisedDogs;
 @property IBOutlet UIActivityIndicatorView *spinner;
 @property IBOutlet UISwitch *trackingSwitch;
 @end

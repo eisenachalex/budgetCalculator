@@ -190,7 +190,7 @@
     }
     else if([_buttonStatus isEqualToString:@"Request"])
     {
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_request?dog_id=%@&friend_id=%@",[userInfo valueForKey:@"dog_id"],_dogID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate.tabBarController setSelectedIndex:3];
@@ -204,6 +204,7 @@
         UITableViewCell *tableViewCell = [[UITableViewCell alloc] init];
         tableViewCell.imageView.image= imageView.image;
         conversationView.senderImage = self.convoImage;
+        conversationView.delegate = [self.tabBarController.viewControllers objectAtIndex:3];
         conversationView.dogHandle = [_dog valueForKey:@"handle"];
         conversationView.dogID = _dogID;
         [self presentViewController:conversationView animated:NO completion:nil];

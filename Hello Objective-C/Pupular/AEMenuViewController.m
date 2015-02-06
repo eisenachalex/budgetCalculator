@@ -48,7 +48,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
@@ -79,7 +79,7 @@
 
 -(IBAction)signout:(id)sender {
     [_locationController.locationManager stopUpdatingLocation];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [userInfo setValue:@"empty" forKey:@"email"];
     [userInfo setValue:@"false" forKey:@"is_active"];

@@ -37,7 +37,6 @@ GMSMarker *marker;
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    NSLog(@"user id %@",[userInfo valueForKey:@"dog_id"]);
     [self startTimer];
     NSString *currentImage = [userInfo valueForKey:@"image_url"];
     if(![currentImage isEqualToString:_imageURL]){
@@ -47,10 +46,8 @@ GMSMarker *marker;
     AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
     _targetID = appDelegate.targetID;
     _mapHasTarget = appDelegate.mapHasTarget;
-    NSLog(@"is active jownts %@", [userInfo valueForKey:@"is_active"]);
       if([userInfo valueForKey:@"is_active"]){
         if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
-            NSLog(@"FIREING");
             [trackingSwitch setOn:YES];
         }
         else{
@@ -96,7 +93,6 @@ GMSMarker *marker;
 
 
 - (void)viewDidLoad {
-    NSLog(@"view did load");
     [super viewDidLoad];
     [self viewWillAppear:YES];
     [self loadUserInfo];
@@ -244,7 +240,7 @@ GMSMarker *marker;
 }
 
 -(void)retrieveActiveFriends{
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/retrieve_active_friends?dog_id=%@&small_photo=yes",[userInfo objectForKey:@"dog_id"]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_active_friends?dog_id=%@&small_photo=yes",[userInfo objectForKey:@"dog_id"]]]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 

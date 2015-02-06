@@ -217,7 +217,7 @@
     NSString *passwordConfirm = self.passwordConfirm.text;
     NSString *handle = self.handle.text;
     NSString *zip = self.zip.text;
-    NSURL *url = [NSURL URLWithString:@"http://dry-shelf-9195.herokuapp.com/sign_up"];
+    NSURL *url = [NSURL URLWithString:@"http://vast-inlet-7785.herokuapp.com/sign_up"];
     NSMutableDictionary *postDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:email, @"email", password, @"password", passwordConfirm, @"passwordConfirm", handle, @"handle",zip,@"zip",base64string,@"photo",nil];
     NSData *requestBodyData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:0];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

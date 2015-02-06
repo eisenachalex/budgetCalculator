@@ -109,7 +109,7 @@
 
 -(IBAction)actionButton1:(id)sender{
     if([[sender currentTitle] isEqualToString:@"Accept Request"]){
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/accept_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/accept_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [self dismissViewControllerAnimated:NO completion:nil];
         
@@ -129,7 +129,7 @@
 
 -(IBAction)actionButton2:(id)sender{
     if([[sender currentTitle] isEqualToString:@"Decline Request"]){
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/decline_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/decline_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [self dismissViewControllerAnimated:NO completion:nil];
     }

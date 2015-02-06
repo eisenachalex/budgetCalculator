@@ -53,11 +53,12 @@
 
 - (void)enteredForeground:(NSNotification*) not
 {
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"VIEW WILL APPEAR");
     [spinner startAnimating];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
 
@@ -88,11 +89,13 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"VIEW WILL DISAPPEAR");
     [self stopTimer];
 }
 
 - (void) startTimer
 {
+    NSLog(@"timer started");
     self.messageTime = [NSTimer scheduledTimerWithTimeInterval:1
                                                         target:self
                                                       selector:@selector(timerFired:)
@@ -146,6 +149,7 @@
 
 -(IBAction)newMessage:(id)sender{
     AENewMessageViewController *newMessage = [[AENewMessageViewController alloc] init];
+    newMessage.delegate = self;
     newMessage.locationController = _locationController;
     [self presentViewController:newMessage animated:NO completion:nil];
 }
@@ -378,7 +382,7 @@
             dogHandle = [messageArray objectAtIndex:1];
         }
     }
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/has_been_read?message_id=%@",messageID]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/has_been_read?message_id=%@",messageID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     if([messageType isEqualToString:@"friend_request"]){
         AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
@@ -407,6 +411,7 @@
     else if([messageType isEqualToString:@"message"]){
         AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         UILabel *handleLabel = [[cell.contentView subviews][1] subviews][1];
+        conversationView.delegate = self;
         conversationView.senderImage = cell.imageView.image;
         conversationView.locationController = _locationController;
         conversationView.dogHandle = handleLabel.text;

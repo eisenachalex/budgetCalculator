@@ -49,7 +49,7 @@
 
 -(void)switched {
     if([_targetSwitch isOn]){
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/walk_alert?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/walk_alert?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
         NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [_locationController.locationManager startUpdatingLocation];
         [userInfo setValue:@"true" forKey:@"is_active"];
@@ -58,7 +58,7 @@
     }
     else{
         [_locationController.locationManager stopUpdatingLocation];
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
         NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [userInfo setValue:@"false" forKey:@"is_active"];
         [userInfo writeToFile:[self pathForUserInfo] atomically:YES];

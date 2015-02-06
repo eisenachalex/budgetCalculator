@@ -104,7 +104,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *friendship_id = [friendsArray objectAtIndex:indexPath.row];
-        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/delete_friendship?friendship_id=%@&dog_id=%@",friendship_id,[userInfo valueForKey:@"dog_id"]]]];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_friendship?friendship_id=%@&dog_id=%@",friendship_id,[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [friendsArray removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
@@ -127,7 +127,6 @@
 -(void)viewWillAppear:(BOOL)animated {
     [self loadUserInfo];
     [self startTimer];
-    NSLog(@"news to me ");
     [_spinner startAnimating];
     [self.tableView reloadData];
     AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -423,7 +422,7 @@
 
 - (void) timerFired:(NSTimer*)theTimer
 {
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://dry-shelf-9195.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
 
 }
