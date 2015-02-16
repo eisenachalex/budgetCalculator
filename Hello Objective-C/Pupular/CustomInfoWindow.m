@@ -23,6 +23,7 @@
 }
 
 -(IBAction)message:(id)sender {
+    NSLog(@"hey world");
     
 }
 

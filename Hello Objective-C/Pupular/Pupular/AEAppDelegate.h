@@ -16,20 +16,16 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property NSTimer *messageTime;
-@property NSMutableArray *allMessages;
-@property (strong, nonatomic) NSDictionary *allDogs;
-@property (strong, nonatomic) NSArray *friendList;
+@property NSMutableArray *all_messages;
 @property BOOL *hasNotification;
 @property AECLController *locationController;
 @property UITabBarController *tabBarController;
 @property bool applicationFromBackground;
 @property NSString *targetID;
 @property BOOL *mapHasTarget;
-@property NSString *lastMessageID;
 
 
 -(void) stopTimer;
 -(void) startTimer;
--(void) getAllDogs;
 @end
 

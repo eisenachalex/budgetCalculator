@@ -15,23 +15,18 @@
     NSMutableDictionary *profile;
     NSMutableDictionary *userInfo;
 }
-@property NSDictionary *profile;
+@property NSMutableDictionary *profile;
 @property NSString *dogID;
 @property BOOL *isFriend;
-@property NSDictionary *dog;
-@property NSDictionary *allDogs;
-
 @property BOOL *isMine;
 @property IBOutlet UINavigationItem *navTitle;
 @property NSString *dogHandle;
-@property NSString *buttonStatus;
 @property IBOutlet UINavigationItem *navBar;
 @property IBOutlet UILabel *location;
 @property UITableViewCell *tableViewCell;
 @property IBOutlet UILabel *age;
 @property IBOutlet UILabel *personality;
 @property IBOutlet UILabel *gender;
-@property UIImage *convoImage;
 @property IBOutlet UILabel *owners_name;
 @property IBOutlet UILabel *breed;
 @property IBOutlet UILabel *size;

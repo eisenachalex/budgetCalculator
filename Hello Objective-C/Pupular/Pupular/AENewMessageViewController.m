@@ -9,7 +9,6 @@
 #import "AEActiveFriendsViewController.h"
 #import "AEMenuViewController.h"
 #import "AEConvoViewController.h"
-#import "AEAppDelegate.h"
 #import "UIImageView+WebCache.h"
 
 @interface AENewMessageViewController ()
@@ -44,8 +43,6 @@
     [super viewDidLoad];
     [self loadUserInfo];
     [self.message becomeFirstResponder];
-    [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
-
     
 
     // Do any additional setup after loading the view from its nib.
@@ -56,9 +53,6 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [self loadUserInfo];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _allDogs = appDelegate.allDogs;
-    [self buildUsersArray];
     self.searchBar.delegate = self;
     self.message.delegate = self;
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/all_dogs?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
@@ -66,12 +60,6 @@
 }
 
 
--(void)buildUsersArray{
-    usersArray = [[NSMutableArray alloc] init];
-    for(id key in _allDogs){
-        [usersArray addObject:_allDogs[key]];
-    }
-}
 
 
 
@@ -82,7 +70,6 @@
 }
 
 - (IBAction)cancel:(id)sender {
-    [self.delegate startTimer];
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
@@ -117,45 +104,50 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"jowns");
         return [searchResults count];
         
     }
     else {
         return 0;
     }
+    NSLog(@"NUMBERS %@",searchResults);
     
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.0;
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"CustomTableCell";
     UITableViewCell *cell = (UITableViewCell *)[self.searchDisplayController.searchResultsTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    // Display recipe in the table cell
     NSString *user = nil;
+    NSLog(@"DEM SEARCH RESULTS %@",searchResults);
     user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
-    NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo_list"][1];
+    NSLog(@"THE USER BOI %@",user);
+    //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+    NSString *imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
+    NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
         [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
+        NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
-                       placeholderImage:[UIImage imageNamed:@"pupular_dog_thumb_avatar.png"]];
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = user;
-    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir Next" size:15]];
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
-    [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
-    [cell.imageView.layer setBorderWidth: 1.0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = user;
+    cell.textLabel.textColor = [UIColor darkGrayColor];
     return cell;
 }
 
@@ -176,6 +168,26 @@
     _receiverHandle = cell.text;
     _dogID = receiver_id;
     [self.message becomeFirstResponder];
+
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
+    _responseData = [[NSMutableData alloc] init];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [_responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Succeeded! Received %d bytes of data", [_responseData length]);
+    NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
+                                                            options:0
+                                                              error:nil];
+    if([newJSON objectForKey:@"all_dogs"])
+    {
+        usersArray = [newJSON valueForKey:@"all_dogs"];
+    }
 
 }
 
@@ -211,6 +223,7 @@
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
 

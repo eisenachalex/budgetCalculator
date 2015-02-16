@@ -17,8 +17,6 @@
 
 }
 @property IBOutlet UITextField *message;
-@property NSDictionary *allDogs;
-@property (nonatomic,strong) id delegate;
 @property IBOutlet UISearchBar *searchBar;
 @property IBOutlet UIScrollView *scrollView;
 @property AECLController *locationController;

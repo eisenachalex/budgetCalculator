@@ -39,40 +39,48 @@
     [super viewDidLoad];
     [self loadUserInfo];
     _navBar.topItem.title = _notificationType;
+
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     [self.imageView addGestureRecognizer:singleFingerTap];
-    dogInfo = [[NSDictionary alloc] init];
+    
+    //The event handling method
 
+    dogInfo = [[NSDictionary alloc] init];
+    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
+    NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
     self.imageView.clipsToBounds = YES;
     self.imageView.layer.cornerRadius = 80;
     [self.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
     [self.imageView.layer setBorderWidth: 3.0];
     self.imageView.userInteractionEnabled = YES;
+
+    // Do any additional setup after loading the view from its nib.
+    
 }
 
+
+
+
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"WE GOT THE JOWNS");
+    NSLog(@"%@",_dogHandle);
     CGPoint location = [recognizer locationInView:[recognizer.view superview]];
     AEFriendProfileViewController *profileView = [[AEFriendProfileViewController alloc] init];
     profileView.dogID = _dogID;
     profileView.view.translatesAutoresizingMaskIntoConstraints = YES;
+    profileView.isFriend = _isFriend;
+    NSString *dogHandleText = [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@",_dogHandle]];
+    profileView.dogHandle = [NSString stringWithFormat:@"%@",_dogHandle];
+
     [self presentViewController:profileView animated:NO completion:nil];
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _allDogs = appDelegate.allDogs;
-    NSString *dogID = _dogID;
-    _dog = [_allDogs objectForKey:[NSString stringWithFormat:@"%@",dogID]];
-    
-    NSString *imageURl = [_dog valueForKey:@"photo_list"][0];
-    [_imageView setImageWithURL:[NSURL URLWithString:imageURl]
-               placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
-    
-    
+    NSLog(@"firing %@", self.notificationType);
     if([self.notificationType isEqualToString:@"Pack Request"]){
         [self.actionButton1 setTitle:@"Accept Request" forState:UIControlStateNormal];
         [self.actionButton2 setTitle:@"Decline Request" forState:UIControlStateNormal];
@@ -88,6 +96,10 @@
         [self.notificationTitle setText:self.notificationMessage];
         [self.actionButton2 setTitle:@"Pack" forState:UIControlStateNormal];
     }
+    
+
+    
+    
     if([self.notificationType isEqualToString:@"Wag Alert"]){
         [self.actionButton1 setTitle:@"Message" forState:UIControlStateNormal];
         [self.actionButton2 setTitle:@"Track" forState:UIControlStateNormal];
@@ -95,12 +107,16 @@
         [self.actionButton2 setBackgroundImage:[UIImage imageNamed:@"pupular_track_button.png"] forState:UIControlStateNormal];
         [self.notificationTitle setText:self.notificationMessage];
     }
-    
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)menu:(id)sender{
+    AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
+    [self presentViewController:menuView animated:NO completion:nil];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -109,6 +125,7 @@
 
 -(IBAction)actionButton1:(id)sender{
     if([[sender currentTitle] isEqualToString:@"Accept Request"]){
+        NSLog(@"is it firing the jownt");
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/accept_request?dog_id=%@&friend_id=%@",_dogID,[userInfo valueForKey:@"dog_id"]]]];
         NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [self dismissViewControllerAnimated:NO completion:nil];
@@ -121,10 +138,14 @@
         AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         conversationView.locationController = _locationController;
         conversationView.senderImage = _cellImage;
-        conversationView.dogHandle = [_dog valueForKey:@"handle"];
+        conversationView.dogHandle = _dogHandle;
         conversationView.dogID = _dogID;
         [self presentViewController:conversationView animated:NO completion:nil];
+        
+        
+        
     }
+    
 }
 
 -(IBAction)actionButton2:(id)sender{
@@ -135,39 +156,46 @@
     }
     
     if([[sender currentTitle] isEqualToString:@"Track"]){
+
         AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.targetID = _dogID;
         appDelegate.mapHasTarget = YES;
-        [[appDelegate.tabBarController.viewControllers objectAtIndex:0] viewWillAppear:YES];
-        [appDelegate.tabBarController setSelectedIndex:0];
-        [self dismissViewControllerAnimated:NO completion:nil];
+        UITabBarController *tabBarController = appDelegate.tabBarController;
+        [tabBarController setSelectedIndex:0];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-    
     if([[sender currentTitle] isEqualToString:@"Pack"]){
         AEBuddiesViewController *buddiesView = [[AEBuddiesViewController alloc] init];
+        buddiesView.foreign_dog_id = _dogID;
+        NSLog(@"DOG HANDLE %@",_dogHandle);
+        buddiesView.dogHandle = _dogHandle;
         buddiesView.locationController =_locationController;
-        buddiesView.dogID = [_dog valueForKey:@"id"];
         [self presentViewController:buddiesView animated:NO completion:nil];
+        
     }
+    
 }
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         userInfo = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
-    }
-    else {
+        
+    } else {
         userInfo = [[NSMutableDictionary alloc] init];
         [userInfo setValue:@"empty" forKey:@"email"];
     }
+    NSLog(@"here is the user info %@", userInfo);
 }
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
     _responseData = [[NSMutableData alloc] init];
 }
 
@@ -181,13 +209,21 @@
     return nil;
 }
 
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
+    if([newJSON objectForKey:@"profile_photo"])
+    {
+        NSLog(@"firing %@",[newJSON objectForKey:@"profile_photo"]);
+        [_imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
+                  placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
+        
+    }
+    
+    
 }
 
 

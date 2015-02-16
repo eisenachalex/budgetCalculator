@@ -21,21 +21,21 @@
 #import "AEFriendProfileViewController.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
-#import "AEAppDelegate.h"
 
 @interface AEBuddiesViewController ()
+
 @end
 
 @implementation AEBuddiesViewController
-@synthesize tableView,searchBar,trackingSwitch;
+@synthesize tableView,foreign_dog_id,searchBar,trackingSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        friendsArray = [[NSMutableArray alloc] init];
-
+        
+        
     }
     return self;
 }
@@ -44,23 +44,31 @@
 {
     [self loadUserInfo];
     [super viewDidLoad];
-        [self.searchDisplayController.searchResultsTableView setSeparatorInset:UIEdgeInsetsZero];
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    _navBar.topItem.rightBarButtonItem = nil;
-    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",_dogID]]];
-    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    
+    if(foreign_dog_id){
+        NSLog(@"foreign jowns");
+        _navBar.topItem.rightBarButtonItem = nil;
+        _navBar.topItem.title = [NSString stringWithFormat:@"%@'s Pack",_dogHandle];
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",foreign_dog_id]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        // Do any adfditional setup after loading the view from its nib.
+        
+        
+    }
+    else{
+        _navBar.topItem.leftBarButtonItem = nil;
+
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/friend_list?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+        // Do any additional setup after loading the view from its nib.
+    }
+    
 }
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _allDogs = appDelegate.allDogs;
-    NSString *dogID = _dogID;
-    [self buildFriendsArray];
-
-    _dog = [_allDogs objectForKey:[NSString stringWithFormat:@"%@",_dogID]];
-    _navBar.topItem.title = [NSString stringWithFormat:@"%@'s Pack",[_dog valueForKey:@"handle"]];
-
     if([userInfo valueForKey:@"is_active"]){
         if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
             [trackingSwitch setOn:YES];
@@ -69,30 +77,36 @@
             [trackingSwitch setOn:NO];
         }
     }
+    
 }
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
 -(IBAction)menu:(id)sender{
     AEMenuViewController *menuView = [[AEMenuViewController alloc] init];
     menuView.locationController = _locationController;
     [self presentViewController:menuView animated:YES completion:nil];
 }
 
+
 -(IBAction)back:(id)sender{
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
 
 -(IBAction)list:(id)sender{
     AEActiveFriendsViewController *activeFriendsView = [[AEActiveFriendsViewController alloc] init];
     [self presentViewController:activeFriendsView animated:NO completion:nil];
 }
 
+
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
     _responseData = [[NSMutableData alloc] init];
 }
 
@@ -112,22 +126,23 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
-    if([newJSON objectForKey:@"friends"])
+    NSLog(@"JSON %@",[newJSON objectForKey:@"friend_list"]);
+    if([newJSON objectForKey:@"friend_list"])
     {
-        friendsArray = [newJSON objectForKey:@"friends"];
-        [self buildFriendsArray];
+        friendsArray = [newJSON objectForKey:@"friend_list"];
+        friendsArray = [friendsArray mutableCopy];
         [self.tableView reloadData];
     }
     
 }
 
+
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // Return the number of sections.
     return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -142,37 +157,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"FRANNDS %@",friendsArray);
     static NSString *CellIdentifier = @"CustomTableCell";
     UITableViewCell *cell = (UITableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSDictionary *user;
-
-
+    NSString *user = nil;
     NSString *imageString = nil;
     [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
-    if(searchResults){
-        user = [searchResults objectAtIndex:indexPath.row];
-    }
-    else {
-        user = [friendsArray objectAtIndex:indexPath.row];
-    }
-    
-    
-    imageString = [user valueForKey:@"photo_list"][1];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        user = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"handle"];
+        imageString = [[searchResults objectAtIndex:indexPath.row] valueForKey:@"photo"];
 
+    } else {
+        user = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"handle"];
+       imageString = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"photo"];
+
+    }
+    
+    // Display recipe in the table cell
+    NSLog(@"DEM SEARCH RESULTS %@",friendsArray);
+    
+    //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = user;
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    NSLog(@"image jownt %@",imageString);
     if([imageString isEqualToString:@"none"]){
         [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
     else{
+        NSLog(@"yes");
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageString]]
                        placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [user valueForKey:@"handle"];
+    cell.textLabel.text = user;
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.imageView.clipsToBounds = YES;
     cell.imageView.layer.cornerRadius = 25;
@@ -182,16 +205,28 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
+    if(foreign_dog_id){
+        return NO;
+    }
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *dogID = [NSString alloc];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSDictionary *userDict = [friendsArray objectAtIndex:indexPath.row];
+    NSLog(@"cell text %@",cell.text);
+    for (int i = 0; i < friendsArray.count; i++){
+        NSDictionary *friendDict = [friendsArray objectAtIndex:i];
+        if([[friendDict valueForKey:@"handle"] isEqualToString:cell.text]){
+            NSLog(@"this should be id %@",[friendDict valueForKey:@"id"]);
+            dogID = [friendDict valueForKey:@"id"];
+        }
+    }
+    NSLog(@"okay %@",dogID);
     AEFriendProfileViewController *friendProfileView = [[AEFriendProfileViewController alloc] init];
-    NSString *dogID = [userDict valueForKey:@"id"];
     friendProfileView.locationController = _locationController;
+    friendProfileView.dogHandle = cell.text;
     friendProfileView.dogID = dogID;
     [self presentViewController:friendProfileView animated:NO completion:nil];
 }
@@ -207,6 +242,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *friendship_id = [[friendsArray objectAtIndex:indexPath.row] valueForKey:@"friend_id"];
         NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_friendship?friendship_id=%@",friendship_id]]];
@@ -216,25 +252,9 @@
     }
 }
 
--(void)buildFriendsArray{
-    friendsArray = [[NSMutableArray alloc] init];
-    for(id key in _allDogs){
-        NSMutableDictionary *thisDog = _allDogs[key];
-        NSArray *thisDogsFriends = [thisDog objectForKey:@"friend_ids"];
-        for(int i=0; i < thisDogsFriends.count; i++){
-           NSString *thisID = [thisDogsFriends objectAtIndex:i];
-            NSString *dogID= _dogID;
-            if([dogID intValue] == [thisID intValue]){
-                [friendsArray addObject:_allDogs[key]];
-            }
-            else{
-            }
-        }
-    }
-}
-
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    NSLog(@"jowtn");
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"handle contains[c] %@", searchText];
     searchResults = [friendsArray filteredArrayUsingPredicate:resultPredicate];
 }
@@ -247,12 +267,18 @@
         userInfo = [[NSMutableDictionary alloc] init];
         [userInfo setValue:@"empty" forKey:@"email"];
     }
+    NSLog(@"here is the user info %@", userInfo);
 }
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
+
+
+
+
 
 @end

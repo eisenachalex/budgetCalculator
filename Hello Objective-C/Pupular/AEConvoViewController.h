@@ -9,16 +9,14 @@
 #import <UIKit/UIKit.h>
 @class AECLController;
 
-@interface AEConvoViewController : UIViewController <NSURLConnectionDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIToolbarDelegate> {
+@interface AEConvoViewController : UIViewController <NSURLConnectionDelegate,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     NSMutableArray *userInfo;
     NSMutableData *_responseData;
     NSMutableArray *messagesArray;
 }
 @property BOOL *backToMenu;
-@property (nonatomic,strong) id delegate;
 @property AECLController *locationController;
 @property UIImage *senderImage;
-@property NSDictionary *allDogs;
 @property IBOutlet UIImageView *senderImageView;
 @property NSString *dogID;
 @property NSTimer *myTime;
@@ -27,6 +25,7 @@
 @property IBOutlet UIActivityIndicatorView *spinner;
 @property IBOutlet UIScrollView *scrollView;
 @property IBOutlet UIButton *sendMessageButton;
+
 @property IBOutlet UINavigationItem *navTitle;
 @property IBOutlet UITableView *tableView;
 @property NSString *dogHandle;

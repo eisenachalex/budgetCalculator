@@ -29,7 +29,6 @@
     if (self) {
         messagesArray = [[NSMutableArray alloc] init];
         self.title = @"Messages";
-        _fillerView = nil;
     }
     return self;
 }
@@ -37,37 +36,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if(appDelegate.allMessages){
-        messagesArray = appDelegate.allMessages;
-    }
+//    AEAppDelegate *objAppDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    if(objAppDelegate.applicationFromBackground)
+//    {
+//        applicationFromBackground = FALSE;
+//        //do what u want.
+//    }
+//    NSLog(@"VIEW LOAD");
+    [super viewDidLoad];
+    //do stuff here
     if(&UIApplicationWillEnterForegroundNotification) { //needed to run on older devices, otherwise you'll get EXC_BAD_ACCESS
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(enteredForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
+
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     [self loadUserInfo];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)enteredForeground:(NSNotification*) not
 {
+    NSLog(@"HERE WE GO");
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/messages?dog_id=%@",[userInfo valueForKey:@"dog_id"]]]];
-    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
-}
+    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];}
 
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"VIEW WILL APPEAR");
     [spinner startAnimating];
-    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-
     [self loadUserInfo];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _allDogs = appDelegate.allDogs;
-    [self.tableView reloadData];
     _isEditing = NO;
     [self startTimer];
+    NSLog(@"VIEW WILL APPEAR");
     if([userInfo valueForKey:@"is_active"]){
         if([[userInfo valueForKey:@"is_active"] isEqualToString:@"true"]){
             [_trackingSwitch setOn:YES];
@@ -76,26 +77,43 @@
             [_trackingSwitch setOn:NO];
         }
     }
-}
-
--(void)notificationTargetTapped{
 
 }
 
 
 -(IBAction)trackingSwitch:(id)sender{
-    [self.delegate switched];
-
+    if([sender isOn]){
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/walk_alert?dog_id=%@",[userInfo objectForKey:@"dog_id"]]]];
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [_locationController.locationManager startUpdatingLocation];
+        [userInfo setValue:@"true" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    }
+    else{
+        
+        [_locationController.locationManager stopUpdatingLocation];
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/deactivate?email=%@",[userInfo objectForKey:@"email"]]]];
+        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [userInfo setValue:@"false" forKey:@"is_active"];
+        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+    }
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"VIEW WILL DISAPPEAR");
     [self stopTimer];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"VIEW DID APPEAR");
+
+
 }
 
 - (void) startTimer
 {
-    NSLog(@"timer started");
     self.messageTime = [NSTimer scheduledTimerWithTimeInterval:1
                                                         target:self
                                                       selector:@selector(timerFired:)
@@ -111,34 +129,20 @@
 - (void) timerFired:(NSTimer*)theTimer
 {
     [self loadUserInfo];
+    NSLog(@"got that fire man");
     AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if(appDelegate.allMessages){
-        messagesArray = appDelegate.allMessages;
-    }
-    if(messagesArray.count == 0){
-        self.tableView.hidden = YES;
-        if(_fillerView == nil){
-            UIView *messageFiller = [[[[NSBundle mainBundle] loadNibNamed:@"AEMessageViewFiller" owner:self options:nil] objectAtIndex:0] initWithFrame:CGRectMake(200, 400, 2, 3)];
-            UIView *frameSauce = [[UIView alloc] initWithFrame:CGRectMake(0,80,200,300)];
-            [frameSauce addSubview:messageFiller];
-            _fillerView = frameSauce;
-            [self.view addSubview:frameSauce];
-        }
-   }
-    else{
-        self.tableView.hidden = NO;
-        [_fillerView removeFromSuperview];
-        _fillerView = nil;
-    }
+    messagesArray = appDelegate.all_messages;
     if(![self.tableView isEditing]){
     [self.tableView reloadData];
     }
     [spinner stopAnimating];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(IBAction)menu:(id)sender{
@@ -149,7 +153,6 @@
 
 -(IBAction)newMessage:(id)sender{
     AENewMessageViewController *newMessage = [[AENewMessageViewController alloc] init];
-    newMessage.delegate = self;
     newMessage.locationController = _locationController;
     [self presentViewController:newMessage animated:NO completion:nil];
 }
@@ -162,6 +165,7 @@
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    
     _responseData = [[NSMutableData alloc] init];
 }
 
@@ -182,16 +186,23 @@
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
+
+
 }
+
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [messagesArray count];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -199,70 +210,72 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
--(void)checkForDeletedMessages{
-    NSMutableArray *deletedMessages = [userInfo objectForKey:@"deletedMessages"];
-    for(int i = 0; i < messagesArray.count; i ++){
-        NSDictionary *thisMessage = [messagesArray objectAtIndex:i];
-        NSString *thisMessageID = [thisMessage objectForKey:@"id"];
-        for(int v = 0; v < deletedMessages.count; v++){
-            NSString *thisDeletedMessageOnFile = [deletedMessages objectAtIndex:v];
-            if([thisMessageID isEqualToString:thisDeletedMessageOnFile]){
-                [messagesArray removeObjectAtIndex:i];
-                break;
-            }
-        }
-    }
+    // Return YES if you want the specified item to be editable.
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSMutableDictionary *messageDict = [messagesArray objectAtIndex:indexPath.row][0];
-        NSString *deletedMessageID = [messageDict valueForKey:@"id"];
-        NSMutableArray *deletedMessages;
-        if([userInfo valueForKey:@"deletedMessages"]){
-            deletedMessages = [userInfo valueForKey:@"deletedMessages"];
-            [deletedMessages addObject:deletedMessageID];
+
+        NSString *messageID = [[NSString alloc] init];
+        NSString *sender_id = [[NSString alloc] init];
+        NSString *receiver_id = [[NSString alloc] init];
+        UILabel *messageText = [[cell.contentView subviews][1] subviews][2];
+        NSLog(@"message text %@",messageText.text);
+        for (int i = 0; i < messagesArray.count; i++){
+            NSArray *messageArray = [messagesArray objectAtIndex:i];
+            NSDictionary *messageDict = [messageArray objectAtIndex:0];
+            NSLog(@"messagedict %@",[messageDict valueForKey:@"body"]);
+            if([[messageDict valueForKey:@"body"] isEqualToString:messageText.text]){
+                NSLog(@"no fire");
+                messageID = [messageDict valueForKey:@"id"];
+                sender_id = [messageDict valueForKey:@"sender_id"];
+                receiver_id = [messageDict valueForKey:@"receiver_id"];
+            }
         }
-        else {
-            deletedMessages = [NSMutableArray arrayWithObject:[messageDict valueForKey:@"id"]];
-        }
-        [userInfo setObject:deletedMessages forKey:@"deletedMessages"];
-        [userInfo writeToFile:[self pathForUserInfo] atomically:YES];
+
+        NSLog(@"message id jowns %@",messageID);
+        NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/delete_message?message_id=%@",messageID]]];
+        NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
         [messagesArray removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
     }
+
+
 }
 
 - (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime
 {
     NSDate *fromDate;
     NSDate *toDate;
+    
     NSCalendar *calendar = [NSCalendar currentCalendar];
+    
     [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate
                  interval:NULL forDate:fromDateTime];
     [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate
                  interval:NULL forDate:toDateTime];
+    
     NSDateComponents *difference = [calendar components:NSDayCalendarUnit
                                                fromDate:fromDate toDate:toDate options:0];
+    
     return [difference day];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [spinner stopAnimating];
     static NSString *CellIdentifier = @"CustomTableCell";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
+
     if([[cell.contentView subviews] count] > 1){
         UIView *currentView = [[cell.contentView subviews] objectAtIndex:1];
         [currentView removeFromSuperview];
-        
+
     }
     // Configure the cell...
     if (cell == nil) {
@@ -272,8 +285,8 @@
     NSString *user = nil;
     NSArray *messageArray = [messagesArray objectAtIndex:indexPath.row];
     NSDictionary *messageDict = [messageArray objectAtIndex:0];
-    //    //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
-    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    //cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     UIView *cellSubView = [[UIView alloc] initWithFrame:CGRectMake(80,0,240,80)];
     UILabel *sender_tag = [[UILabel alloc] initWithFrame:CGRectMake(0,20,100,10)];
     UILabel *message = [[UILabel alloc] initWithFrame:CGRectMake(0,50,150,15)];
@@ -312,7 +325,7 @@
         [dateFormat setDateFormat:@"h:mm a"];
         NSString *dateString = [dateFormat stringFromDate:dateField];
         date.text = dateString;
-        
+
     }
     date.textAlignment = NSTextAlignmentRight;
     sender_tag.text = [messageArray objectAtIndex:1];
@@ -327,10 +340,10 @@
         }
         else{
             [cellSubView addSubview:reader];
-            
+
         }
-        
-        
+
+
     }
     if([imageURL isEqualToString:@"none"]){
         [cell.imageView setImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
@@ -339,17 +352,16 @@
         [cell.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageURL]]
                        placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar_thumb.png"]];
     }
-    
+
     cell.imageView.clipsToBounds = YES;
     cell.imageView.backgroundColor = [UIColor grayColor];
     cell.imageView.layer.cornerRadius = 25;
-    
+
     [cell.imageView.layer setBorderColor: [[UIColor groupTableViewBackgroundColor] CGColor]];
     [cell.imageView.layer setBorderWidth: 1.0];
     [cell.contentView addSubview:cellSubView];
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -358,13 +370,16 @@
     NSString *messageType = [[NSString alloc] init];
     NSString *messageID = [[NSString alloc] init];
     NSString *dogHandle = [[NSString alloc] init];
-    
+
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"test 1");
+    NSLog(@"dem subview jowns %@",[cell.contentView subviews]);
     UILabel *messageText = [[cell.contentView subviews][1] subviews][2];
+    NSLog(@"test 2");
     for (int i = 0; i < messagesArray.count; i++){
         NSArray *messageArray = [messagesArray objectAtIndex:i];
         NSDictionary *messageDict = [messageArray objectAtIndex:0];
-        
+
         if([[messageDict valueForKey:@"body"] isEqualToString:messageText.text]){
             NSString *senderID = [messageDict valueForKey:@"sender_id"];
             NSString *receiverID = [messageDict valueForKey:@"receiver_id"];
@@ -382,18 +397,20 @@
             dogHandle = [messageArray objectAtIndex:1];
         }
     }
+    NSLog(@"OTHER DOG JOWN %@",otherDog);
+    NSLog(@"THE MESSAGE %@", messageText.text);
     NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/has_been_read?message_id=%@",messageID]]];
     NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
     if([messageType isEqualToString:@"friend_request"]){
-        AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
-        notificationView.notificationType = @"Pack Request";
-        notificationView.notificationMessage = messageText.text;
-        notificationView.locationController = _locationController;
-        notificationView.dogID = otherDog;
-        notificationView.isFriend = NO;
+    AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
+    notificationView.notificationType = @"Pack Request";
+    notificationView.notificationMessage = messageText.text;
+    notificationView.locationController = _locationController;
+    notificationView.dogID = otherDog;
+    notificationView.isFriend = NO;
         notificationView.dogHandle = [NSString stringWithFormat:@"%@",dogHandle];
-        
-        [self presentViewController:notificationView animated:NO completion:nil];
+    
+    [self presentViewController:notificationView animated:NO completion:nil];
     }
     else if ([messageType isEqualToString:@"auto_message"] || [messageType isEqualToString:@"request_accepted"]){
         
@@ -405,32 +422,33 @@
         notificationView.dogID = otherDog;
         notificationView.cellImage = cell.imageView.image;
         notificationView.isFriend = YES;
-        notificationView.dogHandle = dogHandle;
+            notificationView.dogHandle = dogHandle;
         [self presentViewController:notificationView animated:NO completion:nil];
     }
     else if([messageType isEqualToString:@"message"]){
-        AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
+    AEConvoViewController *conversationView = [[AEConvoViewController alloc] init];
         UILabel *handleLabel = [[cell.contentView subviews][1] subviews][1];
-        conversationView.delegate = self;
         conversationView.senderImage = cell.imageView.image;
         conversationView.locationController = _locationController;
         conversationView.dogHandle = handleLabel.text;
         conversationView.dogID = otherDog;
-        [self presentViewController:conversationView animated:NO completion:nil];
+    [self presentViewController:conversationView animated:NO completion:nil];
     }
     else if([messageType isEqualToString:@"walk_alert"]){
         AENotification2ViewController *notificationView = [[AENotification2ViewController alloc] init];
+
         notificationView.notificationType = @"Wag Alert";
         notificationView.notificationMessage = messageText.text;
         notificationView.locationController = _locationController;
         notificationView.senderThumb = cell.imageView.image;
         notificationView.dogID = otherDog;
         notificationView.isFriend = YES;
-        notificationView.dogHandle = dogHandle;
+            notificationView.dogHandle = dogHandle;
         [self presentViewController:notificationView animated:NO completion:nil];
     }
-}
 
+    
+}
 - (void)loadUserInfo {
     NSString *filePath = [self pathForUserInfo];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -447,5 +465,10 @@
     NSString *documents = [paths lastObject];
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
+
+
+
+
+
 
 @end

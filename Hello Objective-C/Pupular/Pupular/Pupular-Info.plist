@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.3</string>
+	<string>1.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>When your tracking switch is on, your location will be uploaded to our server</string>
+	<string>When your wagging switch (top right corner) is green, your location will be uploaded to our server.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

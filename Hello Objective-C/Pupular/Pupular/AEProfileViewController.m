@@ -17,7 +17,6 @@
 #import "AELogInViewController.h"
 #import "AEEditProfileViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "AEAppDelegate.h"
 
 @interface AEProfileViewController ()
 
@@ -54,13 +53,14 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadUserInfo];
-    AEAppDelegate *appDelegate = (AEAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _allDogs = appDelegate.allDogs;
-    NSString *dogID = _dogID;
-    _dog = [_allDogs objectForKey:[NSString stringWithFormat:@"%@",dogID]];
-    [self buildProfile];
-    _navBar.title = [_dog valueForKey:@"handle"];
 
+    NSURLRequest *db_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/profile?dog_id=%@",_dogID]]];
+    NSURLConnection *db_conn = [[NSURLConnection alloc] initWithRequest:db_request delegate:self];
+    
+    NSURLRequest *profile_request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://vast-inlet-7785.herokuapp.com/retrieve_profile_photo?dog_id=%@",_dogID]]];
+    NSURLConnection *profile = [[NSURLConnection alloc] initWithRequest:profile_request delegate:self];
+    _navBar.title = [NSString stringWithFormat:@"%@",_dogHandle];
+    NSLog(@"we got that dawg id %@",_dogID);
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,11 +75,21 @@
 }
 
 
+
+- (IBAction)buddies:(id)sender {
+    AEBuddiesViewController *buddiesView = [[AEBuddiesViewController alloc] init];
+    buddiesView.foreign_dog_id = _dogID;
+    buddiesView.locationController = _locationController;
+    [self presentViewController:buddiesView animated:NO completion:nil];
+}
+
+
+
 -(IBAction)actionButton:(id)sender{
 
         AEEditProfileViewController *editProfile = [[AEEditProfileViewController alloc] init];
+        editProfile.profile = _profile;
         editProfile.dogID = _dogID;
-        editProfile.image = imageView.image;
         [self presentViewController:editProfile animated:NO completion:nil];
 }
 
@@ -100,87 +110,65 @@
     return nil;
 }
 
--(void)buildProfile{
-    NSString *returnString = [[NSString alloc] init];
-    returnString = [NSString stringWithFormat:@"Hi, my name is %@!", [_dog valueForKey:@"handle"]];
-    NSDictionary *dog = [_dog valueForKey:@"profile"];
-    if(((![[dog objectForKey:@"age"] isEqual:[NSNull null]]) && (![[dog objectForKey:@"age"] isEqualToNumber:[NSNumber numberWithInt:0]])) || (([NSNull null] != [dog objectForKey:@"gender"]) && (![[dog valueForKey:@"gender"] isEqualToString:@""]) && (![[dog valueForKey:@"gender"] isEqualToString:@"(null)"])) || (([NSNull null] != [dog objectForKey:@"breed"]) && (![[dog valueForKey:@"breed"] isEqualToString:@"(null)"]) && (![[dog valueForKey:@"breed"] isEqualToString:@""]))){
-        returnString = [NSString stringWithFormat:@"%@ I'm a", returnString];
-    }
-    
-    
-    if(([NSNull null] != [dog objectForKey:@"age"]) && (![[dog objectForKey:@"age"] isEqualToNumber:[NSNumber numberWithInt:0]]) ){
-        returnString = [NSString stringWithFormat:@"%@ %@ year old",returnString,[dog valueForKey:@"age"]];
-        
-    }
-    if(![[dog objectForKey:@"gender"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"gender"] isEqualToString:@""]){
-            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [dog valueForKey:@"gender"]];
-        }
-    }
-    if(![[dog objectForKey:@"breed"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"breed"] isEqualToString:@""]){
-            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [dog valueForKey:@"breed"]];
-        }
-    }
-    if(![returnString hasSuffix:@"!"]){
-        returnString = [NSString stringWithFormat:@"%@.",returnString];
-    }
-    if(![[dog objectForKey:@"fertility"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"fertility"] isEqualToString:@""]){
-            returnString = [NSString stringWithFormat:@"%@  I'm %@",returnString,[dog valueForKey:@"fertility"]];
-        }
-    }
-    if(![[dog objectForKey:@"size"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"size"] isEqualToString:@""]){
-            
-            returnString = [NSString stringWithFormat:@"%@ and %@",returnString, [dog valueForKey:@"size"]];
-        }
-    }
-    
-    if(![[dog objectForKey:@"personality_type"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"personality_type"] isEqualToString:@""]){
-            if([returnString hasSuffix:@"."]){
-                returnString = [NSString stringWithFormat:@"%@ My pup friends say that I'm %@",returnString, [dog valueForKey:@"personality_type"]];           }
-            else{
-                returnString = [NSString stringWithFormat:@"%@. My pup friends say that I'm %@",returnString, [dog valueForKey:@"personality_type"]];
-            }
-        }
-        
-    }
-    
-    
-    if(![[dog objectForKey:@"humans_name"] isEqual:[NSNull null]]){
-        if(![[dog valueForKey:@"humans_name"] isEqualToString:@""]){
-            
-            if([returnString hasSuffix:@"."]){
-                returnString = [NSString stringWithFormat:@"%@ My human best friend is %@",returnString, [dog objectForKey:@"humans_name"]];            }
-            else{
-                returnString = [NSString stringWithFormat:@"%@. My human best friend is %@",returnString, [dog objectForKey:@"humans_name"]];            }
-            
-        }
-    }
-    
-
-    NSString *imageURL = [_dog valueForKey:@"photo_list"][0];
-    [self.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:imageURL]]
-                   placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar.png"]];
-    if([returnString hasSuffix:@"."] || [returnString hasSuffix:@"!"]){
-        returnString = [NSString stringWithFormat:@"%@",returnString];
-    }
-    else{
-        returnString = [NSString stringWithFormat:@"%@.",returnString];
-    }
-    _label.text = returnString;
-}
-
-
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
     NSDictionary *newJSON = [NSJSONSerialization JSONObjectWithData:_responseData
                                                             options:0
                                                               error:nil];
+    if([newJSON objectForKey:@"profile"])
+    {
+        NSLog(@"JSON %@",[newJSON objectForKey:@"profile"]);
+        NSString *returnString = [[NSString alloc] init];
+        returnString = [NSString stringWithFormat:@"Hi, my name is %@!", _dogHandle];
+
+        _profile = [newJSON objectForKey:@"profile"];
+        if(([NSNull null] != [_profile valueForKey:@"age"]) || ([NSNull null] != [_profile valueForKey:@"gender"]) || ([NSNull null] != [_profile valueForKey:@"breed"])){
+            returnString = [NSString stringWithFormat:@"%@. I'm a", returnString];
+        }
+        
+        
+        if([NSNull null] != [_profile valueForKey:@"age"]){
+            returnString = [NSString stringWithFormat:@"%@ %@ year old",returnString,[_profile valueForKey:@"age"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"gender"]){
+            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"gender"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"breed"]){
+            NSLog(@"breed is not null");
+            returnString = [NSString stringWithFormat:@"%@ %@",returnString, [_profile valueForKey:@"breed"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"fertility"]){
+            returnString = [NSString stringWithFormat:@"%@.  I'm %@",returnString,[_profile valueForKey:@"fertility"]];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"size"]){
+            returnString = [NSString stringWithFormat:@"%@ and %@",returnString, [_profile valueForKey:@"size"]];
+            
+        }
+        
+        if([NSNull null] != [_profile valueForKey:@"personality_type"]){
+            returnString = [NSString stringWithFormat:@"%@. My pup friends say that I'm %@",returnString, [_profile valueForKey:@"personality_type"]];
+        }
+        if([NSNull null] != [_profile valueForKey:@"humans_name"]){
+            returnString = [NSString stringWithFormat:@"%@. My human best friend is %@",returnString, [_profile valueForKey:@"humans_name"]];
+            
+        }
+        if([NSNull null] != [_profile valueForKey:@"location"]){
+            
+        }
+        returnString = [NSString stringWithFormat:@"%@.",returnString];
+        _label.text = returnString;
+
+        
+    }
+    else if([newJSON objectForKey:@"profile_photo"]){
+        NSLog(@"%@",[newJSON objectForKey:@"profile_photo"]);
+        [self.imageView setImageWithURL:[NSURL URLWithString:[newJSON objectForKey:@"profile_photo"]]
+                       placeholderImage:[UIImage imageNamed:@"pupular_dog_avatar.png"]];
+        
+        [self.activity stopAnimating];
+    }
     
     
 }
@@ -200,11 +188,13 @@
         userInfo = [[NSMutableDictionary alloc] init];
         [userInfo setValue:@"empty" forKey:@"email"];
     }
+    NSLog(@"here is the user info %@", userInfo);
 }
 
 - (NSString *)pathForUserInfo {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documents = [paths lastObject];
+    NSLog(@"path %@",paths);
     return [documents stringByAppendingPathComponent:@"userInfo.plist"];
 }
 

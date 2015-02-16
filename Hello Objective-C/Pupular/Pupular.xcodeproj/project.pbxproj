@@ -14,6 +14,7 @@
 		EF0B8EAC19BA9FC900FCA587 /* pupular_track_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EAB19BA9FC900FCA587 /* pupular_track_button.png */; };
 		EF0B8EAE19BAA22800FCA587 /* pupular_pack_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EAD19BAA22800FCA587 /* pupular_pack_button.png */; };
 		EF0B8EB019BAA3B800FCA587 /* pupular_accept_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EAF19BAA3B800FCA587 /* pupular_accept_button.png */; };
+		EF0B8EB219BAA47200FCA587 /* pupular_decline_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EB119BAA47200FCA587 /* pupular_decline_button.png */; };
 		EF0B8EB419BAAEDF00FCA587 /* pupular_add_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EB319BAAEDF00FCA587 /* pupular_add_button.png */; };
 		EF0B8EB819BACE7900FCA587 /* pupular_message_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EB719BACE7900FCA587 /* pupular_message_default.png */; };
 		EF0B8EBA19BACF3C00FCA587 /* pupular_message_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = EF0B8EB919BACF3C00FCA587 /* pupular_message_notification.png */; };
@@ -57,20 +58,13 @@
 		EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C618F19A7A33F0012D696 /* pupular_search_default.png */; };
 		EF4C619819A7CF5D0012D696 /* pupular_pack_default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */; };
 		EF4C619A19A7CF690012D696 /* pupular_pack_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EF4C619919A7CF690012D696 /* pupular_pack_active.png */; };
-		EF5303291A003E1300263B3F /* AETinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5303271A003E1300263B3F /* AETinderViewController.m */; };
-		EF53032A1A003E1300263B3F /* AETinderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF5303281A003E1300263B3F /* AETinderViewController.xib */; };
 		EF5A20B119B101AF00BD8F84 /* navbar_grass.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B019B101AF00BD8F84 /* navbar_grass.png */; };
 		EF5A20B719B239C100BD8F84 /* pupular_dog_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */; };
 		EF5A20B919B23A3B00BD8F84 /* pupular_dog_avatar_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EF5A20B819B23A3A00BD8F84 /* pupular_dog_avatar_thumb.png */; };
 		EF5F1BEF1937CAE6002CDE3E /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */; };
 		EF7456DF19831A680056F429 /* git_icon_hover_the_second.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */; };
 		EF7456E119831B190056F429 /* filler_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EF7456E019831B190056F429 /* filler_icon.png */; };
-		EF8DE7401A009E8A00EBB414 /* pupular_decline_button.png in Resources */ = {isa = PBXBuildFile; fileRef = EF8DE73F1A009E8A00EBB414 /* pupular_decline_button.png */; };
-		EF931B1019F04BE30041ED1A /* AEToolBarTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */; };
-		EF931B1119F04BE30041ED1A /* AEToolBarTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */; };
 		EF9EF25819B7AEC30014C3BE /* pupular_badge.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9EF25719B7AEC30014C3BE /* pupular_badge.png */; };
-		EF9F9C8E1A00102B00E34786 /* AEMessageViewFiller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */; };
-		EF9F9C901A00352B00E34786 /* AEPackViewFiller.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */; };
 		EFA3D87519AA9788007CF10A /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */; };
 		EFA3D87719AA97CC007CF10A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */; };
 		EFA3D87919ABE68B007CF10A /* markerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D87819ABE68B007CF10A /* markerView.xib */; };
@@ -78,6 +72,7 @@
 		EFA3D88119AC0E8A007CF10A /* pupular_message_active.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */; };
 		EFA3D88319AC524E007CF10A /* search_filler.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88219AC524E007CF10A /* search_filler.png */; };
 		EFA3D88719AC57F5007CF10A /* pupular_marker_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */; };
+		EFA3D88919AC5D65007CF10A /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D88819AC5D65007CF10A /* grass.png */; };
 		EFA3D89119AD03C3007CF10A /* pupular_track_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D89019AD03C3007CF10A /* pupular_track_big.png */; };
 		EFA3D89519AD04D3007CF10A /* pupular_message_big.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA3D89419AD04D3007CF10A /* pupular_message_big.png */; };
 		EFA858811943713600065ED9 /* AEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA8587F1943713600065ED9 /* AEMenuViewController.m */; };
@@ -122,7 +117,6 @@
 		EFC9F4661940C4520078045E /* AENewMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4641940C4520078045E /* AENewMessageViewController.xib */; };
 		EFC9F46A1940C4C10078045E /* AEEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */; };
 		EFC9F46B1940C4C10078045E /* AEEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC9F4691940C4C10078045E /* AEEditProfileViewController.xib */; };
-		EFCAC8B119C243A20051EEF1 /* AETabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCAC8B019C243A20051EEF1 /* AETabBarViewController.m */; };
 		EFCDA90D19968C9E00635A2C /* AEMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCDA90C19968C9E00635A2C /* AEMessagesViewController.m */; };
 		EFD32F31195CA4F100700FEA /* AEBuddiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFD32F30195CA4F100700FEA /* AEBuddiesViewController.xib */; };
 		EFFB3B0C195DC8D7003D0A9C /* AECLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFB3B0B195DC8D7003D0A9C /* AECLController.m */; };
@@ -148,6 +142,7 @@
 		EF0B8EAB19BA9FC900FCA587 /* pupular_track_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_track_button.png; sourceTree = "<group>"; };
 		EF0B8EAD19BAA22800FCA587 /* pupular_pack_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_button.png; sourceTree = "<group>"; };
 		EF0B8EAF19BAA3B800FCA587 /* pupular_accept_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_accept_button.png; sourceTree = "<group>"; };
+		EF0B8EB119BAA47200FCA587 /* pupular_decline_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_decline_button.png; sourceTree = "<group>"; };
 		EF0B8EB319BAAEDF00FCA587 /* pupular_add_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_add_button.png; sourceTree = "<group>"; };
 		EF0B8EB719BACE7900FCA587 /* pupular_message_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_default.png; sourceTree = "<group>"; };
 		EF0B8EB919BACF3C00FCA587 /* pupular_message_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_notification.png; sourceTree = "<group>"; };
@@ -202,22 +197,13 @@
 		EF4C618F19A7A33F0012D696 /* pupular_search_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_search_default.png; sourceTree = "<group>"; };
 		EF4C619719A7CF5D0012D696 /* pupular_pack_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_default.png; sourceTree = "<group>"; };
 		EF4C619919A7CF690012D696 /* pupular_pack_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_pack_active.png; sourceTree = "<group>"; };
-		EF5303261A003E1300263B3F /* AETinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETinderViewController.h; sourceTree = "<group>"; };
-		EF5303271A003E1300263B3F /* AETinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETinderViewController.m; sourceTree = "<group>"; };
-		EF5303281A003E1300263B3F /* AETinderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AETinderViewController.xib; sourceTree = "<group>"; };
 		EF5A20B019B101AF00BD8F84 /* navbar_grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar_grass.png; sourceTree = "<group>"; };
 		EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_dog_avatar.png; sourceTree = "<group>"; };
 		EF5A20B819B23A3A00BD8F84 /* pupular_dog_avatar_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_dog_avatar_thumb.png; sourceTree = "<group>"; };
 		EF5F1BEE1937CAE6002CDE3E /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		EF7456DE19831A680056F429 /* git_icon_hover_the_second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = git_icon_hover_the_second.png; sourceTree = "<group>"; };
 		EF7456E019831B190056F429 /* filler_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filler_icon.png; sourceTree = "<group>"; };
-		EF8DE73F1A009E8A00EBB414 /* pupular_decline_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_decline_button.png; sourceTree = "<group>"; };
-		EF931B0D19F04BE30041ED1A /* AEToolBarTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEToolBarTestViewController.h; sourceTree = "<group>"; };
-		EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEToolBarTestViewController.m; sourceTree = "<group>"; };
-		EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEToolBarTestViewController.xib; sourceTree = "<group>"; };
 		EF9EF25719B7AEC30014C3BE /* pupular_badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_badge.png; sourceTree = "<group>"; };
-		EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AEMessageViewFiller.xib; path = ../AEMessageViewFiller.xib; sourceTree = "<group>"; };
-		EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEPackViewFiller.xib; sourceTree = "<group>"; };
 		EFA3D87419AA9788007CF10A /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewRelicAgent.framework; path = Pupular/NewRelicAgent.framework; sourceTree = "<group>"; };
 		EFA3D87619AA97CC007CF10A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		EFA3D87819ABE68B007CF10A /* markerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = markerView.xib; sourceTree = "<group>"; };
@@ -226,6 +212,7 @@
 		EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_active.png; sourceTree = "<group>"; };
 		EFA3D88219AC524E007CF10A /* search_filler.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_filler.png; sourceTree = "<group>"; };
 		EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_marker_icon.png; sourceTree = "<group>"; };
+		EFA3D88819AC5D65007CF10A /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		EFA3D89019AD03C3007CF10A /* pupular_track_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_track_big.png; sourceTree = "<group>"; };
 		EFA3D89419AD04D3007CF10A /* pupular_message_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pupular_message_big.png; sourceTree = "<group>"; };
 		EFA8587E1943713600065ED9 /* AEMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AEMenuViewController.h; path = ../AEMenuViewController.h; sourceTree = "<group>"; };
@@ -295,8 +282,6 @@
 		EFC9F4671940C4C10078045E /* AEEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEEditProfileViewController.h; sourceTree = "<group>"; };
 		EFC9F4681940C4C10078045E /* AEEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEEditProfileViewController.m; sourceTree = "<group>"; };
 		EFC9F4691940C4C10078045E /* AEEditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEEditProfileViewController.xib; sourceTree = "<group>"; };
-		EFCAC8AF19C243A20051EEF1 /* AETabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AETabBarViewController.h; sourceTree = "<group>"; };
-		EFCAC8B019C243A20051EEF1 /* AETabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AETabBarViewController.m; sourceTree = "<group>"; };
 		EFCDA90C19968C9E00635A2C /* AEMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEMessagesViewController.m; sourceTree = "<group>"; };
 		EFCDA90E19968CF500635A2C /* AEMessagesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AEMessagesViewController.h; sourceTree = "<group>"; };
 		EFD32F30195CA4F100700FEA /* AEBuddiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AEBuddiesViewController.xib; sourceTree = "<group>"; };
@@ -398,16 +383,10 @@
 			children = (
 				EF1CEC2A193786D00000CDC5 /* AEAppDelegate.h */,
 				EF1CEC2B193786D00000CDC5 /* AEAppDelegate.m */,
-				EF9F9C8D1A00102B00E34786 /* AEMessageViewFiller.xib */,
-				EFCAC8AF19C243A20051EEF1 /* AETabBarViewController.h */,
-				EFCAC8B019C243A20051EEF1 /* AETabBarViewController.m */,
 				EFC2FF0C19537B2300904361 /* AEAdditionView.h */,
 				EFC2FF0D19537B2300904361 /* AEAdditionView.m */,
 				EFA3D87D19ABEC32007CF10A /* CustomInfoWindow.h */,
 				EFA3D87E19ABEC32007CF10A /* CustomInfoWindow.m */,
-				EF5303261A003E1300263B3F /* AETinderViewController.h */,
-				EF5303271A003E1300263B3F /* AETinderViewController.m */,
-				EF5303281A003E1300263B3F /* AETinderViewController.xib */,
 				EFA8589219439F8900065ED9 /* AEConvoViewController.h */,
 				EFA8589319439F8900065ED9 /* AEConvoViewController.m */,
 				EFA8589419439F8900065ED9 /* AEConvoViewController.xib */,
@@ -437,10 +416,6 @@
 				EF1CEC691937B1380000CDC5 /* AEAboutViewController.xib */,
 				EFCDA90E19968CF500635A2C /* AEMessagesViewController.h */,
 				EFCDA90C19968C9E00635A2C /* AEMessagesViewController.m */,
-				EF9F9C8F1A00352B00E34786 /* AEPackViewFiller.xib */,
-				EF931B0D19F04BE30041ED1A /* AEToolBarTestViewController.h */,
-				EF931B0E19F04BE30041ED1A /* AEToolBarTestViewController.m */,
-				EF931B0F19F04BE30041ED1A /* AEToolBarTestViewController.xib */,
 				EFA8588519439CBB00065ED9 /* AEMessagesViewController.xib */,
 				EF1A3B161977048400174C83 /* AEProfileViewController.h */,
 				EF1A3B171977048400174C83 /* AEProfileViewController.m */,
@@ -479,17 +454,18 @@
 				EF0B8EA319BA925C00FCA587 /* pupular_notif_track.png */,
 				EFA3D88619AC57F5007CF10A /* pupular_marker_icon.png */,
 				EF4C618F19A7A33F0012D696 /* pupular_search_default.png */,
+				EFA3D88819AC5D65007CF10A /* grass.png */,
 				EF0B8EB319BAAEDF00FCA587 /* pupular_add_button.png */,
 				EFC868CE19A7D21D00E0937B /* pupular_home_default.png */,
 				EF4C618719A7A1390012D696 /* pupular_more_default.png */,
 				EFA3D88019AC0E8A007CF10A /* pupular_message_active.png */,
-				EF8DE73F1A009E8A00EBB414 /* pupular_decline_button.png */,
 				EF0B8EAD19BAA22800FCA587 /* pupular_pack_button.png */,
 				EF5A20B619B239C100BD8F84 /* pupular_dog_avatar.png */,
 				EF0B8EAB19BA9FC900FCA587 /* pupular_track_button.png */,
 				EF9EF25719B7AEC30014C3BE /* pupular_badge.png */,
 				EF0B8EAF19BAA3B800FCA587 /* pupular_accept_button.png */,
 				EF0B8EB919BACF3C00FCA587 /* pupular_message_notification.png */,
+				EF0B8EB119BAA47200FCA587 /* pupular_decline_button.png */,
 				EFA3D89019AD03C3007CF10A /* pupular_track_big.png */,
 				EFC868DA19A9593C00E0937B /* pupular_track.png */,
 				EF0B8EA919BA9EB500FCA587 /* pupular_message_button.png */,
@@ -695,9 +671,7 @@
 				EF0B8EA219BA695500FCA587 /* pupular_launch_1.png in Resources */,
 				EF1CEC6B1937B1380000CDC5 /* AEAboutViewController.xib in Resources */,
 				EFA3D88319AC524E007CF10A /* search_filler.png in Resources */,
-				EF8DE7401A009E8A00EBB414 /* pupular_decline_button.png in Resources */,
 				EF0B8EB819BACE7900FCA587 /* pupular_message_default.png in Resources */,
-				EF9F9C8E1A00102B00E34786 /* AEMessageViewFiller.xib in Resources */,
 				EF0B8EB019BAA3B800FCA587 /* pupular_accept_button.png in Resources */,
 				EF0B8EAC19BA9FC900FCA587 /* pupular_track_button.png in Resources */,
 				EF0B8EAA19BA9EB500FCA587 /* pupular_message_button.png in Resources */,
@@ -714,9 +688,9 @@
 				EFC868DD19A95A5400E0937B /* pupular_track_home.png in Resources */,
 				EF4C615E19A638C50012D696 /* AESearchViewController.xib in Resources */,
 				EF0B8EAE19BAA22800FCA587 /* pupular_pack_button.png in Resources */,
-				EF931B1119F04BE30041ED1A /* AEToolBarTestViewController.xib in Resources */,
 				EF1CEC5C1937B0AC0000CDC5 /* AELogInViewController.xib in Resources */,
-				EF9F9C901A00352B00E34786 /* AEPackViewFiller.xib in Resources */,
+				EF0B8EB219BAA47200FCA587 /* pupular_decline_button.png in Resources */,
+				EFA3D88919AC5D65007CF10A /* grass.png in Resources */,
 				EF4C619019A7A33F0012D696 /* pupular_search_default.png in Resources */,
 				EFA3D89519AD04D3007CF10A /* pupular_message_big.png in Resources */,
 				EFA3D89119AD03C3007CF10A /* pupular_track_big.png in Resources */,
@@ -730,7 +704,6 @@
 				EF1CEC26193786D00000CDC5 /* InfoPlist.strings in Resources */,
 				EF9EF25819B7AEC30014C3BE /* pupular_badge.png in Resources */,
 				EFA8589119439E7700065ED9 /* AEActiveFriendsViewController.xib in Resources */,
-				EF53032A1A003E1300263B3F /* AETinderViewController.xib in Resources */,
 				EF4C616019A77D040012D696 /* track_star_signal_ON.png in Resources */,
 				EFA3D88719AC57F5007CF10A /* pupular_marker_icon.png in Resources */,
 				EF4BEFDD19B42AC900190140 /* grass_navbar.png in Resources */,
@@ -772,7 +745,6 @@
 				EF1CEC8D1937B6580000CDC5 /* AEHomeMapViewController.m in Sources */,
 				EFC2FFDE195498D300904361 /* UIImage+WebP.m in Sources */,
 				EFC2FFD3195498D300904361 /* NSData+ImageContentType.m in Sources */,
-				EF931B1019F04BE30041ED1A /* AEToolBarTestViewController.m in Sources */,
 				EF1CEC5B1937B0AC0000CDC5 /* AELogInViewController.m in Sources */,
 				EF1CEC791937B19A0000CDC5 /* AESignUpViewController.m in Sources */,
 				EFC2FFD6195498D300904361 /* SDWebImageDecoder.m in Sources */,
@@ -782,8 +754,6 @@
 				EFCDA90D19968C9E00635A2C /* AEMessagesViewController.m in Sources */,
 				EF1CEC6A1937B1380000CDC5 /* AEAboutViewController.m in Sources */,
 				EF1A3B191977048400174C83 /* AEProfileViewController.m in Sources */,
-				EFCAC8B119C243A20051EEF1 /* AETabBarViewController.m in Sources */,
-				EF5303291A003E1300263B3F /* AETinderViewController.m in Sources */,
 				EFC2FFE0195498D300904361 /* UIImageView+WebCache.m in Sources */,
 				EFC2FF0E19537B2300904361 /* AEAdditionView.m in Sources */,
 				EFA8589519439F8900065ED9 /* AEConvoViewController.m in Sources */,
@@ -878,9 +848,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "70fcdf5e-19a9-4c06-ba29-412c152c043f";
 				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -911,7 +879,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PROVISIONING_PROFILE = "70fcdf5e-19a9-4c06-ba29-412c152c043f";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -935,9 +902,8 @@
 				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f4782cf2-5556-4b1a-8bf6-4e67f55606c7";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -948,7 +914,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/hoopmiester/Downloads/GoogleMaps-iOS-1.7.2",
@@ -960,7 +926,7 @@
 				INFOPLIST_FILE = "Pupular/Pupular-Info.plist";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f4782cf2-5556-4b1a-8bf6-4e67f55606c7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

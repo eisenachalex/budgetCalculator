@@ -12,11 +12,9 @@
     NSMutableData *_responseData;
     NSMutableArray *friendsArray;
     NSArray *searchResults;
+
     NSMutableDictionary *userInfo;
 }
-@property NSDictionary *allDogs;
-@property NSString *dogID;
-@property NSDictionary *dog;
 @property AECLController *locationController;
 @property IBOutlet UINavigationBar *navBar;
 @property IBOutlet UIBarButtonItem *menuButton;
@@ -24,6 +22,7 @@
 @property IBOutlet UITableView *tableView;
 @property IBOutlet UISearchBar *searchBar;
 @property NSString *dogHandle;
+@property NSString *foreign_dog_id;
 @property IBOutlet UISwitch *trackingSwitch;
 
 @end

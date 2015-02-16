@@ -15,8 +15,6 @@
 }
 @property NSString *dogID;
 @property NSMutableDictionary *profile;
-@property NSMutableDictionary *allDogs;
-@property NSMutableDictionary *dog;
 @property IBOutlet UITextField *zip;
 @property IBOutlet UITextField *owner;
 @property IBOutlet UITextField *breed;
